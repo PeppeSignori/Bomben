@@ -10,6 +10,21 @@ namespace Bomben
     {
         static void Main(string[] args)
         {
+
+
+            Console.WriteLine("Match 1");
+            Console.WriteLine("-------");
+            Console.WriteLine();
+
+            Console.Write("Odds på 1: ");
+            double M11 = 1 / Convert.ToDouble(Console.ReadLine());
+            Console.Write("Odds på X: ");
+            double M1X = 1 / Convert.ToDouble(Console.ReadLine());
+            Console.Write("Odds på 2: ");
+            double M12 = 1 / Convert.ToDouble(Console.ReadLine());
+
+
+
         }
     }
 }
