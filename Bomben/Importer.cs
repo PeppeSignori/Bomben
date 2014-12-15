@@ -119,6 +119,7 @@ namespace Bomben
                     for( int nyaKolumner=0 ; nyaKolumner < 7 ; nyaKolumner++ )
                     {
                         bombenDoubleStats[ nyaRader, nyaKolumner ] = Convert.ToDouble( bombenStats[ nyaRader, nyaKolumner ] );
+                        bombenDoubleStats[ nyaRader, nyaKolumner ] /= 100;
                         //DebugPrint
                         /*if( nyaRader < 10 )
                         {
