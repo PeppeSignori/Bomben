@@ -16,8 +16,8 @@ namespace Bomben
         {
             int[,] bombenIntStats;
 
-            //try
-            //{
+            try
+            {
             
                 //Hämta filnamn
                 Console.WriteLine("Skriv in namnet på textfil: ");
@@ -77,10 +77,10 @@ namespace Bomben
                 //Stäng filen så andra kan använda den
                 bombenFile.Close();
 
-
-                bombenIntStats = new int[counter, 7];
+                int newCounter = counter -1;
+                bombenIntStats = new int[newCounter, 7];
                 //Gör om alla till int
-                for( int nyaRader=0 ; nyaRader < counter ; nyaRader++ )
+                for( int nyaRader=0 ; nyaRader < newCounter ; nyaRader++ )
                 {
                     for( int nyaKolumner=0 ; nyaKolumner < 7 ; nyaKolumner++ )
                     {
@@ -96,15 +96,15 @@ namespace Bomben
 
                 return bombenIntStats;
                 
-            //}
-            /*catch (Exception e) 
+            }
+            catch 
             {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                Console.WriteLine("Något gick fel vid inläsningen av textfilen!");
                 //fullösning för att få ett returvärde
                 bombenIntStats = new int[ 1, 7 ];
                 return bombenIntStats;
             }
-            */
+            
             
         }
     }
