@@ -8,10 +8,44 @@ using System.IO;
 
 namespace Bomben
 {
+    
+
     static class Importer
     {
+        static string _pathFile;
         
-        //Metod som läser in textfiler med odds för Bomben
+        ///Metod som räknar antalet rader i en fil
+        public static int countLines()
+        {
+            //Hämta filnamn
+            Console.WriteLine( "Skriv in namnet på textfil: " );
+            string fileName = Console.ReadLine().ToUpper();
+
+
+            //Nytt objekt som läser in filen
+            //string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
+            string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
+            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( pathFile );
+
+
+            string line;
+            int counter = 0;
+            //Gå igenom filen för att se antal rader
+            while( ( line = bombenFile.ReadLine() )  != null )
+            {
+                counter++;
+            }
+            
+            _pathFile = pathFile;
+
+            //Stäng filen så andra kan använda den
+            bombenFile.Close();
+
+            return counter;
+ 
+        }
+
+        ///Metod som läser in textfiler med odds för Bomben, returnerar en int[,] array
         public static int[,] importBomben( )
         {
             int[,] bombenIntStats;
@@ -20,14 +54,14 @@ namespace Bomben
             {
             
                 //Hämta filnamn
-                Console.WriteLine("Skriv in namnet på textfil: ");
-                string fileName = Console.ReadLine().ToUpper();
+                //Console.WriteLine("Skriv in namnet på textfil: ");
+                //string fileName = Console.ReadLine().ToUpper();
 
 
                 //Nytt objekt som läser in filen
-                string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
+                //string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
                 //string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
-                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( pathFile );
+                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _pathFile );
             
             
                 string line;
@@ -62,11 +96,11 @@ namespace Bomben
                         {
                             bombenStats[rad-1,kolumn++] = str;
                             //DeubugPrint
-                            if(rad<10)
+                            /*if(rad<10)
                             {
                                 Console.WriteLine(str);
                             }
-                            
+                            */
                         }
                                         
                     }
@@ -86,10 +120,11 @@ namespace Bomben
                     {
                         bombenIntStats[ nyaRader, nyaKolumner ] = Convert.ToInt32( bombenStats[ nyaRader, nyaKolumner ] );
                         //DebugPrint
-                        if( nyaRader < 10 )
+                        /*if( nyaRader < 10 )
                         {
                             Console.WriteLine( bombenIntStats[ nyaRader, nyaKolumner ] );
                         }
+                        */
                     }
                 
                 }
