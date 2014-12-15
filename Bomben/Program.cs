@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Bomben
 {
@@ -427,7 +428,7 @@ namespace Bomben
             int k = 0;
             int l = 0;
 
-            for (int m = 0; m < 1771560; m = m + 1)
+            for (int m = 0; m < 1771561; m = m + 1)
             {
 
                 if (m%121 == 0 && m != 0)                
@@ -490,11 +491,23 @@ namespace Bomben
 
             Console.WriteLine();
 
-        
+            int counter = Importer.countLines();
+
+            double[,] bombenStats = new double[counter, 7];
+            
+            bombenStats = Importer.importBomben();
+            
+            /*
+            System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Poissonodds.txt", true);
+            file.WriteLine(allaResultat);
+            file.Close();
+            */
+
+            
 
 
-
-
+            
+            
 
 
 
