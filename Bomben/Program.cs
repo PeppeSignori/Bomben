@@ -497,6 +497,10 @@ namespace Bomben
             
             bombenStats = Importer.importBomben();
             
+
+
+            Console.ReadLine();
+
             /*
             System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Poissonodds.txt", true);
             file.WriteLine(allaResultat);
