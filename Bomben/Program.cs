@@ -12,7 +12,7 @@ namespace Bomben
         static void Main(string[] args)
         {
             
-            /*
+            
             // Match 1
             
             Match Match1 = new Match();
@@ -447,8 +447,6 @@ namespace Bomben
             }
 
             // Testa kombination
-
-
             Console.Write("Testa en kombination? [j]: ");
             answer = Console.ReadLine();
             while (answer == "j")
@@ -491,7 +489,7 @@ namespace Bomben
             }
 
             Console.WriteLine();
-            */
+            
 
             //Importera statistik från textfil.
             int counter = Importer.countLines();
