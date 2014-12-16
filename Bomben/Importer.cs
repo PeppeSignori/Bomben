@@ -24,7 +24,8 @@ namespace Bomben
 
             //Nytt objekt som läser in filen
             //string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
-            string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
+            //string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
+            string pathFile = @"C:\Bomben\" +fileName;
             System.IO.StreamReader bombenFile =  new System.IO.StreamReader( pathFile );
 
 
@@ -95,12 +96,6 @@ namespace Bomben
                         foreach( string str in tempString )
                         {
                             bombenStats[rad-1,kolumn++] = str;
-                            //DeubugPrint
-                            /*if(rad<10)
-                            {
-                                Console.WriteLine(str);
-                            }
-                            */
                         }
                                         
                     }
@@ -119,7 +114,7 @@ namespace Bomben
                     for( int nyaKolumner=0 ; nyaKolumner < 7 ; nyaKolumner++ )
                     {
                         bombenDoubleStats[ nyaRader, nyaKolumner ] = Convert.ToDouble( bombenStats[ nyaRader, nyaKolumner ] );
-                        bombenDoubleStats[ nyaRader, nyaKolumner ] /= 100;
+                        
                         //DebugPrint
                         /*if( nyaRader < 10 )
                         {
@@ -127,6 +122,8 @@ namespace Bomben
                         }
                         */
                     }
+                    //Dela oddsen med 100 för att få riktiga odds. 
+                    bombenDoubleStats[ nyaRader, 0 ] /= 100;
                 
                 }
 
@@ -143,5 +140,7 @@ namespace Bomben
             
             
         }
+
+
     }
 }
