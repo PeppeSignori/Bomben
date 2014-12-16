@@ -12,6 +12,7 @@ namespace Bomben
         static void Main(string[] args)
         {
             
+            /*
             // Match 1
             
             Match Match1 = new Match();
@@ -490,14 +491,35 @@ namespace Bomben
             }
 
             Console.WriteLine();
+            */
 
+            //Importera statistik från textfil.
             int counter = Importer.countLines();
-
             double[,] bombenStats = new double[counter, 7];
-            
             bombenStats = Importer.importBomben();
             
-
+            //Mata in mål i matcher
+            double[] homeGoals = new double[3];
+            double[] awayGoals = new double[3];
+            
+            Console.Write( "Hemmalag1 mål: " );
+            homeGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag1 mål: " );
+            awayGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Hemmalag2 mål: " );
+            homeGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag2 mål: " );
+            awayGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Hemmalag3 mål: " );
+            homeGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag3 mål: " );
+            awayGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
+        
+            //Leta upp rätt odds för resultatet. return 0 om det inte finns
+            int rattrad = getOdds( bombenStats, homeGoals, awayGoals );
+            
+            Console.WriteLine( "Odds: " +bombenStats[rattrad,0] );
+            
 
             Console.ReadLine();
 
@@ -506,18 +528,47 @@ namespace Bomben
             file.WriteLine(allaResultat);
             file.Close();
             */
-
             
+        }
 
+        ///Letar upp rätt odds för en viss kombination. Returnerar int för rätt rad i BombenStats
+        private static int getOdds( double[,] stats, double[] homeGoals, double[] awayGoals )
+        {
+            int rattrad = 0; 
+            int arrayEnd = stats.GetLength(0); //Dimension 0
+            for( int i =0 ; i < arrayEnd ; i++ )
+            {
+                //testa om hemmamål1 stämmer
+                if( stats[i,1] == homeGoals[0])
+                {
+                    //Testa om bortamål1 stämmer
+                    if( stats[ i, 2 ] == awayGoals[0] )
+                    {
+                        //Testa om hemmamål2 stämmer
+                        if( stats[ i, 3 ] == homeGoals[1] )
+                        {
+                            //Testa om bortamål2 stämmer
+                            if( stats[ i, 4 ] == awayGoals[1] )
+                            {
+                                //Testa om hemmamål3 stämmer
+                                if( stats[ i, 5 ] == homeGoals[2] )
+                                {
+                                    //Testa om bortamål3 stämmer
+                                    if( stats[ i, 6 ] == awayGoals[2] )
+                                    {
+                                        rattrad = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
-            
-            
+            }
 
-
-
-
-
+            return rattrad;
 
         }
+
     }
 }
