@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.IO.Compression;
+//using System.IO.Compression.ZipFile;
 
 
 namespace Bomben
@@ -18,15 +20,31 @@ namespace Bomben
         public static int countLines()
         {
             //Hämta filnamn
-            Console.WriteLine( "Skriv in namnet på textfil: " );
+            Console.WriteLine( "Skriv in namnet på textfil (utan ändelse): " );
             string fileName = Console.ReadLine().ToUpper();
 
 
+
             //Nytt objekt som läser in filen
-            //string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
+            string txt = ".txt";
+            string zip = ".zip";
+            string zipPath = @"C:\Users\Erik\Downloads\" + fileName +zip;
+            string extractPath = @"C:\Bomben\";
+            
+            if( !File.Exists(extractPath + fileName + txt) )
+            {
+                ZipFile.ExtractToDirectory( zipPath, extractPath );    
+    
+            }
+            //string pathFile = extractPath;
+            //string pathFile = @"C:\Users\Christer\Downloads\" +fileName;
             //string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
             string pathFile = @"C:\Bomben\" +fileName;
-            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( pathFile );
+            
+            //Vänta på att filen finns
+            while( !File.Exists( @"C:\Bomben\" +fileName +txt) );
+
+            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +fileName +txt );
 
 
             string line;
@@ -36,8 +54,8 @@ namespace Bomben
             {
                 counter++;
             }
-            
-            _pathFile = pathFile;
+
+            _pathFile = @"C:\Bomben\" +fileName +txt;
 
             //Stäng filen så andra kan använda den
             bombenFile.Close();
