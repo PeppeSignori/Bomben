@@ -490,6 +490,7 @@ namespace Bomben
 
             Console.WriteLine();
             
+
             //Statistik från Svenska spel 
             //Importera statistik från textfil.
             int counter = Importer.countLines();
@@ -525,7 +526,9 @@ namespace Bomben
                 Console.WriteLine( "Odds: " +"0");
             }
             
-            
+            int turnOver = Importer.getTurnOver();
+
+            Console.WriteLine("Omsättning: " +turnOver);
             
 
             Console.ReadLine();

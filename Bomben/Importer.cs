@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
-//using System.IO.Compression.ZipFile;
-
+using System.Text.RegularExpressions;
 
 namespace Bomben
 {
@@ -14,48 +13,68 @@ namespace Bomben
 
     static class Importer
     {
-        static string _pathFile;
+        //static string _pathFile;
+        static string _user;
+        static string _extractPath = @"C:\Bomben\";
+        static string _currentFileName;
         
-        ///Metod som räknar antalet rader i en fil
+        
+        /// <summary>
+        /// Check user
+        /// </summary>
+        private static void checkUser()
+        {
+            if( Directory.Exists( @"C:\Users\Erik" ) )
+            {
+                _user = "Erik";
+            }
+            else if( Directory.Exists( @"C:\Users\Christer" ) )
+            {
+                _user = "Christer";
+            }
+            else
+            {
+                _user = "Unknown";
+            }
+            
+        }
+        
+        
+        /// <summary>
+        /// Räknar antalet rader i en textfil
+        /// </summary>
+        /// <returns>Returnerar en int med antalet rader</returns>
         public static int countLines()
         {
             //Hämta filnamn
             Console.WriteLine( "Skriv in namnet på textfil (utan ändelse): " );
-            string fileName = Console.ReadLine().ToUpper();
-
-
-
-            //Nytt objekt som läser in filen
+            _currentFileName = Console.ReadLine().ToUpper();
+            
+            //Kontrollera vem som är användare
+            checkUser();
             string txt = ".txt";
             string zip = ".zip";
-            string zipPath = @"C:\Users\Erik\Downloads\" + fileName +zip;
-            string extractPath = @"C:\Bomben\";
+            string zipPath = @"C:\Users\" +_user +@"\Downloads\" + _currentFileName +zip;
             
-            if( !File.Exists(extractPath + fileName + txt) )
+            //Kolla om filen finns extrahera om den inte finns.
+            if( !File.Exists( _extractPath + _currentFileName + txt ) )
             {
-                ZipFile.ExtractToDirectory( zipPath, extractPath );    
-    
+                ZipFile.ExtractToDirectory( zipPath, _extractPath );    
             }
-            //string pathFile = extractPath;
-            //string pathFile = @"C:\Users\Christer\Downloads\" +fileName;
-            //string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
-            string pathFile = @"C:\Bomben\" +fileName;
-            
-            //Vänta på att filen finns
-            while( !File.Exists( @"C:\Bomben\" +fileName +txt) );
 
-            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +fileName +txt );
+            //Vänta på att filen extraherats
+            while( !File.Exists( @"C:\Bomben\" +_currentFileName +txt ) );
 
+            //Skapa nytt streamReader objekt
+            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +_currentFileName +txt );
 
+            //Gå igenom filen för att se antal rader
             string line;
             int counter = 0;
-            //Gå igenom filen för att se antal rader
             while( ( line = bombenFile.ReadLine() )  != null )
             {
                 counter++;
             }
-
-            _pathFile = @"C:\Bomben\" +fileName +txt;
 
             //Stäng filen så andra kan använda den
             bombenFile.Close();
@@ -71,21 +90,12 @@ namespace Bomben
 
             try
             {
+                //Nytt streamReader objekt
+                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + _currentFileName + ".txt" );
             
-                //Hämta filnamn
-                //Console.WriteLine("Skriv in namnet på textfil: ");
-                //string fileName = Console.ReadLine().ToUpper();
-
-
-                //Nytt objekt som läser in filen
-                //string pathFile = @"C:\Users\Christer\Desktop\Bomben\" +fileName;
-                //string pathFile = @"C:\Users\Erik\Desktop\Bomben\" +fileName;
-                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _pathFile );
-            
-            
+                //Gå igenom filen för att se antal rader
                 string line;
                 int counter = 0;
-                //Gå igenom filen för att se antal rader
                 while( ( line = bombenFile.ReadLine() )  != null )
                 {
                     counter++;
@@ -95,14 +105,14 @@ namespace Bomben
                 bombenFile.BaseStream.Seek(0, SeekOrigin.Begin );
                 bombenFile.DiscardBufferedData();
             
-
-                int kolumn = 0;
-                int rad = 0;
+                
                 string delimiterstring = ";,"; //delare
                 char[] delimiters = delimiterstring.ToArray(); //Omständigt sätt att skapa en charArray initialiserad
                 string[] tempString = null; 
                 string[,] bombenStats = new string[counter, 7];
             
+                int rad = 0;
+                int kolumn = 0;
                 //Läs in filen, skippa första raden. 
                 while( ( line = bombenFile.ReadLine() ) != null )
                 {
@@ -132,14 +142,8 @@ namespace Bomben
                     for( int nyaKolumner=0 ; nyaKolumner < 7 ; nyaKolumner++ )
                     {
                         bombenDoubleStats[ nyaRader, nyaKolumner ] = Convert.ToDouble( bombenStats[ nyaRader, nyaKolumner ] );
-                        
-                        //DebugPrint
-                        /*if( nyaRader < 10 )
-                        {
-                            Console.WriteLine( bombenIntStats[ nyaRader, nyaKolumner ] );
-                        }
-                        */
                     }
+
                     //Dela oddsen med 100 för att få riktiga odds. 
                     bombenDoubleStats[ nyaRader, 0 ] /= 100;
                 
@@ -155,10 +159,45 @@ namespace Bomben
                 bombenDoubleStats = new double[ 1, 7 ];
                 return bombenDoubleStats;
             }
-            
-            
         }
 
+        /// <summary>
+        /// Hämta Omsättning ur textfil
+        /// </summary>
+        /// <returns>Returnerar en int med omsättning</returns>
+        public static int getTurnOver()
+        {
+            try
+            {
+                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + _currentFileName + ".txt" );
 
+                string delimiterstring = ";"; //delare
+                char[] delimiters = delimiterstring.ToArray(); //Omständigt sätt att skapa en charArray initialiserad
+                string[] tempString = null;
+                string[ , ] bombenStats = new string[ 1, 6 ];
+
+                //Läs in filen, skippa första raden. 
+                string line = bombenFile.ReadLine();
+             
+                //separera saker i raden
+                tempString = line.Split( delimiters );
+                string turnOver = tempString[4];
+
+                string numberString = Regex.Match( turnOver, @"\d+" ).Value;
+
+                //Returnera omsättning
+                return Int32.Parse( numberString );
+
+            }
+            catch
+            {
+                Console.WriteLine("Kunde inte läsa in filen i metoden getTurnOver");
+                return -1;
+            }
+            
+        }
+            
+
+            
     }
 }
