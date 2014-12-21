@@ -139,7 +139,7 @@ namespace Bomben
                 bombenDoubleStats = new double[ 1, 7 ];
                 return bombenDoubleStats;
             }
-            
+
             
         }
     }
