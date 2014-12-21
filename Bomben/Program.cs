@@ -12,6 +12,7 @@ namespace Bomben
         static void Main(string[] args)
         {
             
+            
             // Match 1
             
             Match Match1 = new Match();
@@ -99,24 +100,11 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P1U = 0;
-            double P1Ö = 0;
-            if (M1ÖU == 2.5)         
-            {   
-                P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
-                P1Ö = 1 - P1U;
-            }
-            else if (M1ÖU == 5.5)
-            {
-                P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[3] + Match1.resultat[4] + Match1.resultat[5] +
-                Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[13] + Match1.resultat[14] + Match1.resultat[15] +
-                Match1.resultat[22] + Match1.resultat[23] + Match1.resultat[24] + Match1.resultat[25] +
-                Match1.resultat[33] + Match1.resultat[34] + Match1.resultat[35] + Match1.resultat[44] + Match1.resultat[45] + Match1.resultat[55];
-                P1Ö = 1 - P1U;
-            }
-            Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 / P1Ö, 2));
+            double P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+            double P1Ö = 1 - P1U;
+
+            Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
             Console.WriteLine("Poissonodds på under " + M1ÖU + ": " + Math.Round(1 / P1U, 2));
-            
 
             Console.WriteLine();
 
@@ -141,23 +129,12 @@ namespace Bomben
                 Match1.beräknaResultat();
 
                 Console.WriteLine();
-
-                if (M1ÖU == 2.5)
-                {
-                    P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
-                    P1Ö = 1 - P1U;
-                }
-                else if (M1ÖU == 5.5)
-                {
-                    P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[3] + Match1.resultat[4] + Match1.resultat[5] +
-                    Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[13] + Match1.resultat[14] + Match1.resultat[15] +
-                    Match1.resultat[22] + Match1.resultat[23] + Match1.resultat[24] + Match1.resultat[25] +
-                    Match1.resultat[33] + Match1.resultat[34] + Match1.resultat[35] + Match1.resultat[44] + Match1.resultat[45] + Match1.resultat[55];
-                    P1Ö = 1 - P1U;
-                }
+                
+                P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+                P1Ö = 1 - P1U;
 
                 Console.WriteLine("100 % odds på över " + M1ÖU + ":   " + Math.Round(1 / M1HÖ, 2));
-                Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 / P1Ö, 2));
+                Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
                 Console.WriteLine();
                 Console.WriteLine("100 % odds på under " + M1ÖU + ":  " + Math.Round(1 / M1HU, 2));
                 Console.WriteLine("Poissonodds på under " + M1ÖU + ": " + Math.Round(1 / P1U, 2));
@@ -258,21 +235,9 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P2U = 0;
-            double P2Ö = 0;
-            if (M2ÖU == 2.5)
-            {
-                P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
-                P2Ö = 1 - P2U;
-            }
-            else if (M2ÖU == 5.5)
-            {
-                P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[3] + Match2.resultat[4] + Match2.resultat[5] +
-                Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[13] + Match2.resultat[14] + Match2.resultat[15] +
-                Match2.resultat[22] + Match2.resultat[23] + Match2.resultat[24] + Match2.resultat[25] +
-                Match2.resultat[33] + Match2.resultat[34] + Match2.resultat[35] + Match2.resultat[44] + Match2.resultat[45] + Match2.resultat[55];
-                P2Ö = 1 - P2U;
-            }
+            double P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
+            double P2Ö = 1 - P2U;
+
             Console.WriteLine("Poissonodds på över " + M2ÖU + ":  " + Math.Round(1 / P2Ö, 2));
             Console.WriteLine("Poissonodds på under " + M2ÖU + ": " + Math.Round(1 / P2U, 2));
 
@@ -300,19 +265,8 @@ namespace Bomben
 
                 Console.WriteLine();
 
-                if (M2ÖU == 2.5)
-                {
-                    P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
-                    P2Ö = 1 - P2U;
-                }
-                else if (M2ÖU == 5.5)
-                {
-                    P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[3] + Match2.resultat[4] + Match2.resultat[5] +
-                    Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[13] + Match2.resultat[14] + Match2.resultat[15] +
-                    Match2.resultat[22] + Match2.resultat[23] + Match2.resultat[24] + Match2.resultat[25] +
-                    Match2.resultat[33] + Match2.resultat[34] + Match2.resultat[35] + Match2.resultat[44] + Match2.resultat[45] + Match2.resultat[55];
-                    P2Ö = 1 - P2U;
-                }
+                P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
+                P2Ö = 1 - P2U;
 
                 Console.WriteLine("100 % odds på över " + M2ÖU + ":   " + Math.Round(1 / M2HÖ, 2));
                 Console.WriteLine("Poissonodds på över " + M2ÖU + ":  " + Math.Round(1 / P2Ö, 2));
@@ -415,21 +369,8 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P3U = 0;
-            double P3Ö = 0;
-            if (M3ÖU == 2.5)
-            {
-                P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
-                P3Ö = 1 - P3U;
-            }
-            else if (M3ÖU == 5.5)
-            {
-                P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[3] + Match3.resultat[4] + Match3.resultat[5] +
-                Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[13] + Match3.resultat[14] + Match3.resultat[15] +
-                Match3.resultat[22] + Match3.resultat[23] + Match3.resultat[24] + Match3.resultat[25] +
-                Match3.resultat[33] + Match3.resultat[34] + Match3.resultat[35] + Match3.resultat[44] + Match3.resultat[45] + Match3.resultat[55];
-                P3Ö = 1 - P3U;
-            }
+            double P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
+            double P3Ö = 1 - P3U;
 
             Console.WriteLine("Poissonodds på över " + M3ÖU + ":  " + Math.Round(1 / P3Ö, 2));
             Console.WriteLine("Poissonodds på under " + M3ÖU + ": " + Math.Round(1 / P3U, 2));
@@ -458,19 +399,8 @@ namespace Bomben
 
                 Console.WriteLine();
 
-                if (M3ÖU == 2.5)
-                {
-                    P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
-                    P3Ö = 1 - P3U;
-                }
-                else if (M3ÖU == 5.5)
-                {
-                    P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[3] + Match3.resultat[4] + Match3.resultat[5] +
-                    Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[13] + Match3.resultat[14] + Match3.resultat[15] +
-                    Match3.resultat[22] + Match3.resultat[23] + Match3.resultat[24] + Match3.resultat[25] +
-                    Match3.resultat[33] + Match3.resultat[34] + Match3.resultat[35] + Match3.resultat[44] + Match3.resultat[45] + Match3.resultat[55];
-                    P3Ö = 1 - P3U;
-                }
+                P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
+                P3Ö = 1 - P2U;
 
                 Console.WriteLine("100 % odds på över " + M3ÖU + ":  " + Math.Round(1 / M3HÖ, 2));
                 Console.WriteLine("Poissonodds på över " + M3ÖU + ": " + Math.Round(1 / P3Ö, 2));
@@ -517,8 +447,6 @@ namespace Bomben
             }
 
             // Testa kombination
-
-
             Console.Write("Testa en kombination? [j]: ");
             answer = Console.ReadLine();
             while (answer == "j")
@@ -561,43 +489,84 @@ namespace Bomben
             }
 
             Console.WriteLine();
+            
 
-
-
+            //Importera statistik från textfil.
             int counter = Importer.countLines();
-
             double[,] bombenStats = new double[counter, 7];
-            
             bombenStats = Importer.importBomben();
-
-            Console.WriteLine(bombenStats[2, 0]);
-            Console.WriteLine(bombenStats[2, 1]);
-            Console.WriteLine(bombenStats[2, 2]);
-            Console.WriteLine(bombenStats[2, 3]);
-            Console.WriteLine(bombenStats[2, 4]);
-            Console.WriteLine(bombenStats[2, 5]);
-            Console.WriteLine(bombenStats[2, 6]);
-        
-
-
             
+            //Mata in mål i matcher
+            double[] homeGoals = new double[3];
+            double[] awayGoals = new double[3];
+            
+            Console.Write( "Hemmalag1 mål: " );
+            homeGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag1 mål: " );
+            awayGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Hemmalag2 mål: " );
+            homeGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag2 mål: " );
+            awayGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Hemmalag3 mål: " );
+            homeGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
+            Console.Write( "Bortalag3 mål: " );
+            awayGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
+        
+            //Leta upp rätt odds för resultatet. return 0 om det inte finns
+            int rattrad = getOdds( bombenStats, homeGoals, awayGoals );
+            
+            Console.WriteLine( "Odds: " +bombenStats[rattrad,0] );
+            
+
+            Console.ReadLine();
+
             /*
             System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Poissonodds.txt", true);
             file.WriteLine(allaResultat);
             file.Close();
             */
-
-
-            Console.ReadLine();
-
             
-            
+        }
 
+        ///Letar upp rätt odds för en viss kombination. Returnerar int för rätt rad i BombenStats
+        private static int getOdds( double[,] stats, double[] homeGoals, double[] awayGoals )
+        {
+            int rattrad = 0; 
+            int arrayEnd = stats.GetLength(0); //Dimension 0
+            for( int i =0 ; i < arrayEnd ; i++ )
+            {
+                //testa om hemmamål1 stämmer
+                if( stats[i,1] == homeGoals[0])
+                {
+                    //Testa om bortamål1 stämmer
+                    if( stats[ i, 2 ] == awayGoals[0] )
+                    {
+                        //Testa om hemmamål2 stämmer
+                        if( stats[ i, 3 ] == homeGoals[1] )
+                        {
+                            //Testa om bortamål2 stämmer
+                            if( stats[ i, 4 ] == awayGoals[1] )
+                            {
+                                //Testa om hemmamål3 stämmer
+                                if( stats[ i, 5 ] == homeGoals[2] )
+                                {
+                                    //Testa om bortamål3 stämmer
+                                    if( stats[ i, 6 ] == awayGoals[2] )
+                                    {
+                                        rattrad = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
+            }
 
-
-
+            return rattrad;
 
         }
+
     }
 }
