@@ -483,14 +483,15 @@ namespace Bomben
                 Console.WriteLine();
                 Console.WriteLine("Poissonodds: " + Math.Round(1/allaResultat[K], 2));
                 Console.WriteLine();
-                Console.Write("Testa en till kombination? [j]: ");
+                Console.Write( "Testa en till kombination? [j]: " );
                 answer = Console.ReadLine();
 
-            }
+            }    
 
             Console.WriteLine();
             
 
+            //Statistik från Svenska spel 
             //Importera statistik från textfil.
             int counter = Importer.countLines();
             double[,] bombenStats = new double[counter, 7];
@@ -515,8 +516,19 @@ namespace Bomben
         
             //Leta upp rätt odds för resultatet. return 0 om det inte finns
             int rattrad = getOdds( bombenStats, homeGoals, awayGoals );
+
+            if( rattrad != 0 )
+            {
+                Console.WriteLine( "Odds: " +bombenStats[rattrad,0] );
+            }
+            else
+            {
+                Console.WriteLine( "Odds: " +"0");
+            }
             
-            Console.WriteLine( "Odds: " +bombenStats[rattrad,0] );
+            int turnOver = Importer.getTurnOver();
+
+            Console.WriteLine("Omsättning: " +turnOver);
             
 
             Console.ReadLine();
