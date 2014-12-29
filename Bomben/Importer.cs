@@ -96,7 +96,7 @@ namespace Bomben
                         foreach( string str in tempString )
                         {
                             bombenStats[rad-1,kolumn++] = str;
-                        }
+                            }
                                         
                     }
                     rad++;
