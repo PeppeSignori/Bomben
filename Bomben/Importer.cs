@@ -13,8 +13,9 @@ namespace Bomben
     static class Importer
     {
         static string _pathFile;
-        
-        ///Metod som räknar antalet rader i en fil
+               
+               
+        //Metod som räknar antalet rader i en fil
         public static int countLines()
         {
             //Hämta filnamn
@@ -140,6 +141,8 @@ namespace Bomben
             
             
         }
+
+        
 
 
     }
