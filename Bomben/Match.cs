@@ -60,6 +60,29 @@ namespace Bomben
         }
 
 
+        /*
+
+        public double [] oddsPlus = new double [1771561];
+        public void beräknaOddsPlus1(int adderadeRader, int turnOver, double[,] stats)
+        {
+
+            
+            for (int m = 0; m < 1771561; m = m + 1)
+            {
+                if (stats[m,0] != 0)
+                {
+                    this.oddsPlus[m] = (0.6 * (turnOver + adderadeRader) ) / (1 + 0.6 * (turnOver + 1) / stats[m,0]);
+                }
+                else
+                {
+                    this.oddsPlus[m] = (0.6 * (turnOver + 1));
+                }
+            }
+        }
+        
+        */
+
+        
 
     }
 }

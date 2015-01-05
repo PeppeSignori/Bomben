@@ -19,6 +19,7 @@ namespace Bomben
         static string _currentFileName;
         
         
+        
         /// <summary>
         /// Check user
         /// </summary>
@@ -146,6 +147,7 @@ namespace Bomben
 
                     //Dela oddsen med 100 för att få riktiga odds. 
                     bombenDoubleStats[ nyaRader, 0 ] /= 100;
+
                 
                 }
 

@@ -526,11 +526,26 @@ namespace Bomben
                 Console.WriteLine( "Odds: " +"0");
             }
             
+            //Hämta odds från textfil från SvS
             int turnOver = Importer.getTurnOver();
 
             Console.WriteLine("Omsättning: " +turnOver);
             
+            //Skapa nytt matris-objekt
+            //matrix finalMatrix = new matrix();
+            //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
 
+            //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
+            //finalMatrix.addOddsFromBombenStats( bombenStats );
+
+            //Räkna om alla odds och lägg till odds på icke spelade kombinationer
+            //finalMatrix.reCalculateOdds();
+
+            //Lägg in poissonOdds i matrisen
+            //finalMatrix.addPoissonOdds();
+
+            //Skriv ut i listview(matris i consolFönstret)
+            
             Console.ReadLine();
 
             /*
