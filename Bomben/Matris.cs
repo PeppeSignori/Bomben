@@ -123,11 +123,43 @@ namespace Bomben
 
         public void skapaMatrisUtanOdds()
         {
-            int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
-            {
-                this.matrisUtanOdds[h++] = ;
-            }
+            
+            //Så här skulle det se ut om matrisUtanOddsKolumnerna var private istället för public
+            //Då skulle skapaMatrisUtanOdds anropa dem. "Användaren" ute i program kan inte styra 
+            //men det blir snyggare tycker jag mindre text ute i Program. 
+
+            /*
+            skapaMatrisUtanOddskolumn1();
+            skapaMatrisUtanOddskolumn2();
+            skapaMatrisUtanOddskolumn3();
+            skapaMatrisUtanOddskolumn4();
+            skapaMatrisUtanOddskolumn5();
+            skapaMatrisUtanOddskolumn6();
+            */
+
+            //Lägg till enskilda matrisers kolumner i matrisUtanOdds.
+            addColumn( 0, matrisUtanOddsKolumn1 );
+            addColumn( 1, matrisUtanOddsKolumn2 );
+            addColumn( 2, matrisUtanOddsKolumn3 );
+            addColumn( 3, matrisUtanOddsKolumn4 );
+            addColumn( 4, matrisUtanOddsKolumn5 );
+            addColumn( 5, matrisUtanOddsKolumn6 );            
+            
         }
+        
+        //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
+        private void addColumn( int targetColumn, double[] sourceMatrix )
+        {
+            
+            for (int row = 0; row < 1771561; row = row + 1)
+            {
+                matrisUtanOdds[row, targetColumn] = sourceMatrix[row];    
+            }
+
+                        
+            
+        }
+
+
     }
 }

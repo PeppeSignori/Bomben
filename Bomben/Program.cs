@@ -12,7 +12,7 @@ namespace Bomben
         static void Main(string[] args)
         {
             
-            
+            /*
             // Match 1
             
             Match Match1 = new Match();
@@ -530,10 +530,25 @@ namespace Bomben
             int turnOver = Importer.getTurnOver();
 
             Console.WriteLine("Omsättning: " +turnOver);
-            
+            */
             //Skapa nytt matris-objekt
-            //matrix finalMatrix = new matrix();
+            Matris finalMatrix = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
+
+            //Skapa kolumner med utan odds var för sig
+            
+            //Alternativt kan vi göra dessa metoder private så anropar vi dem i klassen istället. 
+            //Jag har skrivit i metoden skapaMatrisUtanOdds hur man kan göra.
+            finalMatrix.skapaMatrisUtanOddskolumn1();
+            finalMatrix.skapaMatrisUtanOddskolumn2();
+            finalMatrix.skapaMatrisUtanOddskolumn3();
+            finalMatrix.skapaMatrisUtanOddskolumn4();
+            finalMatrix.skapaMatrisUtanOddskolumn5();
+            finalMatrix.skapaMatrisUtanOddskolumn6();
+
+            //Lägg till dem i matrisUtanOdds.
+            finalMatrix.skapaMatrisUtanOdds();
+
 
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
             //finalMatrix.addOddsFromBombenStats( bombenStats );

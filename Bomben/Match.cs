@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Bomben
 {
-    class Match
+    public class Match
     {
         public double[] hemmaMålSannolikhet = new double[11];
         public double[] bortaMålSannolikhet = new double[11];
