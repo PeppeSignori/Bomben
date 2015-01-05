@@ -12,7 +12,7 @@ namespace Bomben
         static void Main(string[] args)
         {
             
-            /*
+            
             // Match 1
             
             Match Match1 = new Match();
@@ -530,7 +530,7 @@ namespace Bomben
             int turnOver = Importer.getTurnOver();
 
             Console.WriteLine("Omsättning: " +turnOver);
-            */
+            
             //Skapa nytt matris-objekt
             Matris finalMatrix = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
