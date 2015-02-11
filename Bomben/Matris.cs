@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 
@@ -19,6 +20,7 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
         private int läggTillPlusRäknare = 0;
+        private const int MAX = 1771561;
         
         public void skapaMatrisUtanOddskolumn1()
         {
@@ -38,7 +40,7 @@ namespace Bomben
         {
             int b = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for (int g = 0; g < MAX; g = g + 1)
             {
                 if (g % 14641 == 0 && g != 0)
                 {
@@ -56,7 +58,7 @@ namespace Bomben
         {
             int c = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for( int g = 0;g < MAX;g = g + 1 )
             {
                 if (g % 1331 == 0 && g != 0)
                 {
@@ -74,7 +76,7 @@ namespace Bomben
         {
             int d = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for( int g = 0;g < MAX;g = g + 1 )
             {
                 if (g % 121 == 0 && g != 0)
                 {
@@ -92,7 +94,7 @@ namespace Bomben
         {
             int e = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for( int g = 0;g < MAX;g = g + 1 )
             {
                 if (g % 11 == 0 && g != 0)
                 {
@@ -110,7 +112,7 @@ namespace Bomben
         {
             int f = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for( int g = 0;g < MAX;g = g + 1 )
             {
                 if (g % 11 == 0 && g != 0)
                 {
@@ -146,8 +148,8 @@ namespace Bomben
         //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
         public void addColumn( int targetColumn, double[] sourceMatrix )
         {
-            
-            for (int row = 0; row < 1771561; row = row + 1)
+
+            for( int row = 0;row < MAX;row = row + 1 )
             {
                 allaKombinationer[row, targetColumn] = sourceMatrix[row];    
             }
@@ -174,38 +176,44 @@ namespace Bomben
                 läggTillPlusRäknare++;
             }
 
-            for (int i = 0; i < 1771561; i++)
+            Parallel.For(0, MAX, delegate(int i) 
             {
-                for (int j = 0; j < bombenStatsSize; j++)
+                            
+                for ( i = 0; i < MAX; i++)
                 {
-                    allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / Convert.ToDouble(antalPlus));
-                    allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-
-                    if (allaKombinationer[i, 0] == svSpelOdds[j, 1])
+                    Parallel.For( 0, bombenStatsSize, delegate( int j )
                     {
-                        if (allaKombinationer[i, 1] == svSpelOdds[j, 2])
+                        for( j = 0;j < bombenStatsSize;j++ )
                         {
-                            if (allaKombinationer[i, 2] == svSpelOdds[j, 3])
+                            allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+                            allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+
+                            if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                             {
-                                if (allaKombinationer[i, 3] == svSpelOdds[j, 4])
+                                if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
                                 {
-                                    if (allaKombinationer[i, 4] == svSpelOdds[j, 5])
+                                    if( allaKombinationer[i, 2] == svSpelOdds[j, 3] )
                                     {
-                                        if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
+                                        if( allaKombinationer[i, 3] == svSpelOdds[j, 4] )
                                         {
-                                            double firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
-                                            allaKombinationer[i, sparKolumn] = firstTemp;
-                                            double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-                                            allaKombinationer[i, (sparKolumn + 1)] = secondTemp;                                        
+                                            if( allaKombinationer[i, 4] == svSpelOdds[j, 5] )
+                                            {
+                                                if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
+                                                {
+                                                    double firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                                    allaKombinationer[i, sparKolumn] = firstTemp;
+                                                    double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                                    allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
+                    } );
                 }
-            }
-
+            });
 
         }
 
