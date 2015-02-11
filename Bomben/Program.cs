@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace Bomben
 {
@@ -459,6 +460,11 @@ namespace Bomben
             //Hämta omsättning från textfil från SvS
             int turnOver = Importer.getTurnOver();
           
+            //Starta stoppWatch
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            Console.WriteLine( "Beräknar...." );
+            
             //Skapa nytt matris-objekt
             Matris matris = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
@@ -473,6 +479,16 @@ namespace Bomben
             matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
 
             matris.writeToFile();
+
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+
+            // Format and display the TimeSpan value. 
+            string elapsedTime = String.Format( "{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds,
+                ts.Milliseconds / 10 );
+            Console.WriteLine( "RunTime: " + elapsedTime );
+            
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
             //finalMatrix.reCalculateOdds();
 
