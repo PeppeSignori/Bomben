@@ -11,13 +11,14 @@ namespace Bomben
     class Matris
     {
 
-        public double[,] matrisUtanOdds = new double[1771561, 7];
+        public double[,] allaKombinationer = new double[1771561, 11];
         public double[] matrisUtanOddsKolumn1 = new double[1771561];
         public double[] matrisUtanOddsKolumn2 = new double[1771561];
         public double[] matrisUtanOddsKolumn3 = new double[1771561];
         public double[] matrisUtanOddsKolumn4 = new double[1771561];
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
+        private int läggTillPlusRäknare = 0;
         
         public void skapaMatrisUtanOddskolumn1()
         {
@@ -65,7 +66,7 @@ namespace Bomben
                 {
                     c = 0;
                 }
-                this.matrisUtanOddsKolumn2[h++] = c;
+                this.matrisUtanOddsKolumn3[h++] = c;
             }
         }
 
@@ -83,7 +84,7 @@ namespace Bomben
                 {
                     d = 0;
                 }
-                this.matrisUtanOddsKolumn2[h++] = d;
+                this.matrisUtanOddsKolumn4[h++] = d;
             }
         }
 
@@ -101,7 +102,7 @@ namespace Bomben
                 {
                     e = 0;
                 }
-                this.matrisUtanOddsKolumn2[h++] = e;
+                this.matrisUtanOddsKolumn5[h++] = e;
             }
         }
 
@@ -115,28 +116,23 @@ namespace Bomben
                 {
                     f = 0;
                 }
-                this.matrisUtanOddsKolumn2[h++] = f;
+                this.matrisUtanOddsKolumn6[h++] = f++;
+
             }
         }
-
-
-
-        public void skapaMatrisUtanOdds()
+        
+        public void skapaAllaResultatKombinationer()
         {
             
-            //Så här skulle det se ut om matrisUtanOddsKolumnerna var private istället för public
-            //Då skulle skapaMatrisUtanOdds anropa dem. "Användaren" ute i program kan inte styra 
-            //men det blir snyggare tycker jag mindre text ute i Program. 
-
-            /*
+            //Skapa startvärden för kolumner
             skapaMatrisUtanOddskolumn1();
             skapaMatrisUtanOddskolumn2();
             skapaMatrisUtanOddskolumn3();
             skapaMatrisUtanOddskolumn4();
             skapaMatrisUtanOddskolumn5();
             skapaMatrisUtanOddskolumn6();
-            */
-
+            
+            
             //Lägg till enskilda matrisers kolumner i matrisUtanOdds.
             addColumn( 0, matrisUtanOddsKolumn1 );
             addColumn( 1, matrisUtanOddsKolumn2 );
@@ -148,18 +144,95 @@ namespace Bomben
         }
         
         //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
-        private void addColumn( int targetColumn, double[] sourceMatrix )
+        public void addColumn( int targetColumn, double[] sourceMatrix )
         {
             
             for (int row = 0; row < 1771561; row = row + 1)
             {
-                matrisUtanOdds[row, targetColumn] = sourceMatrix[row];    
+                allaKombinationer[row, targetColumn] = sourceMatrix[row];    
             }
-
-                        
+        }
             
+        //Lägg till Poissonkolumnen
+        public void läggTillPoissonKolumn(double[] poissonKolumn)
+        {
+            addColumn(6, poissonKolumn);
         }
 
+        //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
+        public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
+        {
+            int sparKolumn;
+            if (läggTillPlusRäknare == 0)
+            {
+                sparKolumn = 7;
+                läggTillPlusRäknare++;
+            }
+            else
+            {
+                sparKolumn = 9;
+                läggTillPlusRäknare++;
+            }
 
+            for (int i = 0; i < 1771561; i++)
+            {
+                for (int j = 0; j < bombenStatsSize; j++)
+                {
+                    allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / Convert.ToDouble(antalPlus));
+                    allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+
+                    if (allaKombinationer[i, 0] == svSpelOdds[j, 1])
+                    {
+                        if (allaKombinationer[i, 1] == svSpelOdds[j, 2])
+                        {
+                            if (allaKombinationer[i, 2] == svSpelOdds[j, 3])
+                            {
+                                if (allaKombinationer[i, 3] == svSpelOdds[j, 4])
+                                {
+                                    if (allaKombinationer[i, 4] == svSpelOdds[j, 5])
+                                    {
+                                        if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
+                                        {
+                                            double firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
+                                            allaKombinationer[i, sparKolumn] = firstTemp;
+                                            double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                            allaKombinationer[i, (sparKolumn + 1)] = secondTemp;                                        
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        public void writeToFile()
+        {
+            
+            StreamWriter sw = new StreamWriter("VinnandeRader.txt");
+
+            sw.WriteLine("HM1,BM1,HM2,BM2,HM3,BM3,Poisson,+1,+1ROI,+3,+3ROI");
+            
+            for (int rad = 0; rad < 1771561; rad++)
+            {
+                if (allaKombinationer[rad, 10] > 14 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 7 && allaKombinationer[rad, 2] < 7 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 7 && allaKombinationer[rad, 5] < 7)
+                {
+                    for (int kol = 0; kol < 11; kol++)
+                    {
+                        sw.Write(allaKombinationer[rad, kol]);
+                        sw.Write(", ");
+                    }
+                    sw.Write("\r\n");
+                }
+                
+            }
+            
+            sw.Close();
+        }
+
+        
     }
 }

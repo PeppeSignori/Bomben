@@ -390,8 +390,8 @@ namespace Bomben
 
                 H3 = (M31 + M3X / 2) / (M31 + M3X + M32);
                 B3 = (M32 + M3X / 2) / (M31 + M3X + M32);
-                lambda5 = H1 * M1M;
-                lambda6 = B1 * M1M;
+                lambda5 = H3 * M3M;
+                lambda6 = B3 * M3M;
 
                 Match3.poisson(lambda5, "hemma");
                 Match3.poisson(lambda6, "borta");
@@ -400,7 +400,7 @@ namespace Bomben
                 Console.WriteLine();
 
                 P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
-                P3Ö = 1 - P2U;
+                P3Ö = 1 - P3U;
 
                 Console.WriteLine("100 % odds på över " + M3ÖU + ":  " + Math.Round(1 / M3HÖ, 2));
                 Console.WriteLine("Poissonodds på över " + M3ÖU + ": " + Math.Round(1 / P3Ö, 2));
@@ -443,116 +443,36 @@ namespace Bomben
                     j = 0;
                     k = 0;
                 }
-                allaResultat[l++] = Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++];
+                allaResultat[l++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++]), 2);
             }
 
-            // Testa kombination
-            Console.Write("Testa en kombination? [j]: ");
-            answer = Console.ReadLine();
-            while (answer == "j")
-            {
-                Console.WriteLine();
-                Console.WriteLine("Resultat match 1");
-                Console.WriteLine("----------------");
-                Console.Write("Hemmamål: ");
-                int HM1K = Convert.ToInt32(Console.ReadLine());               
-                Console.Write("Bortamål: ");
-                int BM1K = Convert.ToInt32(Console.ReadLine());   
-
-                Console.WriteLine();
-                Console.WriteLine("Resultat match 2");
-                Console.WriteLine("----------------");
-                Console.Write("Hemmamål: ");
-                int HM2K = Convert.ToInt32(Console.ReadLine());            
-                Console.Write("Bortamål: ");
-                int BM2K = Convert.ToInt32(Console.ReadLine()); 
-
-                Console.WriteLine();
-                Console.WriteLine("Resultat match 3");
-                Console.WriteLine("----------------");
-                Console.Write("Hemmamål: ");
-                int HM3K = Convert.ToInt32(Console.ReadLine());             
-                Console.Write("Bortamål: ");
-                int BM3K = Convert.ToInt32(Console.ReadLine());
-
-                int M1K = HM1K * 11 + BM1K;
-                int M2K = HM2K * 11 + BM2K;
-                int M3K = HM3K * 11 + BM3K;
-                int K = M3K + M2K * 121 + M1K * 14641;
-
-                Console.WriteLine();
-                Console.WriteLine("Poissonodds: " + Math.Round(1/allaResultat[K], 2));
-                Console.WriteLine();
-                Console.Write( "Testa en till kombination? [j]: " );
-                answer = Console.ReadLine();
-
-            }    
+  
 
             Console.WriteLine();
             
 
-            //Statistik från Svenska spel 
-            //Importera statistik från textfil.
+            //Importera odds från textfil från SvS.
             int counter = Importer.countLines();
             double[,] bombenStats = new double[counter, 7];
             bombenStats = Importer.importBomben();
-            
-            //Mata in mål i matcher
-            double[] homeGoals = new double[3];
-            double[] awayGoals = new double[3];
-            
-            Console.Write( "Hemmalag1 mål: " );
-            homeGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
-            Console.Write( "Bortalag1 mål: " );
-            awayGoals[ 0 ] = Convert.ToDouble( Console.ReadLine() );
-            Console.Write( "Hemmalag2 mål: " );
-            homeGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
-            Console.Write( "Bortalag2 mål: " );
-            awayGoals[ 1 ] = Convert.ToDouble( Console.ReadLine() );
-            Console.Write( "Hemmalag3 mål: " );
-            homeGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
-            Console.Write( "Bortalag3 mål: " );
-            awayGoals[ 2 ] = Convert.ToDouble( Console.ReadLine() );
-        
-            //Leta upp rätt odds för resultatet. return 0 om det inte finns
-            int rattrad = getOdds( bombenStats, homeGoals, awayGoals );
-
-            if( rattrad != 0 )
-            {
-                Console.WriteLine( "Odds: " +bombenStats[rattrad,0] );
-            }
-            else
-            {
-                Console.WriteLine( "Odds: " +"0");
-            }
-            
-            //Hämta odds från textfil från SvS
+           
+            //Hämta omsättning från textfil från SvS
             int turnOver = Importer.getTurnOver();
-
-            Console.WriteLine("Omsättning: " +turnOver);
-            
+          
             //Skapa nytt matris-objekt
-            Matris finalMatrix = new Matris();
+            Matris matris = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
 
-            //Skapa kolumner med utan odds var för sig
-            
-            //Alternativt kan vi göra dessa metoder private så anropar vi dem i klassen istället. 
-            //Jag har skrivit i metoden skapaMatrisUtanOdds hur man kan göra.
-            finalMatrix.skapaMatrisUtanOddskolumn1();
-            finalMatrix.skapaMatrisUtanOddskolumn2();
-            finalMatrix.skapaMatrisUtanOddskolumn3();
-            finalMatrix.skapaMatrisUtanOddskolumn4();
-            finalMatrix.skapaMatrisUtanOddskolumn5();
-            finalMatrix.skapaMatrisUtanOddskolumn6();
 
             //Lägg till dem i matrisUtanOdds.
-            finalMatrix.skapaMatrisUtanOdds();
-
+            matris.skapaAllaResultatKombinationer();
+            matris.läggTillPoissonKolumn(allaResultat);
 
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
-            //finalMatrix.addOddsFromBombenStats( bombenStats );
+            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
+            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
 
+            matris.writeToFile();
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
             //finalMatrix.reCalculateOdds();
 
@@ -563,52 +483,10 @@ namespace Bomben
             
             Console.ReadLine();
 
-            /*
-            System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Poissonodds.txt", true);
-            file.WriteLine(allaResultat);
-            file.Close();
-            */
-            
-        }
-
-        ///Letar upp rätt odds för en viss kombination. Returnerar int för rätt rad i BombenStats
-        private static int getOdds( double[,] stats, double[] homeGoals, double[] awayGoals )
-        {
-            int rattrad = 0; 
-            int arrayEnd = stats.GetLength(0); //Dimension 0
-            for( int i =0 ; i < arrayEnd ; i++ )
-            {
-                //testa om hemmamål1 stämmer
-                if( stats[i,1] == homeGoals[0])
-                {
-                    //Testa om bortamål1 stämmer
-                    if( stats[ i, 2 ] == awayGoals[0] )
-                    {
-                        //Testa om hemmamål2 stämmer
-                        if( stats[ i, 3 ] == homeGoals[1] )
-                        {
-                            //Testa om bortamål2 stämmer
-                            if( stats[ i, 4 ] == awayGoals[1] )
-                            {
-                                //Testa om hemmamål3 stämmer
-                                if( stats[ i, 5 ] == homeGoals[2] )
-                                {
-                                    //Testa om bortamål3 stämmer
-                                    if( stats[ i, 6 ] == awayGoals[2] )
-                                    {
-                                        rattrad = i;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-
-            return rattrad;
 
         }
+
+
 
     }
 }

@@ -80,7 +80,7 @@ namespace Bomben
             //Stäng filen så andra kan använda den
             bombenFile.Close();
 
-            return counter;
+            return counter-1;
  
         }
 

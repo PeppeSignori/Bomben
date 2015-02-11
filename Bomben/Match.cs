@@ -60,7 +60,7 @@ namespace Bomben
         }
 
 
-        /*
+        
 
         public double [] oddsPlus = new double [1771561];
         public void beräknaOddsPlus1(int adderadeRader, int turnOver, double[,] stats)
@@ -80,7 +80,7 @@ namespace Bomben
             }
         }
         
-        */
+        
 
         
 

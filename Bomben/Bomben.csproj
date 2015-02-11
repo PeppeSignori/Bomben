@@ -78,6 +78,7 @@
     <Compile Include="Matris.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Övrigt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
