@@ -183,11 +183,13 @@ namespace Bomben
                 läggTillPlusRäknare++;
             }
 
+            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+
             for ( int i = 0; i < MAX; i++)
             {
                 for(int j = 0;j < bombenStatsSize;j++ )
                 {
-                    allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+                    allaKombinationer[i, sparKolumn] = ROI;
                     allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
