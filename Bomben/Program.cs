@@ -479,11 +479,12 @@ namespace Bomben
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
             Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
             Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
+            secondTask.ContinueWith( (t) => matris.writeToFile() );
 
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
 
-            matris.writeToFile();
+           // matris.writeToFile();
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;

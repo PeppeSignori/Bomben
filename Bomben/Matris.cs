@@ -176,14 +176,14 @@ namespace Bomben
                 läggTillPlusRäknare++;
             }
 
-            Parallel.For(0, MAX, delegate(int i) 
-            {
+            //Parallel.For(0, MAX, delegate(int i) 
+            //{
                             
-                for ( i = 0; i < MAX; i++)
+                for ( int i = 0; i < MAX; i++)
                 {
-                    Parallel.For( 0, bombenStatsSize, delegate( int j )
-                    {
-                        for( j = 0;j < bombenStatsSize;j++ )
+                    //Parallel.For( 0, bombenStatsSize, delegate( int j )
+                    //{
+                        for(int j = 0;j < bombenStatsSize;j++ )
                         {
                             allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
                             allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
@@ -211,9 +211,9 @@ namespace Bomben
                                 }
                             }
                         }
-                    } );
+                    //} );
                 }
-            });
+            //});
 
         }
 
