@@ -175,8 +175,7 @@ namespace Bomben
                 sparKolumn = 9;
                 läggTillPlusRäknare++;
             }
-            
-            
+                        
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
                       
             for ( int i = 0; i < MAX; i++)
