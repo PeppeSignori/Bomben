@@ -460,9 +460,7 @@ namespace Bomben
             //Hämta omsättning från textfil från SvS
             int turnOver = Importer.getTurnOver();
           
-            //Starta stoppWatch
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
+            //Lite trevligt   
             Console.WriteLine( "Beräknar...." );
             
             //Skapa nytt matris-objekt
@@ -477,49 +475,27 @@ namespace Bomben
 
 
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
-            Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
-            Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
-            secondTask.ContinueWith( (t) => matris.writeToFile() );
+            Task taskA = Task.Factory.StartNew( () => matris.läggTillPlus( bombenStats, counter, 1, turnOver ,7) );
+            Task taskB= Task.Factory.StartNew( () => matris.läggTillPlus( bombenStats, counter, 3, turnOver ,9) );
+            taskB.ContinueWith( (t) => matris.writeToFile() );
+            Task taskC = Task.Factory.StartNew( () => matris.läggTillROI(bombenStats, counter, 1, turnOver ,8) );
+            Task taskD = Task.Factory.StartNew( () => matris.läggTillROI( bombenStats, counter, 3, turnOver, 10 ) );
 
-            //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
-            //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
-
-           // matris.writeToFile();
-
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-
-            // Format and display the TimeSpan value. 
-            string elapsedTime = String.Format( "{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10 );
-            //Stämer inte riktigt nu när vi kör med tasks så jag skriver inte ut resultatet. 
-            //Console.WriteLine( "RunTime: " + elapsedTime );
+            taskA.Wait();
+            if( taskA.IsCompleted )
+            {
+                
+            }
+            taskB.Wait();
+            taskC.Wait();
+            taskD.Wait();
             
-
-            //Räkna om alla odds och lägg till odds på icke spelade kombinationer
-            //finalMatrix.reCalculateOdds();
-
-            //Lägg in poissonOdds i matrisen
-            //finalMatrix.addPoissonOdds();
-
-            //Skriv ut i listview(matris i consolFönstret)
             
             Console.ReadLine();
 
 
         }
-        /*
-        async Task<> startROIOne( Matris oneMatrix, double[,] bombenStats, int counter, int turnOver )
-        {
-            oneMatrix.läggTillPlusOchROI( bombenStats, counter, 1, turnOver );
-        }
-
-        void startROITwo( Matris oneMatrix, double[,] bombenStats, int counter, int turnOver )
-        {
-            oneMatrix.läggTillPlusOchROI( bombenStats, counter, 1, turnOver );
-        }
-        */
+        
 
     }
 }
