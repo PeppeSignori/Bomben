@@ -217,6 +217,42 @@ namespace Bomben
 
         }
 
+        //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
+        public void läggTillPlusOchROI( double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, int sparKolumn )
+        {
+               
+            for( int i = 0;i < MAX;i++ )
+            {
+                for( int j = 0;j < bombenStatsSize;j++ )
+                {
+                    allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+                    allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+
+                    if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
+                    {
+                        if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
+                        {
+                            if( allaKombinationer[i, 2] == svSpelOdds[j, 3] )
+                            {
+                                if( allaKombinationer[i, 3] == svSpelOdds[j, 4] )
+                                {
+                                    if( allaKombinationer[i, 4] == svSpelOdds[j, 5] )
+                                    {
+                                        if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
+                                        {
+                                            double firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            allaKombinationer[i, sparKolumn] = firstTemp;
+                                           
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public void writeToFile()
         {
             
