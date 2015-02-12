@@ -471,29 +471,40 @@ namespace Bomben
             //Lägg till dem i matrisUtanOdds.
             matris.skapaAllaResultatKombinationer();
             matris.läggTillPoissonKolumn(allaResultat);
-            
 
+            //Tidsstämpel
+            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( time );
 
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
             Task taskA = Task.Factory.StartNew( () => matris.läggTillPlus( bombenStats, counter, 1, turnOver ,7) );
+            taskA.ContinueWith( ( t ) => taskTime("taskA") );
             Task taskB= Task.Factory.StartNew( () => matris.läggTillPlus( bombenStats, counter, 3, turnOver ,9) );
-            taskB.ContinueWith( (t) => matris.writeToFile() );
+            taskB.ContinueWith( ( t ) => taskTime( "taskB" ) );
             Task taskC = Task.Factory.StartNew( () => matris.läggTillROI(bombenStats, counter, 1, turnOver ,8) );
+            taskC.ContinueWith( ( t ) => taskTime( "taskC" ) );
             Task taskD = Task.Factory.StartNew( () => matris.läggTillROI( bombenStats, counter, 3, turnOver, 10 ) );
+            taskD.ContinueWith( ( t ) => taskTime( "taskD" ) );
 
+            //Vänta på att tasken blir klara
             taskA.Wait();
-            if( taskA.IsCompleted )
-            {
-                
-            }
             taskB.Wait();
             taskC.Wait();
             taskD.Wait();
-            
+
+            //Lägg till buffertarrayer till allaKombinationer
+            //Skriv till fil när alla tasks är klara
+            matris.writeToFile();
             
             Console.ReadLine();
 
 
+        }
+
+        static private void taskTime( string taskName )
+        {
+            string Atime = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( taskName +": " +Atime );
         }
         
 

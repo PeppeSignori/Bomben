@@ -19,10 +19,14 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn4 = new double[1771561];
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
+        private double[] buffer7 = new double[1771561];
+        private double[] buffer8 = new double[1771561];
+        private double[] buffer9 = new double[1771561];
+        private double[] buffer10 = new double[1771561];
         private int läggTillPlusRäknare = 0;
         private const int MAX = 1771561;
-        
-        public void skapaMatrisUtanOddskolumn1()
+
+        private void skapaMatrisUtanOddskolumn1()
         {
             int a = 0;
             int h = 0;
@@ -36,7 +40,7 @@ namespace Bomben
             }
         }
 
-        public void skapaMatrisUtanOddskolumn2()
+        private void skapaMatrisUtanOddskolumn2()
         {
             int b = 0;
             int h = 0;
@@ -54,7 +58,7 @@ namespace Bomben
             }
         }
 
-        public void skapaMatrisUtanOddskolumn3()
+        private void skapaMatrisUtanOddskolumn3()
         {
             int c = 0;
             int h = 0;
@@ -72,7 +76,7 @@ namespace Bomben
             }
         }
 
-        public void skapaMatrisUtanOddskolumn4()
+        private void skapaMatrisUtanOddskolumn4()
         {
             int d = 0;
             int h = 0;
@@ -90,7 +94,7 @@ namespace Bomben
             }
         }
 
-        public void skapaMatrisUtanOddskolumn5()
+        private void skapaMatrisUtanOddskolumn5()
         {
             int e = 0;
             int h = 0;
@@ -108,7 +112,7 @@ namespace Bomben
             }
         }
 
-        public void skapaMatrisUtanOddskolumn6()
+        private void skapaMatrisUtanOddskolumn6()
         {
             int f = 0;
             int h = 0;
@@ -122,7 +126,7 @@ namespace Bomben
 
             }
         }
-        
+
         public void skapaAllaResultatKombinationer()
         {
             
@@ -133,32 +137,35 @@ namespace Bomben
             skapaMatrisUtanOddskolumn4();
             skapaMatrisUtanOddskolumn5();
             skapaMatrisUtanOddskolumn6();
+
             
             
             //Lägg till enskilda matrisers kolumner i matrisUtanOdds.
-            addColumn( 0, matrisUtanOddsKolumn1 );
-            addColumn( 1, matrisUtanOddsKolumn2 );
-            addColumn( 2, matrisUtanOddsKolumn3 );
-            addColumn( 3, matrisUtanOddsKolumn4 );
-            addColumn( 4, matrisUtanOddsKolumn5 );
-            addColumn( 5, matrisUtanOddsKolumn6 );            
+            addColumn( matrisUtanOddsKolumn1, allaKombinationer, 0 );
+            addColumn( matrisUtanOddsKolumn2, allaKombinationer, 1 );
+            addColumn( matrisUtanOddsKolumn3, allaKombinationer, 2 );
+            addColumn( matrisUtanOddsKolumn4, allaKombinationer, 3 );
+            addColumn( matrisUtanOddsKolumn5, allaKombinationer, 4 );
+            addColumn( matrisUtanOddsKolumn6, allaKombinationer, 5 );            
             
+
         }
         
-        //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
-        public void addColumn( int targetColumn, double[] sourceMatrix )
+        //Hjälper till att skriva värden från en matris till en annan.
+        public void addColumn( double[] source1DMatrix, double[,] target2DMatrix, int targetColumn )
         {
 
             for( int row = 0;row < MAX;row = row + 1 )
             {
-                allaKombinationer[row, targetColumn] = sourceMatrix[row];    
+                target2DMatrix[row, targetColumn] = source1DMatrix[row];    
             }
         }
             
         //Lägg till Poissonkolumnen
-        public void läggTillPoissonKolumn(double[] poissonKolumn)
+        public void läggTillPoissonKolumn(double[] poissonColumn, int targetColumn)
         {
-            addColumn(6, poissonKolumn);
+            addColumn( poissonColumn, allaKombinationer, 6 );
+            
         }
 
         //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
@@ -176,57 +183,11 @@ namespace Bomben
                 läggTillPlusRäknare++;
             }
 
-            //Parallel.For(0, MAX, delegate(int i) 
-            //{
-                            
-                for ( int i = 0; i < MAX; i++)
-                {
-                    //Parallel.For( 0, bombenStatsSize, delegate( int j )
-                    //{
-                        for(int j = 0;j < bombenStatsSize;j++ )
-                        {
-                            allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
-                            allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-
-                            if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
-                            {
-                                if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
-                                {
-                                    if( allaKombinationer[i, 2] == svSpelOdds[j, 3] )
-                                    {
-                                        if( allaKombinationer[i, 3] == svSpelOdds[j, 4] )
-                                        {
-                                            if( allaKombinationer[i, 4] == svSpelOdds[j, 5] )
-                                            {
-                                                if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
-                                                {
-                                                    double firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
-                                                    allaKombinationer[i, sparKolumn] = firstTemp;
-                                                    double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-                                                    allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    //} );
-                }
-            //});
-
-        }
-
-        //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
-        public void läggTillPlus( double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, int sparKolumn )
-        {
-            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
-                                    
-            for( int i = 0;i < MAX;i++ )
+            for ( int i = 0; i < MAX; i++)
             {
-                for( int j = 0;j < bombenStatsSize;j++ )
+                for(int j = 0;j < bombenStatsSize;j++ )
                 {
-                    allaKombinationer[i, sparKolumn] = ROI;
+                    allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
                     allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
@@ -241,7 +202,48 @@ namespace Bomben
                                     {
                                         if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
                                         {
-                                            allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                            double firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            allaKombinationer[i, sparKolumn] = firstTemp;
+                                            double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                            allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+
+        }
+
+        //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
+        public void läggTillPlus( double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, int sparKolumn, int bufferNumber)
+        {
+            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+            
+                                                
+            for( int i = 0;i < MAX;i++ )
+            {
+                for( int j = 0;j < bombenStatsSize;j++ )
+                {
+                    allaKombinationer[i, sparKolumn] = ROI;
+                    //allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+
+                    if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
+                    {
+                        if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
+                        {
+                            if( allaKombinationer[i, 2] == svSpelOdds[j, 3] )
+                            {
+                                if( allaKombinationer[i, 3] == svSpelOdds[j, 4] )
+                                {
+                                    if( allaKombinationer[i, 4] == svSpelOdds[j, 5] )
+                                    {
+                                        if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
+                                        {
+                                            allaKombinationer[i, (sparKolumn )] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                                         }
                                     }
                                 }
@@ -261,8 +263,8 @@ namespace Bomben
             {
                 for( int j = 0;j < bombenStatsSize;j++ )
                 {
-                    allaKombinationer[i, sparKolumn] = ROI;
-                    allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                    //allaKombinationer[i, sparKolumn] = ROI;
+                    allaKombinationer[i, sparKolumn] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                     {
