@@ -480,6 +480,11 @@ namespace Bomben
             Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             secondTask.ContinueWith( (t) => matris.writeToFile() );
 
+
+
+
+
+
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
             //matris.writeToFile();
