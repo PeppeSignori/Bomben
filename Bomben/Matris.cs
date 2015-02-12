@@ -237,6 +237,10 @@ namespace Bomben
             }
             
             sw.Close();
+
+            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( time );
             
         }
 
