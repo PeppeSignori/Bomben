@@ -175,7 +175,9 @@ namespace Bomben
                 sparKolumn = 9;
                 läggTillPlusRäknare++;
             }
-
+            
+            
+            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
             //Parallel.For(0, MAX, delegate(int i) 
             //{
                             
@@ -185,8 +187,10 @@ namespace Bomben
                     //{
                         for(int j = 0;j < bombenStatsSize;j++ )
                         {
-                            allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
-                            allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                            //allaKombinationer[i, sparKolumn] = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+                            //allaKombinationer[i, sparKolumn] = ROI;
+                            allaKombinationer[i, (sparKolumn + 1)] = ROI / allaKombinationer[i, 6];
+                            //allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
                             if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                             {
@@ -239,6 +243,8 @@ namespace Bomben
             }
             
             sw.Close();
+            string endTime = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( endTime );
         }
 
         

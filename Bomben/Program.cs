@@ -460,9 +460,6 @@ namespace Bomben
             //Hämta omsättning från textfil från SvS
             int turnOver = Importer.getTurnOver();
           
-            //Starta stoppWatch
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
             Console.WriteLine( "Beräknar...." );
             
             //Skapa nytt matris-objekt
@@ -473,30 +470,21 @@ namespace Bomben
             //Lägg till dem i matrisUtanOdds.
             matris.skapaAllaResultatKombinationer();
             matris.läggTillPoissonKolumn(allaResultat);
+
+            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine(time);
             
-
-
-            //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
+            //Skapa nya tasks för läggTillPlusOchROI - Det är dessa som tar lång tid att bearbeta
             Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
             Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             secondTask.ContinueWith( (t) => matris.writeToFile() );
 
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            //matris.writeToFile();
 
-           // matris.writeToFile();
-
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-
-            // Format and display the TimeSpan value. 
-            string elapsedTime = String.Format( "{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10 );
-            //Stämer inte riktigt nu när vi kör med tasks så jag skriver inte ut resultatet. 
-            //Console.WriteLine( "RunTime: " + elapsedTime );
-            
-
+                        
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
             //finalMatrix.reCalculateOdds();
 
@@ -509,6 +497,7 @@ namespace Bomben
 
 
         }
+
         /*
         async Task<> startROIOne( Matris oneMatrix, double[,] bombenStats, int counter, int turnOver )
         {
