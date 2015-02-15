@@ -477,6 +477,7 @@ namespace Bomben
             
             //Skapa nya tasks för läggTillPlusOchROI - Det är dessa som tar lång tid att bearbeta
             Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
+            firstTask.ContinueWith( ( t ) => taskTime("TaskA") );
             Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             secondTask.ContinueWith( (t) => matris.writeToFile() );
 
@@ -503,17 +504,13 @@ namespace Bomben
 
         }
 
-        /*
-        async Task<> startROIOne( Matris oneMatrix, double[,] bombenStats, int counter, int turnOver )
+
+        static private void taskTime( string taskName )
         {
-            oneMatrix.läggTillPlusOchROI( bombenStats, counter, 1, turnOver );
+            string Atime = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( taskName +": " +Atime );
         }
 
-        void startROITwo( Matris oneMatrix, double[,] bombenStats, int counter, int turnOver )
-        {
-            oneMatrix.läggTillPlusOchROI( bombenStats, counter, 1, turnOver );
-        }
-        */
 
     }
 }
