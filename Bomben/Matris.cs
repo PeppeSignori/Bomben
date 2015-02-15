@@ -229,7 +229,7 @@ namespace Bomben
                     for (int kol = 0; kol < 11; kol++)
                     {
                         sw.Write(allaKombinationer[rad, kol]);
-                        sw.Write(", ");
+                        sw.Write("; ");
                     }
                     sw.Write("\r\n");
                 }
@@ -238,10 +238,7 @@ namespace Bomben
             
             sw.Close();
 
-            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
-            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
-            Console.WriteLine( time );
-            
+                       
         }
 
         

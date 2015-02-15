@@ -482,10 +482,6 @@ namespace Bomben
             secondTask.ContinueWith( (t) => matris.writeToFile() );
 
 
-
-
-
-
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
             //matris.writeToFile();
