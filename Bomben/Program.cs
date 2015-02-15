@@ -476,6 +476,9 @@ namespace Bomben
             string time = DateTime.Now.ToString( "HH:mm:ss tt" );
             Console.WriteLine( time );
 
+            //ArbetsOrdning
+
+
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
             Task taskA = Task.Factory.StartNew( () => matris.läggTillPlus( bombenStats, counter, 1, turnOver ,7) );
             taskA.ContinueWith( ( t ) => taskTime("taskA") );
