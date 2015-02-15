@@ -480,9 +480,9 @@ namespace Bomben
 
 
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
-            Task taskA = Task.Factory.StartNew( () => matris.läggTillPlusOchROIKortIf( bombenStats, counter, 1, turnOver) );
+            Task taskA = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
             taskA.ContinueWith( ( t ) => taskTime("taskA") );
-            Task taskB= Task.Factory.StartNew( () => matris.läggTillPlusOchROIKortIf( bombenStats, counter, 3, turnOver) );
+            Task taskB= Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             taskB.ContinueWith( ( t ) => taskTime( "taskB" ) );
             
             //Vänta på att tasken blir klara
