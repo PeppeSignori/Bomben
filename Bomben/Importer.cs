@@ -87,7 +87,7 @@ namespace Bomben
         ///Metod som läser in textfiler med odds för Bomben, returnerar en int[,] array
         public static double[,] importBomben( )
         {
-            double[,] bombenDoubleStats;
+            double[,] bombendoubleStats;
 
             try
             {
@@ -136,30 +136,30 @@ namespace Bomben
                 bombenFile.Close();
 
                 int newCounter = counter -1;
-                bombenDoubleStats = new double[newCounter, 7];
+                bombendoubleStats = new double[newCounter, 7];
                 //Gör om alla till int
                 for( int nyaRader=0 ; nyaRader < newCounter ; nyaRader++ )
                 {
                     for( int nyaKolumner=0 ; nyaKolumner < 7 ; nyaKolumner++ )
                     {
-                        bombenDoubleStats[ nyaRader, nyaKolumner ] = Convert.ToDouble( bombenStats[ nyaRader, nyaKolumner ] );
+                        bombendoubleStats[ nyaRader, nyaKolumner ] = Convert.ToDouble( bombenStats[ nyaRader, nyaKolumner ] );
                     }
 
                     //Dela oddsen med 100 för att få riktiga odds. 
-                    bombenDoubleStats[ nyaRader, 0 ] /= 100;
+                    bombendoubleStats[ nyaRader, 0 ] /= 100;
 
                 
                 }
 
-                return bombenDoubleStats;
+                return bombendoubleStats;
                 
             }
             catch 
             {
                 Console.WriteLine("Något gick fel vid inläsningen av textfilen!");
                 //fullösning för att få ett returvärde
-                bombenDoubleStats = new double[ 1, 7 ];
-                return bombenDoubleStats;
+                bombendoubleStats = new double[ 1, 7 ];
+                return bombendoubleStats;
             }
         }
 

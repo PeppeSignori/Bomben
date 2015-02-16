@@ -23,6 +23,7 @@ namespace Bomben
             Console.WriteLine();
 
             Console.Write("Odds på 1: ");
+            //double m11 = 1 / double.Parse( Console.ReadLine() );
             double M11 = 1 / Convert.ToDouble(Console.ReadLine());
             Console.Write("Odds på X: ");
             double M1X = 1 / Convert.ToDouble(Console.ReadLine());
@@ -474,20 +475,24 @@ namespace Bomben
 
             //Tidsstämpel
             string time = DateTime.Now.ToString( "HH:mm:ss tt" );
-            Console.WriteLine( time );
+            Console.WriteLine( "Start: " +time );
 
-            //ArbetsOrdning
-
-
+            
             //Sortera in odds från BombenStats i en matris där alla möjliga kombinationer finns med, returnerar en 
             //Task taskA = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
             //taskA.ContinueWith( ( t ) => taskTime("taskA") );
             //Task taskB= Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             //taskB.ContinueWith( ( t ) => taskTime( "taskB" ) );
-            
-            //Vänta på att tasken blir klara
-           
-            //Lägg till buffertarrayer till allaKombinationer
+
+
+
+            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver, 7);
+            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver, 9);
+            //Tidsstämpel
+            time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( "Stopp: " +time );
+            matris.writeToFile();
+
             //Skriv till fil när alla tasks är klara
             //matris.writeToFile();
             
