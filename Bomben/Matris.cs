@@ -164,6 +164,7 @@ namespace Bomben
         //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
         public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
         {
+            //float[,] floatSvSOdds =  svSpelOdds; //En tanke om att float blir snabbare än double.
             int sparKolumn;
             if (läggTillPlusRäknare == 0)
             {
@@ -177,13 +178,20 @@ namespace Bomben
             }
                         
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
-                      
+            //double täljare;
+            //double nämnare;
+  
             for ( int i = 0; i < MAX; i++)
             {
                 for(int j = 0;j < bombenStatsSize;j++ )
                 {
 
                     allaKombinationer[i, sparKolumn] = ROI;
+                    
+                    //täljare = allaKombinationer[i, sparKolumn];
+                    //nämnare = allaKombinationer[i, 6];
+                    //allaKombinationer[i, (sparKolumn + 1)] = täljare / nämnare;
+
                     allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                     
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
