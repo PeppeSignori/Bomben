@@ -183,12 +183,12 @@ namespace Bomben
                 läggTillPlusRäknare++;
             }
 
-
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
 
             Parallel.For( 0, MAX, i =>
             //parallell.for ( int i = 0; i < MAX; i++)
             {
+               
                 for( int j = 0; j < bombenStatsSize; j++ )
                 {
                     allaKombinationer[i, sparKolumn] = ROI;
@@ -223,7 +223,7 @@ namespace Bomben
         }
 
         /// <summary>
-        /// Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
+        /// Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar Plus- och ROI-kolumner
         /// </summary>
         /// <param name="svSpelOdds"></param>
         /// <param name="bombenStatsSize"></param>
@@ -311,6 +311,77 @@ namespace Bomben
 
                 }     
                 
+            }
+
+
+        }
+        /// <summary>
+        /// Räknar om SvSodds till nytt värde om spel skulle läggas
+        /// </summary>
+        /// <param name="antalPlus"></param>
+        /// <param name="omsättning"></param>
+        /// <param name="sparKolumn"></param>
+        public void defaultPlus(int antalPlus, int omsättning, int sparKolumn )
+        {
+
+
+            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+
+            for ( int i = 0; i < MAX; i++)
+            {
+                allaKombinationer[i, sparKolumn] = ROI;
+            }
+        
+        }
+
+        /// <summary>
+        /// Return on investment, om spel läggs
+        /// </summary>
+        /// <param name="sparKolumn"></param>
+        public void defaultROI( int sparKolumn )
+        {
+
+            for( int i = 0; i < MAX; i++)
+            {
+                
+               allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                        
+            }
+
+        }
+
+        public void nonDefault( double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, int sparKolumn )
+        {
+
+
+            for ( int i = 0; i < MAX; i++)
+            {
+                for( int j = 0; j < bombenStatsSize; j++ )
+                {
+                    
+                    if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
+                    {
+                        if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
+                        {
+                            if( allaKombinationer[i, 2] == svSpelOdds[j, 3] )
+                            {
+                                if( allaKombinationer[i, 3] == svSpelOdds[j, 4] )
+                                {
+                                    if( allaKombinationer[i, 4] == svSpelOdds[j, 5] )
+                                    {
+                                        if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
+                                        {
+                                            double firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            allaKombinationer[i, sparKolumn] = firstTemp;
+                                            double secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                            allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
 

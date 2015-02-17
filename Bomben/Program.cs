@@ -485,7 +485,7 @@ namespace Bomben
             //taskB.ContinueWith( ( t ) => taskTime( "taskB" ) );
 
 
-
+            /*
             matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver, 7);
             matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver, 9);
             //Tidsstämpel
@@ -496,6 +496,16 @@ namespace Bomben
             //Skriv till fil när alla tasks är klara
             //matris.writeToFile();
             
+            */
+
+            //GPU-Versionen
+            matris.defaultPlus( 1, turnOver, 7 );
+            matris.defaultPlus( 1, turnOver, 9 );
+            matris.defaultROI( 7 );
+            matris.defaultROI( 9 );
+            matris.nonDefault( bombenStats, counter, 1, turnOver, 7 );
+            matris.nonDefault( bombenStats, counter, 3, turnOver, 9 );
+
             Console.ReadLine();
 
 
