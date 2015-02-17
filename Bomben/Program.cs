@@ -476,16 +476,19 @@ namespace Bomben
             Console.WriteLine(time);
             
             //Skapa nya tasks för läggTillPlusOchROI - Det är dessa som tar lång tid att bearbeta
-            Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
-            firstTask.ContinueWith( ( t ) => taskTime("TaskA") );
-            Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
-            secondTask.ContinueWith( (t) => matris.writeToFile() );
+            //Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
+            //firstTask.ContinueWith( ( t ) => taskTime("TaskA") );
+            //Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
+            //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
 
-            //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
-            //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
-            //matris.writeToFile();
-
+            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
+            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+            time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            Console.WriteLine( time );
+            matris.writeToFile();
+            Console.WriteLine( "Skriv till fil klart." );
                         
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
             //finalMatrix.reCalculateOdds();

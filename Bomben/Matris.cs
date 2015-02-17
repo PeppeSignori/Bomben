@@ -180,20 +180,16 @@ namespace Bomben
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
             //double täljare;
             //double nämnare;
-  
-            for ( int i = 0; i < MAX; i++)
+
+            Parallel.For( 0, MAX, i =>
+            //for ( int i = 0; i < MAX; i++)
             {
-                for(int j = 0;j < bombenStatsSize;j++ )
+                for( int j = 0; j < bombenStatsSize; j++ )
                 {
 
                     allaKombinationer[i, sparKolumn] = ROI;
-                    
-                    //täljare = allaKombinationer[i, sparKolumn];
-                    //nämnare = allaKombinationer[i, 6];
-                    //allaKombinationer[i, (sparKolumn + 1)] = täljare / nämnare;
-
                     allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-                    
+
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                     {
                         if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
@@ -217,7 +213,7 @@ namespace Bomben
                         }
                     }
                 }
-            }
+            } );
    
 
         }
