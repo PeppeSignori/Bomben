@@ -11,19 +11,19 @@ namespace Bomben
 {
     
 
-    static class Importer
+    public class Importer
     {
         //static string _pathFile;
         static string _user;
         static string _extractPath = @"C:\Bomben\";
-        static string _currentFileName;
+        
         
         
         
         /// <summary>
         /// Check user
         /// </summary>
-        private static void checkUser()
+        private void checkUser()
         {
             if( Directory.Exists( @"C:\Users\Erik" ) )
             {
@@ -42,32 +42,35 @@ namespace Bomben
         
         
         /// <summary>
-        /// Räknar antalet rader i en textfil
+        /// Räknar antalet rader i en textfil -1
         /// </summary>
         /// <returns>Returnerar en int med antalet rader</returns>
-        public static int countLines()
+        public int countLines(string ZipFileName)
         {
             //Hämta filnamn
-            Console.WriteLine( "Skriv in namnet på textfil (utan ändelse): " );
-            _currentFileName = Console.ReadLine().ToUpper();
-            
+            //Console.WriteLine( "Skriv in namnet på textfil (utan ändelse): " );
+            //_currentFileName = Console.ReadLine().ToUpper();
+
+            //_currentFileName = ZipFileName;
+
+
             //Kontrollera vem som är användare
             checkUser();
             string txt = ".txt";
             string zip = ".zip";
-            string zipPath = @"C:\Users\" +_user +@"\Downloads\" + _currentFileName +zip;
+            string zipPath = @"C:\Users\" + _user + @"\Downloads\" + ZipFileName + zip;
             
             //Kolla om filen finns extrahera om den inte finns.
-            if( !File.Exists( _extractPath + _currentFileName + txt ) )
+            if( !File.Exists( _extractPath + ZipFileName + txt ) )
             {
                 ZipFile.ExtractToDirectory( zipPath, _extractPath );    
             }
 
             //Vänta på att filen extraherats
-            while( !File.Exists( @"C:\Bomben\" +_currentFileName +txt ) );
+            while( !File.Exists( @"C:\Bomben\" +ZipFileName +txt ) );
 
             //Skapa nytt streamReader objekt
-            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +_currentFileName +txt );
+            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +ZipFileName +txt );
 
             //Gå igenom filen för att se antal rader
             string line;
@@ -85,14 +88,14 @@ namespace Bomben
         }
 
         ///Metod som läser in textfiler med odds för Bomben, returnerar en int[,] array
-        public static double[,] importBomben( )
+        public double[,] importBomben(string ZipFileName)
         {
             double[,] bombendoubleStats;
 
             try
             {
                 //Nytt streamReader objekt
-                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + _currentFileName + ".txt" );
+                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + ZipFileName + ".txt" );
             
                 //Gå igenom filen för att se antal rader
                 string line;
@@ -161,24 +164,28 @@ namespace Bomben
                 bombendoubleStats = new double[ 1, 7 ];
                 return bombendoubleStats;
             }
+
+
+
         }
 
         /// <summary>
         /// Hämta Omsättning ur textfil
         /// </summary>
         /// <returns>Returnerar en int med omsättning</returns>
-        public static int getTurnOver()
+        public int getTurnOver(string ZipFileName)
         {
+
             try
             {
-                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + _currentFileName + ".txt" );
+                System.IO.StreamReader bombenFile = new System.IO.StreamReader(_extractPath + ZipFileName + ".txt");
 
                 string delimiterstring = ";"; //delare
                 char[] delimiters = delimiterstring.ToArray(); //Omständigt sätt att skapa en charArray initialiserad
                 string[] tempString = null;
                 string[ , ] bombenStats = new string[ 1, 6 ];
 
-                //Läs in filen, skippa första raden. 
+                //Läs in filen
                 string line = bombenFile.ReadLine();
              
                 //separera saker i raden

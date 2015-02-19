@@ -451,15 +451,17 @@ namespace Bomben
   
 
             Console.WriteLine();
-            
+            var import = new Importer();
 
             //Importera odds från textfil från SvS.
-            int counter = Importer.countLines();
+            Console.WriteLine("Skriv in namnet på textfil (utan ändelse): ");
+            string zipFileName = Console.ReadLine().ToUpper();
+            int counter = import.countLines(zipFileName);
             double[,] bombenStats = new double[counter, 7];
-            bombenStats = Importer.importBomben();
+            bombenStats = import.importBomben(zipFileName);
            
             //Hämta omsättning från textfil från SvS
-            int turnOver = Importer.getTurnOver();
+            int turnOver = import.getTurnOver(zipFileName);
           
             //Lite trevligt   
             Console.WriteLine( "Beräknar...." );
