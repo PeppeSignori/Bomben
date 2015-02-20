@@ -79,8 +79,34 @@ namespace Bomben
                 }
             }
         }
-        
-        
+
+
+        public double beräknaFörväntadMålantal(double startvärde, double tolerans, double pöver, double punder, double böver, double bunder)
+        {
+            bool riktning = false;
+            while (pöver != böver && punder != bunder)               
+            {
+                if (pöver < böver)
+                {
+                    startvärde = startvärde - 0.1;
+                    if (pöver > böver)
+                    {
+                        riktning = true;
+                    }
+                    while (pöver != böver && punder != bunder)
+                        if (pöver < böver)
+                        {
+                            startvärde = startvärde - 0.01;
+                        }
+                }
+                else if (pöver < böver && punder != bunder)
+                {
+                    startvärde = startvärde + 0.1;
+                }
+            }
+
+            return startvärde;
+        }
 
         
 
