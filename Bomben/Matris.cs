@@ -19,14 +19,10 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn4 = new double[1771561];
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
-        private double[] buffer7 = new double[1771561];
-        private double[] buffer8 = new double[1771561];
-        private double[] buffer9 = new double[1771561];
-        private double[] buffer10 = new double[1771561];
         private int läggTillPlusRäknare = 0;
         private const int MAX = 1771561;
-
-        private void skapaMatrisUtanOddskolumn1()
+        
+        public void skapaMatrisUtanOddskolumn1()
         {
             int a = 0;
             int h = 0;
@@ -40,7 +36,7 @@ namespace Bomben
             }
         }
 
-        private void skapaMatrisUtanOddskolumn2()
+        public void skapaMatrisUtanOddskolumn2()
         {
             int b = 0;
             int h = 0;
@@ -58,7 +54,7 @@ namespace Bomben
             }
         }
 
-        private void skapaMatrisUtanOddskolumn3()
+        public void skapaMatrisUtanOddskolumn3()
         {
             int c = 0;
             int h = 0;
@@ -76,7 +72,7 @@ namespace Bomben
             }
         }
 
-        private void skapaMatrisUtanOddskolumn4()
+        public void skapaMatrisUtanOddskolumn4()
         {
             int d = 0;
             int h = 0;
@@ -94,7 +90,7 @@ namespace Bomben
             }
         }
 
-        private void skapaMatrisUtanOddskolumn5()
+        public void skapaMatrisUtanOddskolumn5()
         {
             int e = 0;
             int h = 0;
@@ -112,7 +108,7 @@ namespace Bomben
             }
         }
 
-        private void skapaMatrisUtanOddskolumn6()
+        public void skapaMatrisUtanOddskolumn6()
         {
             int f = 0;
             int h = 0;
@@ -126,7 +122,7 @@ namespace Bomben
 
             }
         }
-
+        
         public void skapaAllaResultatKombinationer()
         {
             
@@ -137,40 +133,38 @@ namespace Bomben
             skapaMatrisUtanOddskolumn4();
             skapaMatrisUtanOddskolumn5();
             skapaMatrisUtanOddskolumn6();
-
             
             
             //Lägg till enskilda matrisers kolumner i matrisUtanOdds.
-            addColumn( matrisUtanOddsKolumn1, allaKombinationer, 0 );
-            addColumn( matrisUtanOddsKolumn2, allaKombinationer, 1 );
-            addColumn( matrisUtanOddsKolumn3, allaKombinationer, 2 );
-            addColumn( matrisUtanOddsKolumn4, allaKombinationer, 3 );
-            addColumn( matrisUtanOddsKolumn5, allaKombinationer, 4 );
-            addColumn( matrisUtanOddsKolumn6, allaKombinationer, 5 );            
+            addColumn( 0, matrisUtanOddsKolumn1 );
+            addColumn( 1, matrisUtanOddsKolumn2 );
+            addColumn( 2, matrisUtanOddsKolumn3 );
+            addColumn( 3, matrisUtanOddsKolumn4 );
+            addColumn( 4, matrisUtanOddsKolumn5 );
+            addColumn( 5, matrisUtanOddsKolumn6 );            
             
-
         }
         
-        //Hjälper till att skriva värden från en matris till en annan.
-        public void addColumn( double[] source1DMatrix, double[,] target2DMatrix, int targetColumn )
+        //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
+        public void addColumn( int targetColumn, double[] sourceMatrix )
         {
 
             for( int row = 0;row < MAX;row = row + 1 )
             {
-                target2DMatrix[row, targetColumn] = source1DMatrix[row];    
+                allaKombinationer[row, targetColumn] = sourceMatrix[row];
             }
         }
             
         //Lägg till Poissonkolumnen
-        public void läggTillPoissonKolumn(double[] poissonColumn)
+        public void läggTillPoissonKolumn(double[] poissonKolumn)
         {
-            addColumn( poissonColumn, allaKombinationer, 6 );
-            
+            addColumn(6, poissonKolumn);
         }
 
         //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
         public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
         {
+            //float[,] floatSvSOdds =  svSpelOdds; //En tanke om att float blir snabbare än double.
             int sparKolumn;
             if (läggTillPlusRäknare == 0)
             {
@@ -182,14 +176,17 @@ namespace Bomben
                 sparKolumn = 9;
                 läggTillPlusRäknare++;
             }
-
+                        
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+            //double täljare;
+            //double nämnare;
 
-            for ( int i = 0; i < MAX; i++)
+            Parallel.For( 0, MAX, i =>
+            //for ( int i = 0; i < MAX; i++)
             {
-                for(int j = 0;j < bombenStatsSize;j++ )
+                for( int j = 0; j < bombenStatsSize; j++ )
                 {
-                    //Defaultvärden
+
                     allaKombinationer[i, sparKolumn] = ROI;
                     allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
@@ -216,12 +213,12 @@ namespace Bomben
                         }
                     }
                 }
-            }
-            
+            } );
+   
 
         }
- 
 
+        
         public void writeToFile()
         {
             
@@ -236,7 +233,7 @@ namespace Bomben
                     for (int kol = 0; kol < 11; kol++)
                     {
                         sw.Write(allaKombinationer[rad, kol]);
-                        sw.Write(";");
+                        sw.Write("; ");
                     }
                     sw.Write("\r\n");
                 }
@@ -244,6 +241,8 @@ namespace Bomben
             }
             
             sw.Close();
+
+                       
         }
 
         
