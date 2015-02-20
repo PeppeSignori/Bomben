@@ -178,8 +178,7 @@ namespace Bomben
             }
                         
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
-            //double täljare;
-            //double nämnare;
+            
 
             Parallel.For( 0, MAX, i =>
             //for ( int i = 0; i < MAX; i++)

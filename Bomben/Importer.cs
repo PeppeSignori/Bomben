@@ -58,9 +58,21 @@ namespace Bomben
             string zipPath = @"C:\Users\" +_user +@"\Downloads\" + _currentFileName +zip;
             
             //Kolla om filen finns extrahera om den inte finns.
-            if( !File.Exists( _extractPath + _currentFileName + txt ) )
+            bool next=false;
+            while(!next)
             {
-                ZipFile.ExtractToDirectory( zipPath, _extractPath );    
+                if( !File.Exists( _extractPath + _currentFileName + txt ) )
+                {
+                    try
+                    {
+                        ZipFile.ExtractToDirectory( zipPath, _extractPath );
+                    }
+                1
+                    {    Console.WriteLine("Felaktigt namn på fil. Försök igen.");
+                    _currentFileName = Console.ReadLine();
+                    zip = ".zip";
+                    zipPath = @"C:\Users\" + _user + @"\Downloads\" + _currentFileName + zip;
+                }
             }
 
             //Vänta på att filen extraherats
