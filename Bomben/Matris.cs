@@ -5,12 +5,49 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 
 namespace Bomben
 {
     class Matris
     {
+
+        private static Microsoft.Office.Interop.Excel.Workbook mWorkBook;
+        private static Microsoft.Office.Interop.Excel.Sheets mWorkSheets;
+        private static Microsoft.Office.Interop.Excel.Worksheet Blad1;
+        private static Microsoft.Office.Interop.Excel.Application oXL;
+        
+
+        public void writeToExistingExcelDocument()
+        {
+            //Skapa workbook object 
+            string path = @"C:\Users\Erik\Desktop\Bomben\bomben.xlsx";
+            oXL = new Microsoft.Office.Interop.Excel.Application();
+            oXL.Visible = true;
+            oXL.DisplayAlerts = false;
+            mWorkBook = oXL.Workbooks.Open(path, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+            //Get all the sheets in the workbook
+            mWorkSheets = mWorkBook.Worksheets;
+            //Get the allready exists sheet
+            Blad1 = (Microsoft.Office.Interop.Excel.Worksheet)mWorkSheets.get_Item("Blad1");
+            Blad1.Cells[2, 1] = "Fungerar detta?";
+            
+            mWorkBook.SaveAs(path, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal,
+            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
+            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            mWorkBook.Close(false, false, false);
+            Blad1 = null;
+            mWorkBook = null;
+            oXL.Quit();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+        }
+
+
 
         public double[,] allaKombinationer = new double[1771561, 11];
         public double[] matrisUtanOddsKolumn1 = new double[1771561];
@@ -176,18 +213,21 @@ namespace Bomben
                 sparKolumn = 9;
                 läggTillPlusRäknare++;
             }
-                        
+            
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
             
+            Parallel.For( 0, MAX, ii =>
+                {
+                    allaKombinationer[ii, sparKolumn] = ROI;
+                    allaKombinationer[ii, (sparKolumn + 1)] = allaKombinationer[ii, sparKolumn] / allaKombinationer[ii, 6];
+                });
 
+           
             Parallel.For( 0, MAX, i =>
-            //for ( int i = 0; i < MAX; i++)
             {
                 for( int j = 0; j < bombenStatsSize; j++ )
                 {
 
-                    allaKombinationer[i, sparKolumn] = ROI;
-                    allaKombinationer[i, (sparKolumn + 1)] = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
 
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                     {
@@ -227,7 +267,7 @@ namespace Bomben
             
             for (int rad = 0; rad < 1771561; rad++)
             {
-                if (allaKombinationer[rad, 10] > 14 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 7 && allaKombinationer[rad, 2] < 7 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 7 && allaKombinationer[rad, 5] < 7)
+                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 7 && allaKombinationer[rad, 2] < 7 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 7 && allaKombinationer[rad, 5] < 7)
                 {
                     for (int kol = 0; kol < 11; kol++)
                     {
@@ -243,6 +283,8 @@ namespace Bomben
 
                        
         }
+
+     
 
         
     }
