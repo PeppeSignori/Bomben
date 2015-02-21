@@ -79,9 +79,40 @@ namespace Bomben
                 }
             }
         }
-        
-        
 
+
+        public double förväntatMålAntal(double förväntat, double tolerans, double pöver, double punder, double böver, double bunder)
+        {
+            
+            
+            bool gåttUppåt = false;
+            bool gåttNeråt = false;
+            while( !gåttNeråt && !gåttUppåt)
+            {
+                if (pöver < böver)
+                {
+                    gåttNeråt = true;
+                    if (!gåttUppåt)
+        1            {
+                        förväntat -= 0.1;
+
+                    }
+                }
+                else if (pöver > böver)
+                {
+                    gåttUppåt = true;
+                    if (!gåttNeråt)
+                    {
+                        förväntat += 0.1;
+
+                    }   
+                }
+
+                //räkna om pöver och punder
+
+    
+            }
+        }
         
 
     }
