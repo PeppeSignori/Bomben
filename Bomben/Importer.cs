@@ -14,11 +14,15 @@ namespace Bomben
     public class Importer
     {
         //static string _pathFile;
-        static string _user;
-        static string _extractPath = @"C:\Bomben\";
+        static string _user { get; private set; }
+        static string _extractPath { get; private set; }        
         
         
-        
+        //Constructor
+        public Importer()
+        {
+            _extractPath = @"C:\Bomben\";
+        }
         
         /// <summary>
         /// Check user

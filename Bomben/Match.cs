@@ -80,7 +80,7 @@ namespace Bomben
             }
         }
 
-
+        /*
         public double förväntatMålAntal(double förväntat, double tolerans, double pöver, double punder, double böver, double bunder)
         {
             
@@ -93,7 +93,7 @@ namespace Bomben
                 {
                     gåttNeråt = true;
                     if (!gåttUppåt)
-        1            {
+                    {
                         förväntat -= 0.1;
 
                     }
@@ -113,7 +113,7 @@ namespace Bomben
     
             }
         }
-        
+        */        
 
     }
 }
