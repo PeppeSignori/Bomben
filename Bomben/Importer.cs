@@ -14,8 +14,8 @@ namespace Bomben
     public class Importer
     {
         //static string _pathFile;
-        static string _user { get; private set; }
-        static string _extractPath { get; private set; }
+        static string _user { get; set; }
+        static string _extractPath { get; set; }
 
 
         //Constructor

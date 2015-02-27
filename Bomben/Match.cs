@@ -105,6 +105,7 @@ namespace Bomben
                 }
             }
 
+            
             return startvärde;
         }
 
