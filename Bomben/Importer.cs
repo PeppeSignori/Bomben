@@ -14,14 +14,14 @@ namespace Bomben
     public class Importer
     {
         //static string _pathFile;
-        static string _user { get; private set; }
-        static string _extractPath { get; private set; }        
+        static string user { get; set; }
+        static string extractPath { get; set; }        
         
         
         //Constructor
         public Importer()
         {
-            _extractPath = @"C:\Bomben\";
+            extractPath = @"C:\Bomben\";
         }
         
         /// <summary>
@@ -31,15 +31,15 @@ namespace Bomben
         {
             if( Directory.Exists( @"C:\Users\Erik" ) )
             {
-                _user = "Erik";
+                user = "Erik";
             }
             else if( Directory.Exists( @"C:\Users\Christer" ) )
             {
-                _user = "Christer";
+                user = "Christer";
             }
             else
             {
-                _user = "Unknown";
+                user = "Unknown";
             }
             
         }
@@ -62,12 +62,12 @@ namespace Bomben
             checkUser();
             string txt = ".txt";
             string zip = ".zip";
-            string zipPath = @"C:\Users\" + _user + @"\Downloads\" + ZipFileName + zip;
+            string zipPath = @"C:\Users\" + user + @"\Downloads\" + ZipFileName + zip;
             
             //Kolla om filen finns extrahera om den inte finns.
-            if( !File.Exists( _extractPath + ZipFileName + txt ) )
+            if( !File.Exists( extractPath + ZipFileName + txt ) )
             {
-                ZipFile.ExtractToDirectory( zipPath, _extractPath );    
+                ZipFile.ExtractToDirectory( zipPath, extractPath );    
             }
 
             //Vänta på att filen extraherats
@@ -99,7 +99,7 @@ namespace Bomben
             try
             {
                 //Nytt streamReader objekt
-                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( _extractPath + ZipFileName + ".txt" );
+                System.IO.StreamReader bombenFile =  new System.IO.StreamReader( extractPath + ZipFileName + ".txt" );
             
                 //Gå igenom filen för att se antal rader
                 string line;
@@ -182,7 +182,7 @@ namespace Bomben
 
             try
             {
-                System.IO.StreamReader bombenFile = new System.IO.StreamReader(_extractPath + ZipFileName + ".txt");
+                System.IO.StreamReader bombenFile = new System.IO.StreamReader(extractPath + ZipFileName + ".txt");
 
                 string delimiterstring = ";"; //delare
                 char[] delimiters = delimiterstring.ToArray(); //Omständigt sätt att skapa en charArray initialiserad
