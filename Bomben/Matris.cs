@@ -59,6 +59,7 @@ namespace Bomben
         private int läggTillPlusRäknare = 0;
         private const int MAX = 1771561;
         
+        
         public void skapaMatrisUtanOddskolumn1()
         {
             int a = 0;
