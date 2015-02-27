@@ -61,17 +61,19 @@ namespace Bomben
             bool next=false;
             while(!next)
             {
-                if( !File.Exists( _extractPath + _currentFileName + txt ) )
+                if (!File.Exists(_extractPath + _currentFileName + txt))
                 {
                     try
                     {
-                        ZipFile.ExtractToDirectory( zipPath, _extractPath );
+                        ZipFile.ExtractToDirectory(zipPath, _extractPath);
                     }
-                1
-                    {    Console.WriteLine("Felaktigt namn på fil. Försök igen.");
-                    _currentFileName = Console.ReadLine();
-                    zip = ".zip";
-                    zipPath = @"C:\Users\" + _user + @"\Downloads\" + _currentFileName + zip;
+                    catch
+                    {
+                        Console.WriteLine("Felaktigt namn på fil. Försök igen.");
+                        _currentFileName = Console.ReadLine();
+                        zip = ".zip";
+                        zipPath = @"C:\Users\" + _user + @"\Downloads\" + _currentFileName + zip;
+                    }
                 }
             }
 
