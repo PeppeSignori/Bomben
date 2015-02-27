@@ -18,7 +18,11 @@ namespace Bomben
         static string _extractPath = @"C:\Bomben\";
         static string _currentFileName;
         
-        
+         //Constructor
+        public Importer()
+        {
+            _extractPath = @"C:\Bomben\";
+        }
         
         /// <summary>
         /// Check user
