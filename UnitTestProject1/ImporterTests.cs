@@ -29,6 +29,26 @@ namespace Bomben.Test
             //Assert
             //Förväntat är 6315, filen är 6317 rader men ska ta bort första och sista
             Assert.AreEqual(6315, lineCount);
+        
+        }
+
+        [TestMethod]
+        public void ImportBombenTest()
+        {
+            //Arrange
+            Importer import = new Importer();
+            //Act
+            double[,] stats = import.importBomben("PC_P7_D8385");
+            //Assert
+
+            //Första raden = 
+            
+            //rad 2000
+
+            //rad 5000
+
+            //sista raden
+
         }
     }
 }
