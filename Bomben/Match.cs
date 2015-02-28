@@ -9,8 +9,8 @@ namespace Bomben
 {
     public class Match
     {
-        double[] hemmaMålSannolikhet = new double[11];
-        double[] bortaMålSannolikhet = new double[11];
+        public double[] hemmaMålSannolikhet = new double[11];
+        public double[] bortaMålSannolikhet = new double[11];
         public double[] resultat = new double[121];
 
 
@@ -83,8 +83,8 @@ namespace Bomben
 
         public double beräknaFörväntadMålantal(double startvärde, double tolerans, double pöver, double punder, double böver, double bunder)
         {
-            bool riktning = false;
-            while (pöver != böver && punder != bunder)               
+            bool riktning = true;
+            while (pöver <= böver *tolerans &&  punder != bunder)               
             {
                 if (pöver < böver)
                 {
