@@ -9,8 +9,8 @@ namespace Bomben
 {
     public class Match
     {
-        public double[] hemmaMålSannolikhet = new double[11];
-        public double[] bortaMålSannolikhet = new double[11];
+        double[] hemmaMålSannolikhet = new double[11];
+        double[] bortaMålSannolikhet = new double[11];
         public double[] resultat = new double[121];
 
 
