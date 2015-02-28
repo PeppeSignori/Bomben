@@ -375,7 +375,7 @@ namespace Bomben
 
             Console.WriteLine("Poissonodds på över " + M3ÖU + ":  " + Math.Round(1 / P3Ö, 2));
             Console.WriteLine("Poissonodds på under " + M3ÖU + ": " + Math.Round(1 / P3U, 2));
-            Match3.beräknaFörväntadMålantal(M3M, Math.Abs(0.01), P3Ö, P3U, M3Ö, M3U);
+            //Match3.beräknaFörväntadMålantal(M3M, Math.Abs(0.01), P3Ö, P3U, M3Ö, M3U);
             Console.WriteLine();
 
             Console.Write("Ändra nåt? [j]: ");
