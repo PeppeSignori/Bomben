@@ -6,6 +6,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Office.Interop.Excel;
+using Cudafy;
+using Cudafy.Host;
+using Cudafy.Translator;
+
 
 
 namespace Bomben
