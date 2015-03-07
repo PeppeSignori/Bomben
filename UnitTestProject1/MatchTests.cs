@@ -1,27 +1,23 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Bomben;
 
-namespace Bomben.Tests
+
+namespace UnitTestProject1
 {
     [TestClass]
     public class MatchTests
     {
         [TestMethod]
-        public void poissonTest()
+        public void FörväntatAntalMålTest()
         {
-            //Arrange
-            Match match = new Match();
-            double lambda1 = 1.9434180138568129;
-            double lambda2 = 1.0565819861431871;
-            
+            //Arrange 
+            var match = new Match();
             //Act
-            match.poisson(lambda1, "hemma");
-            match.poisson(lambda2, "borta");
-
-            double expectedHome0 = 
-            double expectedAway0 =
-                //Assert
-            Assert.AreEqual(, match.hemmaMålSannolikhet);
+            double resultat = match.beräknaFörväntadMålantal(12, 12, 12, 12, 12, 12);
+            //Assert
+            double förväntatSvar = 3;
+            Assert.AreEqual(förväntatSvar, resultat);
         }
     }
 }

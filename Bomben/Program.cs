@@ -484,9 +484,26 @@ namespace Bomben
             //Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
+            Stopwatch sw1 = new Stopwatch();
+            matris.Execute(allaResultat, 7, 1, turnOver);
+            Console.WriteLine( sw1.ToString() );
 
-            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
-            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            matris.Execute(allaResultat, 9, 3, turnOver);
+            Console.WriteLine(sw1.ToString());
+
+            //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
+            //matris.cudaLäggTillPlusOchROI(9, bombenStats, counter, 1, turnOver);
+
+            matris.cudaLäggTillTillgängligaOdds(7, bombenStats, counter, 1, turnOver);
+            matris.cudaLäggTillTillgängligaOdds(9, bombenStats, counter, 1, turnOver);
+
+
+            //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
+            //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            
+            
+            
+            
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             time = DateTime.Now.ToString( "HH:mm:ss tt" );
             Console.WriteLine( time );
