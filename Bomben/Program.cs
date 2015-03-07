@@ -375,7 +375,7 @@ namespace Bomben
 
             Console.WriteLine("Poissonodds på över " + M3ÖU + ":  " + Math.Round(1 / P3Ö, 2));
             Console.WriteLine("Poissonodds på under " + M3ÖU + ": " + Math.Round(1 / P3U, 2));
-            Match3.beräknaFörväntadMålantal(M3M, Math.Abs(0.01), P3Ö, P3U, M3Ö, M3U);
+            //Match3.beräknaFörväntadMålantal(M3M, Math.Abs(0.01), P3Ö, P3U, M3Ö, M3U);
             Console.WriteLine();
 
             Console.Write("Ändra nåt? [j]: ");
@@ -481,9 +481,26 @@ namespace Bomben
             //Task secondTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver ) );
             //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
+            Stopwatch sw1 = new Stopwatch();
+            matris.Execute(allaResultat, 7, 1, turnOver);
+            Console.WriteLine( sw1.ToString() );
 
-            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
-            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            matris.Execute(allaResultat, 9, 3, turnOver);
+            Console.WriteLine(sw1.ToString());
+
+            //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
+            //matris.cudaLäggTillPlusOchROI(9, bombenStats, counter, 1, turnOver);
+
+            matris.cudaLäggTillTillgängligaOdds(7, bombenStats, counter, 1, turnOver);
+            matris.cudaLäggTillTillgängligaOdds(9, bombenStats, counter, 1, turnOver);
+
+
+            //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
+            //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            
+            
+            
+            
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             time = DateTime.Now.ToString( "HH:mm:ss tt" );
             Console.WriteLine( time );
