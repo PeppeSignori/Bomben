@@ -485,10 +485,10 @@ namespace Bomben
             //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
             Stopwatch sw1 = new Stopwatch();
-            matris.Execute(allaResultat, 7, 1, turnOver);
+            Matris.Execute(allaResultat, 7, 1, turnOver, matris);
             Console.WriteLine( sw1.ToString() );
 
-            matris.Execute(allaResultat, 9, 3, turnOver);
+            Matris.Execute(allaResultat, 9, 3, turnOver, matris);
             Console.WriteLine(sw1.ToString());
 
             //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);

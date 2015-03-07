@@ -197,6 +197,7 @@ namespace Bomben
             }
         }
 
+        
         public void addColumn(double[] sourceMatrix, double[,] targetMatrix, int targetColumn)
         {
             for (int row = 0; row < MAX; row = row + 1)
@@ -272,7 +273,7 @@ namespace Bomben
 
         }
 
-        public void Execute(double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning)
+        public static void Execute(double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, Matris matris)
         {
             //Temp Column to save results in
             double[] CPUsparResultat = new double[poissonColumn.Length];
@@ -297,7 +298,7 @@ namespace Bomben
             int[] gpuROI = gpu.CopyToDevice(CPUROI);
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(1024, 1024).cudaLäggTillPlusOchROI(gpuSparResultat, gpuSparResultatPlus, gpuROI);
+            gpu.Launch(96, 16).cudaLäggTillPlusOchROI(gpuSparResultat, gpuSparResultatPlus, gpuROI);
 
             //Copy results back from GPU
             gpu.CopyFromDevice(gpuSparResultat, CPUsparResultat);
@@ -305,8 +306,8 @@ namespace Bomben
             
 
             //Lägg till CPUResultat till allaKombinationer
-            addColumn(7, CPUsparResultat);
-            addColumn(8, CPUsparResultatPlus);
+            matris.addColumn( sparKolumn, CPUsparResultatPlus);
+            matris.addColumn( (sparKolumn+1), CPUsparResultatPlus);
 
             //Free Memory on GPU
             gpu.FreeAll();
@@ -314,9 +315,9 @@ namespace Bomben
         }
 
         [Cudafy]
-        public void cudaLäggTillPlusOchROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, int[] gpuROI   )
+        public static void cudaLäggTillPlusOchROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, int[] gpuROI   )
         {
-            double ROI = ((0.6 * (Convert.ToDouble(gpuROI[1]) + Convert.ToDouble(gpuROI[0]))) / Convert.ToDouble(gpuROI[0]));
+            double ROI = ((0.6 * (gpuROI[1]) + gpuROI[0])) / gpuROI[0];
             
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 
