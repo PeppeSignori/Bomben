@@ -8,10 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bomben.Tests", "UnitTestProject1\Bomben.Tests.csproj", "{9411DADF-C80E-474B-830E-631E21AF79E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bomben.GUI", "..\WindowsFormsApplication1\WindowsFormsApplication1\Bomben.GUI.csproj", "{06053DBA-E9BD-46A4-9986-3F2941B73AE1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9411DADF-C80E-474B-830E-631E21AF79E2} = {9411DADF-C80E-474B-830E-631E21AF79E2}
-		{D7DF3CF2-AADB-4812-9EB7-1F29C339CBCB} = {D7DF3CF2-AADB-4812-9EB7-1F29C339CBCB}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
