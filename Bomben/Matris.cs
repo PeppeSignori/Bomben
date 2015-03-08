@@ -62,6 +62,7 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
         private int läggTillPlusRäknare = 0;
         private const int MAX = 1771561;
+        private const int testMax = 1000;
         
         
         public void skapaMatrisUtanOddskolumn1()
@@ -298,7 +299,7 @@ namespace Bomben
             int[] gpuROI = gpu.CopyToDevice(CPUROI);
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(96, 16).cudaLäggTillPlusOchROI(gpuSparResultat, gpuSparResultatPlus, gpuROI);
+            gpu.Launch(128,128).cudaAddPlusAndROI(gpuSparResultat, gpuSparResultatPlus, gpuROI);
 
             //Copy results back from GPU
             gpu.CopyFromDevice(gpuSparResultat, CPUsparResultat);
@@ -315,19 +316,19 @@ namespace Bomben
         }
 
         [Cudafy]
-        public static void cudaLäggTillPlusOchROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, int[] gpuROI   )
+        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, int[] gpuROI   )
         {
             double ROI = ((0.6 * (gpuROI[1]) + gpuROI[0])) / gpuROI[0];
             
-            int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
+            //int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
+            int tid = thread.blockIdx.x;
 
-
-            while (tid < MAX)
+            while (tid < testMax)
             {
                 gpuSparResultat[tid] = ROI;
                 gpuSparResultatPlus[tid] = gpuSparResultat[tid] / gpuPoissonColumn[tid];
                 
-                tid += thread.blockDim.x * thread.gridDim.x;
+                //tid += thread.blockDim.x * thread.gridDim.x;
             }
                   
     
