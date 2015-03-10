@@ -58,9 +58,9 @@ namespace Bomben
             string zipPath = @"C:\Users\" +_user +@"\Downloads\" + _currentFileName +zip;
             
             //Kolla om filen finns extrahera om den inte finns.
-            bool next=false;
-            while(!next)
-            {
+            //bool next=false;
+            //while(!next)
+            //{
                 if (!File.Exists(_extractPath + _currentFileName + txt))
                 {
                     try
@@ -75,7 +75,7 @@ namespace Bomben
                         zipPath = @"C:\Users\" + _user + @"\Downloads\" + _currentFileName + zip;
                     }
                 }
-            }
+            //}
 
             //Vänta på att filen extraherats
             while( !File.Exists( @"C:\Bomben\" +_currentFileName +txt ) );
