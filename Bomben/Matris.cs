@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 
 
 namespace Bomben
 {
     class Matris
     {
-
+        /*
         private static Microsoft.Office.Interop.Excel.Workbook mWorkBook;
         private static Microsoft.Office.Interop.Excel.Sheets mWorkSheets;
         private static Microsoft.Office.Interop.Excel.Worksheet Blad1;
@@ -46,7 +46,7 @@ namespace Bomben
             GC.WaitForPendingFinalizers();
             GC.Collect();
         }
-
+        */
 
 
         public double[,] allaKombinationer = new double[1771561, 11];
