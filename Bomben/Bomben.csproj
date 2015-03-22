@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Importer.cs" />
+    <Compile Include="liveScorer.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="Matris.cs" />
     <Compile Include="Program.cs" />
