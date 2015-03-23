@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 using Cudafy;
 using Cudafy.Host;
 using Cudafy.Translator;
@@ -17,7 +17,7 @@ namespace Bomben
     class Matris
     {
 
-        private static Microsoft.Office.Interop.Excel.Workbook mWorkBook;
+        /*private static Microsoft.Office.Interop.Excel.Workbook mWorkBook;
         private static Microsoft.Office.Interop.Excel.Sheets mWorkSheets;
         private static Microsoft.Office.Interop.Excel.Worksheet Blad1;
         private static Microsoft.Office.Interop.Excel.Application oXL;
@@ -50,7 +50,7 @@ namespace Bomben
             GC.WaitForPendingFinalizers();
             GC.Collect();
         }
-
+        */
 
 
         public double[,] allaKombinationer = new double[1771561, 11];
@@ -279,7 +279,9 @@ namespace Bomben
             double[] CPUsparResultatPlus = new double[poissonColumn.Length];
             
             //Fill CPUROI
-            int[] CPUROI = new int[] {antalPlus, omsättning};
+            double doubleAntalPlus = Convert.ToDouble(antalPlus);
+            double doubleTurnOver = Convert.ToDouble(omsättning);
+            double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver};
 
 
             //Setup 
@@ -288,16 +290,16 @@ namespace Bomben
             GPGPU gpu = CudafyHost.GetDevice(CudafyModes.Target, CudafyModes.DeviceId);
             gpu.LoadModule(km);
 
-            // allocate the memory on the GPU for results
-            double[] gpuSparResultat = gpu.Allocate<double>(MAX);       //ROI
-            double[] gpuSparResultatPlus = gpu.Allocate<double>(MAX);   //ROI plus 1
+            // allocate the memory on the GPU for results // allocate memory for empty arrays
+            double[] gpuSparResultat = gpu.Allocate<double>(CPUsparResultat);       //ROI
+            double[] gpuSparResultatPlus = gpu.Allocate<double>(CPUsparResultatPlus);   //ROI plus 1
             
-            //Copy to GPU
+            //Copy to GPU // copy filled arrays
             double[] gpuPoissonColumn = gpu.CopyToDevice(poissonColumn);
-            int[] gpuROI = gpu.CopyToDevice(CPUROI);
+            double[] gpuROI = gpu.CopyToDevice(CPUROI);
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(1024, 1024).cudaLäggTillPlusOchROI(gpuSparResultat, gpuSparResultatPlus, gpuROI);
+            gpu.Launch(128, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI);
 
             //Copy results back from GPU
             gpu.CopyFromDevice(gpuSparResultat, CPUsparResultat);
@@ -305,8 +307,8 @@ namespace Bomben
             
 
             //Lägg till CPUResultat till allaKombinationer
-            addColumn(7, CPUsparResultat);
-            addColumn(8, CPUsparResultatPlus);
+            addColumn( sparKolumn, CPUsparResultat );
+            addColumn( (sparKolumn +1), CPUsparResultatPlus );
 
             //Free Memory on GPU
             gpu.FreeAll();
@@ -314,9 +316,10 @@ namespace Bomben
         }
 
         [Cudafy]
-        public void cudaLäggTillPlusOchROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, int[] gpuROI   )
+        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI)
         {
-            double ROI = ((0.6 * (Convert.ToDouble(gpuROI[1]) + Convert.ToDouble(gpuROI[0]))) / Convert.ToDouble(gpuROI[0]));
+            //cudaAddPlusAndROI
+            double ROI = ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]);
             
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 

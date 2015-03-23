@@ -483,10 +483,10 @@ namespace Bomben
 
             Stopwatch sw1 = new Stopwatch();
             matris.Execute(allaResultat, 7, 1, turnOver);
-            Console.WriteLine( sw1.ToString() );
+            Console.WriteLine( sw1.Elapsed.Minutes.ToString() );
 
             matris.Execute(allaResultat, 9, 3, turnOver);
-            Console.WriteLine(sw1.ToString());
+            Console.WriteLine( sw1.Elapsed.Minutes.ToString() );
 
             //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
             //matris.cudaLäggTillPlusOchROI(9, bombenStats, counter, 1, turnOver);
@@ -497,15 +497,11 @@ namespace Bomben
 
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
-            
-            
-            
-            
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             time = DateTime.Now.ToString( "HH:mm:ss tt" );
             Console.WriteLine( time );
             matris.writeToFile();
-            matris.writeToExistingExcelDocument();
+            //matris.writeToExistingExcelDocument();
             Console.WriteLine( "Skriv till fil klart." );
                         
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
