@@ -11,12 +11,12 @@ namespace Bomben
 
         public int CorrectRows()
         {
-
+            return 0;
         }
 
         public int compareRows()
         {
-
+            return 0;
         }
 
     }
