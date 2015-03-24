@@ -274,6 +274,8 @@ namespace Bomben
 
         public void Execute(double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning)
         {
+            //cudaAddPlusAndROI
+           
             //Temp Column to save results in
             double[] CPUsparResultat = new double[poissonColumn.Length];
             double[] CPUsparResultatPlus = new double[poissonColumn.Length];
@@ -313,6 +315,8 @@ namespace Bomben
             //Free Memory on GPU
             gpu.FreeAll();
 
+            //cudaAddAvailableOdds
+
         }
 
         [Cudafy]
@@ -326,22 +330,15 @@ namespace Bomben
 
             while (tid < MAX)
             {
+                //CountROI 
                 gpuSparResultat[tid] = ROI;
                 gpuSparResultatPlus[tid] = gpuSparResultat[tid] / gpuPoissonColumn[tid];
                 
+                //
+
                 tid += thread.blockDim.x * thread.gridDim.x;
             }
                   
-    
-            /*
-            double ROI = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / Convert.ToDouble(antalPlus));
-
-            Parallel.For(0, MAX, ii =>
-            {
-                allaKombinationer[ii, sparKolumn] = ROI;
-                allaKombinationer[ii, (sparKolumn + 1)] = allaKombinationer[ii, sparKolumn] / allaKombinationer[ii, 6];
-            });
-            */
         }
 
         public void cudaLäggTillTillgängligaOdds(int sparKolumn, double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
@@ -381,6 +378,42 @@ namespace Bomben
 
         }
 
+        [Cudafy]
+        public static void cudaAddAvailableOdds(double[,] svSpelOdds, int bombenStatsSize)
+        {
+            double firstTemp;
+            double secondTemp;
+            
+            for (int i = 0; i < bombenStatsSize; i++)
+            {
+
+                if (allaKombinationer[i, 0] == svSpelOdds[j, 1])
+                {
+                    if (allaKombinationer[i, 1] == svSpelOdds[j, 2])
+                    {
+                        if (allaKombinationer[i, 2] == svSpelOdds[j, 3])
+                        {
+                            if (allaKombinationer[i, 3] == svSpelOdds[j, 4])
+                            {
+                                if (allaKombinationer[i, 4] == svSpelOdds[j, 5])
+                                {
+                                    if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
+                                    {
+                                        firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
+                                        allaKombinationer[i, sparKolumn] = firstTemp;
+                                        secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                        allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+ 
+            }
+        }
+
+        
         
         public void writeToFile()
         {
