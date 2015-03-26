@@ -272,7 +272,7 @@ namespace Bomben
 
         }
 
-        public void Execute(double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning)
+        public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds )
         {
             //cudaAddPlusAndROI
            
@@ -284,7 +284,43 @@ namespace Bomben
             double doubleAntalPlus = Convert.ToDouble(antalPlus);
             double doubleTurnOver = Convert.ToDouble(omsättning);
             double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver};
+            
+            //cudaAddAvailableOdds
+            int[] allCombo = new int[MAX];
+            int[] availableOdds = new int[sVsOdds.GetLength(1)];
+            double[] svenskaSpelOdds = new double[sVsOdds.GetLength(1)];
+            int zero, one, two, three, four, five;
+            //Slå ihop kolumner till ett värde som ska vara snabbt och enkelt att jämföra.
+            for (int i = 0; i < MAX; i++)
+            {
 
+                zero    = (int)allaKombinationer[i, 0] * 100000;
+                one     = (int)allaKombinationer[i, 1] * 10000;
+                two     = (int)allaKombinationer[i, 2] * 1000;
+                three   = (int)allaKombinationer[i, 3] * 100;
+                four    = (int)allaKombinationer[i, 4] * 10;
+                five    = (int)allaKombinationer[i, 5];
+
+                allCombo[i] = zero + one+ two + three + four + five;
+
+                if (i < sVsOdds.GetLength(1))
+                {
+                    zero    = (int)sVsOdds[i, 1] * 100000;
+                    one     = (int)sVsOdds[i, 2] * 10000;
+                    two     = (int)sVsOdds[i, 3] * 1000;
+                    three   = (int)sVsOdds[i, 4] * 100;
+                    four    = (int)sVsOdds[i, 5] * 10;
+                    five    = (int)sVsOdds[i, 6];
+                
+                    //skapa en j'mf;relsestr'ng
+                    availableOdds[i] = zero + one + two + three + four + five;
+                    //skapa en array med befintlinga odds
+                    svenskaSpelOdds[i] = sVsOdds[i, 0];
+                
+                }
+
+
+            }
 
             //Setup 
             CudafyModule km = CudafyTranslator.Cudafy();
@@ -299,9 +335,12 @@ namespace Bomben
             //Copy to GPU // copy filled arrays
             double[] gpuPoissonColumn = gpu.CopyToDevice(poissonColumn);
             double[] gpuROI = gpu.CopyToDevice(CPUROI);
+            int[] gpuAllCombo = gpu.CopyToDevice(allCombo);                     //Dessa m[ste kollas s[ att det fungerar som t'nkt
+            int[] gpuAvailableOdds = gpu.CopyToDevice(availableOdds);           //Dessa m[ste kollas s[ att det fungerar som t'nkt
+            double[] gpuSvenskaSpelOdds = gpu.CopyToDevice(svenskaSpelOdds);
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(128, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI);
+            gpu.Launch(128, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds);
 
             //Copy results back from GPU
             gpu.CopyFromDevice(gpuSparResultat, CPUsparResultat);
@@ -315,32 +354,40 @@ namespace Bomben
             //Free Memory on GPU
             gpu.FreeAll();
 
-            //cudaAddAvailableOdds
-
+            
+            
         }
 
         [Cudafy]
-        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI)
+        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI, string[] gpuAllCombo, string[] gpuAvailableOdds, double[] gpuSvenskaSpelOdds)
         {
             //cudaAddPlusAndROI
             double ROI = ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]);
             
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 
-
+            double firstTemp, secondTemp;
             while (tid < MAX)
             {
                 //CountROI 
                 gpuSparResultat[tid] = ROI;
                 gpuSparResultatPlus[tid] = gpuSparResultat[tid] / gpuPoissonColumn[tid];
-                
-                //
+
+                if (gpuAllCombo[tid] == gpuAvailableOdds[tid])
+                {
+                    //gpuROI = { doubleAntalPlus, doubleTurnOver};
+                    firstTemp = (0.6 * (gpuROI[1] + gpuROI[0])) / ((0.6 * gpuROI[1] / gpuSvenskaSpelOdds[tid]) + gpuROI[0]);  //Har inte dubbelkollat formel!!!!!!
+                    gpuSparResultat[tid] = firstTemp;
+                    secondTemp = gpuSparResultat[tid] / gpuPoissonColumn[tid]; ///Dubbelkolla formel!!!!!
+                    gpuSparResultatPlus[tid] = secondTemp;
+                }
 
                 tid += thread.blockDim.x * thread.gridDim.x;
             }
                   
         }
 
+        /*
         public void cudaLäggTillTillgängligaOdds(int sparKolumn, double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
         {
             double firstTemp;
@@ -377,10 +424,11 @@ namespace Bomben
             });
 
         }
-
+        
         [Cudafy]
         public static void cudaAddAvailableOdds(double[,] svSpelOdds, int bombenStatsSize)
         {
+
             double firstTemp;
             double secondTemp;
             
@@ -412,7 +460,7 @@ namespace Bomben
  
             }
         }
-
+        */
         
         
         public void writeToFile()

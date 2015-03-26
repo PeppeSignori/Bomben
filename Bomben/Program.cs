@@ -482,11 +482,13 @@ namespace Bomben
             //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
             Stopwatch sw1 = new Stopwatch();
-            matris.Execute(allaResultat, 7, 1, turnOver, bombenStats, counter);
-            Console.WriteLine( " First addPlusAndROI: {0:00}:{1:00}",sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString() );
+            sw1.Start();
+            matris.Execute(allaResultat, 7, 1, turnOver, bombenStats);
+            Console.WriteLine( " First addPlusAndROI: {0}:{1}",sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString() );
 
-            matris.Execute(allaResultat, 9, 3, turnOver, bombenStats, counter);
-            Console.WriteLine(" First addPlusAndROI: {0:00}:{1:00}", sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString());
+            matris.Execute(allaResultat, 9, 3, turnOver, bombenStats);
+            Console.WriteLine(" First addPlusAndROI: {0}:{1}", sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString());
+            sw1.Stop();
 
             //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
             //matris.cudaLäggTillPlusOchROI(9, bombenStats, counter, 1, turnOver);
