@@ -484,10 +484,10 @@ namespace Bomben
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
             matris.Execute(allaResultat, 7, 1, turnOver, bombenStats);
-            Console.WriteLine( " First addPlusAndROI: {0}:{1}",sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString() );
+            Console.WriteLine( " First addPlusAndROI: {0} sekunder {1} millisekunder",sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString() );
 
             matris.Execute(allaResultat, 9, 3, turnOver, bombenStats);
-            Console.WriteLine(" First addPlusAndROI: {0}:{1}", sw1.Elapsed.Minutes.ToString(), sw1.Elapsed.Seconds.ToString());
+            Console.WriteLine(" First addPlusAndROI: {0} sekunder {1} millisekunder", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             sw1.Stop();
 
             //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
