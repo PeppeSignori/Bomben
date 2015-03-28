@@ -48,9 +48,12 @@ namespace Bomben
         public static int countLines()
         {
             //Hämta filnamn
-            Console.WriteLine( "Skriv in namnet på textfil (utan ändelse): " );
-            _currentFileName = Console.ReadLine().ToUpper();
+            Console.WriteLine( "Skriv in spelnr för bomben (t.ex 8372): " );
+
+            string bombenNumber = Console.ReadLine();
+            _currentFileName = "PC_P7_D" + bombenNumber;
             
+
             //Kontrollera vem som är användare
             checkUser();
             string txt = ".txt";
