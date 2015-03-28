@@ -472,8 +472,8 @@ namespace Bomben
             matris.läggTillPoissonKolumn(allaResultat);
 
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
-            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
-            Console.WriteLine(time);
+            //string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            //Console.WriteLine(time);
             
             //Skapa nya tasks för läggTillPlusOchROI - Det är dessa som tar lång tid att bearbeta
             //Task firstTask = Task.Factory.StartNew( () => matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver ) );
@@ -484,11 +484,13 @@ namespace Bomben
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
             matris.Execute(allaResultat, 7, 1, turnOver, bombenStats);
-            Console.WriteLine( " First addPlusAndROI: {0} sekunder {1} millisekunder",sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString() );
+            Console.WriteLine("Program watch: First execute finished: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             matris.Execute(allaResultat, 9, 3, turnOver, bombenStats);
-            Console.WriteLine(" First addPlusAndROI: {0} sekunder {1} millisekunder", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
-            sw1.Stop();
+            Console.WriteLine("Program watch: Second execute finished: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
+            
+            
+            
 
             //matris.cudaLäggTillPlusOchROI(7, bombenStats, counter, 1, turnOver);
             //matris.cudaLäggTillPlusOchROI(9, bombenStats, counter, 1, turnOver);
@@ -502,12 +504,11 @@ namespace Bomben
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
-            time = DateTime.Now.ToString( "HH:mm:ss tt" );
-            Console.WriteLine( time );
             matris.writeToFile();
+            Console.WriteLine("Program watch: Write to file: {0} seconds {1} millisSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             //matris.writeToExistingExcelDocument();
-            Console.WriteLine( "Skriv till fil klart." );
-                        
+            sw1.Stop();
+
             //Räkna om alla odds och lägg till odds på icke spelade kombinationer
             //finalMatrix.reCalculateOdds();
 

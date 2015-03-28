@@ -9,6 +9,7 @@ using System.IO;
 using Cudafy;
 using Cudafy.Host;
 using Cudafy.Translator;
+using System.Diagnostics;
 
 
 
@@ -274,6 +275,9 @@ namespace Bomben
 
         public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds )
         {
+            Stopwatch sw1 = new Stopwatch();
+            sw1.Start();
+            Console.WriteLine("     Execute: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             //cudaAddPlusAndROI
            
             //Temp Column to save results in
@@ -290,6 +294,7 @@ namespace Bomben
             int[] availableOdds = new int[sVsOdds.GetLength(1)];
             double[] svenskaSpelOdds = new double[sVsOdds.GetLength(1)];
             int zero, one, two, three, four, five;
+
             //Slå ihop kolumner till ett värde som ska vara snabbt och enkelt att jämföra.
             for (int i = 0; i < MAX; i++)
             {
@@ -321,39 +326,46 @@ namespace Bomben
 
 
             }
+            Console.WriteLine("     Adding columns complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Setup 
             CudafyModule km = CudafyTranslator.Cudafy();
 
             GPGPU gpu = CudafyHost.GetDevice(CudafyModes.Target, CudafyModes.DeviceId);
             gpu.LoadModule(km);
+            Console.WriteLine("     Setup complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             // allocate the memory on the GPU for results // allocate memory for empty arrays
             double[] gpuSparResultat = gpu.Allocate<double>(CPUsparResultat);       //ROI
             double[] gpuSparResultatPlus = gpu.Allocate<double>(CPUsparResultatPlus);   //ROI plus 1
-            
+            Console.WriteLine("     GPU memory allocation complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
+
             //Copy to GPU // copy filled arrays
             double[] gpuPoissonColumn = gpu.CopyToDevice(poissonColumn);
             double[] gpuROI = gpu.CopyToDevice(CPUROI);
             int[] gpuAllCombo = gpu.CopyToDevice(allCombo);                     //Dessa m[ste kollas s[ att det fungerar som t'nkt
             int[] gpuAvailableOdds = gpu.CopyToDevice(availableOdds);           //Dessa m[ste kollas s[ att det fungerar som t'nkt
             double[] gpuSvenskaSpelOdds = gpu.CopyToDevice(svenskaSpelOdds);
+            Console.WriteLine("     Copy to GPU complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(128, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds);
+            gpu.Launch(1024, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds);
+            Console.WriteLine("     Launch complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Copy results back from GPU
             gpu.CopyFromDevice(gpuSparResultat, CPUsparResultat);
             gpu.CopyFromDevice(gpuSparResultatPlus, CPUsparResultatPlus);
-            
+            Console.WriteLine("     Copy results to CPU complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Lägg till CPUResultat till allaKombinationer
             addColumn( sparKolumn, CPUsparResultat );
             addColumn( (sparKolumn +1), CPUsparResultatPlus );
+            Console.WriteLine("     Copy results to object complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Free Memory on GPU
             gpu.FreeAll();
 
+            Console.WriteLine("     Done Calculating: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             
             
         }
