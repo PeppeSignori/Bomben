@@ -16,7 +16,7 @@ namespace Bomben
             
             // Match 1
             
-            Match Match1 = new Match();
+            Game Match1 = new Game();
 
             Console.WriteLine("Match 1");
             Console.WriteLine("-------");
@@ -151,7 +151,7 @@ namespace Bomben
 
             // Match 2                                  
 
-            Match Match2 = new Match();
+            Game Match2 = new Game();
 
             Console.WriteLine("Match 2");
             Console.WriteLine("-------");
@@ -285,7 +285,7 @@ namespace Bomben
 
             // Match 3
 
-            Match Match3 = new Match();
+            Game Match3 = new Game();
 
             Console.WriteLine("Match 3");
             Console.WriteLine("-------");

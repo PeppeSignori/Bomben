@@ -12,7 +12,7 @@ namespace UnitTestProject1
         public void FörväntatAntalMålTest()
         {
             //Arrange 
-            var match = new Match();
+            var match = new Game();
             //Act
             double resultat = match.beräknaFörväntadMålantal(2.5, 0.01, 1.80, 1.80, 1.75, 1.85);
             //Assert
