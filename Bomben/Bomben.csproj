@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Importer.cs" />
+    <Compile Include="FileImporter.cs" />
     <Compile Include="liveScorer.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="Matris.cs" />

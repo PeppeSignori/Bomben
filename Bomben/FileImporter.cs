@@ -11,7 +11,7 @@ namespace Bomben
 {
     
 
-    static class Importer
+    static class FileImporter
     {
         //static string _pathFile;
         static string _user;

@@ -453,12 +453,12 @@ namespace Bomben
             
 
             //Importera odds från textfil från SvS.
-            int counter = Importer.countLines();
+            int counter = FileImporter.countLines();
             double[,] bombenStats = new double[counter, 7];
-            bombenStats = Importer.importBomben();
+            bombenStats = FileImporter.importBomben();
            
             //Hämta omsättning från textfil från SvS
-            int turnOver = Importer.getTurnOver();
+            int turnOver = FileImporter.getTurnOver();
           
             Console.WriteLine( "Beräknar...." );
             
