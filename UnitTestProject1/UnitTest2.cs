@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class ImporterTests
+    public class UnitTest2
     {
         [TestMethod]
-        public void unitTest1()
+        public void TestMethod1()
         {
         }
     }
