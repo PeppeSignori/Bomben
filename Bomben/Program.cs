@@ -13,10 +13,18 @@ namespace Bomben
         static void Main(string[] args)
         {
             
+            var bomb = new SvSMobileSiteImporter();
+            bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
+            
+            //Match object
+            Game Match1 = new Game();
+            Game Match2 = new Game();
+            Game Match3 = new Game();
+            Game Match4 = new Game();
+
             
             // Match 1
-            
-            Game Match1 = new Game();
+            Console.WriteLine("Antal Bomber: " + numberOfPlays);
 
             Console.WriteLine("Match 1");
             Console.WriteLine("-------");
@@ -151,7 +159,7 @@ namespace Bomben
 
             // Match 2                                  
 
-            Game Match2 = new Game();
+            
 
             Console.WriteLine("Match 2");
             Console.WriteLine("-------");
@@ -284,9 +292,6 @@ namespace Bomben
             Console.WriteLine();
 
             // Match 3
-
-            Game Match3 = new Game();
-
             Console.WriteLine("Match 3");
             Console.WriteLine("-------");
             Console.WriteLine();
@@ -459,7 +464,8 @@ namespace Bomben
            
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-          
+            
+           
             Console.WriteLine( "Beräknar...." );
             
             //Skapa nytt matris-objekt

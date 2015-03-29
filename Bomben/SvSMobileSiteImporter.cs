@@ -8,9 +8,8 @@ using System.Net;
 
 namespace Bomben
 {
-    class SvSMobileSiteImporter
+    public class SvSMobileSiteImporter
     {
-
 
 
         public int getInfo( Uri url )
@@ -25,7 +24,7 @@ namespace Bomben
 
         }
 
-        private int checkNumberOfPlays(string launderedString)
+        public int checkNumberOfPlays(string launderedString)
         {
             //Counter
             int counter = 0;
@@ -42,7 +41,7 @@ namespace Bomben
             while (playMatch.Success)
             {
                 counter++;
-                playMatch.NextMatch();
+                playMatch = playMatch.NextMatch();
             }
 
             return counter;

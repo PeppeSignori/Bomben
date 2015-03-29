@@ -2,16 +2,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bomben;
 
-namespace UnitTestProject1
+namespace Bomben.Test
 {
     [TestClass]
     public class SvsMobileSiteImporterTest
     {
         [TestMethod]
-        public void GetInfoTest()
+        public void getPlaysTest()
         {
             //Arrange
-            var Bombs = new SvsMobileSiteImporterTest();
+            SvsMobileSiteImporterTest Bomb = new SvsMobileSiteImporterTest();
             //Act
             
             //Assert

@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Bomben;
 
 
-namespace UnitTestProject1
+namespace Bomben.Tests
 {
     [TestClass]
     public class MatchTests
