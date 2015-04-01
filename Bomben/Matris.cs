@@ -279,7 +279,7 @@ namespace Bomben
             sw1.Start();
             Console.WriteLine("     Execute: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             //cudaAddPlusAndROI
-           
+
             //Temp Column to save results in
             double[] CPUsparResultat = new double[poissonColumn.Length];
             double[] CPUsparResultatPlus = new double[poissonColumn.Length];
@@ -291,8 +291,8 @@ namespace Bomben
             
             //cudaAddAvailableOdds
             int[] allCombo = new int[MAX];
-            int[] availableOdds = new int[sVsOdds.GetLength(1)];
-            double[] svenskaSpelOdds = new double[sVsOdds.GetLength(1)];
+            int[] availableOdds = new int[sVsOdds.GetLength(0)];
+            double[] svenskaSpelOdds = new double[sVsOdds.GetLength(0)];
             int zero, one, two, three, four, five;
 
             //Slå ihop kolumner till ett värde som ska vara snabbt och enkelt att jämföra.
@@ -308,7 +308,7 @@ namespace Bomben
 
                 allCombo[i] = zero + one+ two + three + four + five;
 
-                if (i < sVsOdds.GetLength(1))
+                if (i < sVsOdds.GetLength(0))
                 {
                     zero    = (int)sVsOdds[i, 1] * 100000;
                     one     = (int)sVsOdds[i, 2] * 10000;
@@ -327,6 +327,9 @@ namespace Bomben
 
             }
             Console.WriteLine("     Adding columns complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
+            
+            //Adding length of available odds
+            int availableOddsLength = availableOdds.GetLength(0);
 
             //Setup 
             CudafyModule km = CudafyTranslator.Cudafy();
@@ -346,10 +349,11 @@ namespace Bomben
             int[] gpuAllCombo = gpu.CopyToDevice(allCombo);                     //Dessa m[ste kollas s[ att det fungerar som t'nkt
             int[] gpuAvailableOdds = gpu.CopyToDevice(availableOdds);           //Dessa m[ste kollas s[ att det fungerar som t'nkt
             double[] gpuSvenskaSpelOdds = gpu.CopyToDevice(svenskaSpelOdds);
+            int gpuAvailableOddsLength = availableOddsLength;
             Console.WriteLine("     Copy to GPU complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(1024, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds);
+            gpu.Launch(1024, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds, gpuAvailableOddsLength);
             Console.WriteLine("     Launch complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Copy results back from GPU
@@ -371,7 +375,7 @@ namespace Bomben
         }
 
         [Cudafy]
-        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI, string[] gpuAllCombo, string[] gpuAvailableOdds, double[] gpuSvenskaSpelOdds)
+        public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI, string[] gpuAllCombo, string[] gpuAvailableOdds, double[] gpuSvenskaSpelOdds, int gpuAvailableOddsLength)
         {
             //cudaAddPlusAndROI
             double ROI = ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]);
@@ -385,13 +389,20 @@ namespace Bomben
                 gpuSparResultat[tid] = ROI;
                 gpuSparResultatPlus[tid] = gpuSparResultat[tid] / gpuPoissonColumn[tid];
 
-                if (gpuAllCombo[tid] == gpuAvailableOdds[tid])
+                for (int i = 0; i < gpuAvailableOddsLength; i++)
                 {
-                    //gpuROI = { doubleAntalPlus, doubleTurnOver};
-                    firstTemp = (0.6 * (gpuROI[1] + gpuROI[0])) / ((0.6 * gpuROI[1] / gpuSvenskaSpelOdds[tid]) + gpuROI[0]);  //Har inte dubbelkollat formel!!!!!!
-                    gpuSparResultat[tid] = firstTemp;
-                    secondTemp = gpuSparResultat[tid] / gpuPoissonColumn[tid]; ///Dubbelkolla formel!!!!!
-                    gpuSparResultatPlus[tid] = secondTemp;
+
+                    if (gpuAllCombo[tid] == gpuAvailableOdds[i])
+                    {
+                        //firstTemp = 888;
+                        //secondTemp = 888;
+
+                        //gpuROI = { doubleAntalPlus, doubleTurnOver};
+                        firstTemp = (0.6 * (gpuROI[1] + gpuROI[0])) / ((0.6 * gpuROI[1] / gpuSvenskaSpelOdds[i]) + gpuROI[0]);  
+                        gpuSparResultat[tid] = firstTemp;
+                        secondTemp = gpuSparResultat[tid] / gpuPoissonColumn[tid]; 
+                        gpuSparResultatPlus[tid] = secondTemp;
+                    }
                 }
 
                 tid += thread.blockDim.x * thread.gridDim.x;
@@ -422,9 +433,9 @@ namespace Bomben
                                     {
                                         if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
                                         {
-                                            firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
+                                            //firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
                                             allaKombinationer[i, sparKolumn] = firstTemp;
-                                            secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
+                                            //secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                                             allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
                                         }
                                     }
