@@ -75,8 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Importer.cs" />
-    <Compile Include="Match.cs" />
+    <Compile Include="FileImporter.cs" />
+    <Compile Include="liveScorer.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Matris.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +86,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SvSMobileSiteImporter.cs" />
     <Compile Include="Övrigt.cs" />
   </ItemGroup>
   <ItemGroup>
