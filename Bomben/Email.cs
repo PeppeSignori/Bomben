@@ -24,9 +24,10 @@ namespace Bomben
             //Setup smtpServer
             SmtpClient server = new SmtpClient();
             server.Host = "smtp.live.com";
+            server.UseDefaultCredentials = false;
             server.Credentials = new System.Net.NetworkCredential("christer.lindberg@live.se", "Start(9)");
-            server.Port = 465;
-            //server.EnableSsl = true;
+            server.Port = 587;
+            server.EnableSsl = true;
             
 
             try
