@@ -68,7 +68,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Importer.cs" />
-    <Compile Include="Match.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Matris.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

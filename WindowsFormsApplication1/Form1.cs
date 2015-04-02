@@ -17,10 +17,10 @@ namespace Bomben
             InitializeComponent();
         }
 
-        Match match1 =new Match();
-        Match match2 = new Match();
-        Match match3 = new Match();
-        Match match4 = new Match();
+        Game match1 = new Game();
+        Game match2 = new Game();
+        Game match3 = new Game();
+        Game match4 = new Game();
 
         private void Match1Odds1_TextChanged(object sender, EventArgs e)
         {
@@ -75,6 +75,13 @@ namespace Bomben
             {
                 match1.sättÖverUnderTill100Procent();
             }
+            
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna! 
+            if (Match1Odds1.Text != null && Match1OddsX.Text != null)
+            {
+                Match1FörväntadMålantal.Text = "Testar";
+            }
+            
         }
 
         private void Match2Odds1_TextChanged(object sender, EventArgs e)
@@ -240,6 +247,27 @@ namespace Bomben
             {
                 match4.sättÖverUnderTill100Procent();
             }
+        }
+
+
+        
+        //Dummy metod för att visa hur jag tänker
+        private void BeräknaMålAntalEventRad1(object sender, EventArgs e)
+        {
+            //Beräkningar för match1
+            hemmaprocent = match1.hemmaprocent();
+            bortaprocent = match1.bortaProcent();
+
+            while(medans pöver != böver)
+            {
+                //Gör beräkningar 
+                //Minska med 1 
+            }
+
+
+
+
+            
         }
 
     }

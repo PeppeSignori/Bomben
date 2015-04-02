@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Bomben.Tests
 {
     [TestClass]
-    public class MatchTests
+    public class GameTests
     {
         [TestMethod]
         public void FörväntatAntalMålTest()
@@ -18,6 +18,11 @@ namespace Bomben.Tests
             double förväntatSvar = 3;
             Assert.AreEqual(förväntatSvar, resultat);
         }
+
+          
+        
+            
+        
     }
 }
 

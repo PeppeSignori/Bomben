@@ -81,29 +81,45 @@ namespace Bomben
         }
 
 
-        public double beräknaFörväntadMålantal(double startvärde, double tolerans, double pöver, double punder, double böver, double bunder)
+        public double beräknaÖverUnder(double överUnderLina)
         {
-            bool riktning = false;
-            while (pöver != böver && punder != bunder)               
+            double underSannolikhet = 0;
+            int antalLoopar = Convert.ToInt32(överUnderLina + 0.5);
+            int yttreAntalLoopar = antalLoopar;
+            for (int m = 0; m < 11*yttreAntalLoopar; m = m + 11)
             {
-                if (pöver < böver)
+                antalLoopar -= 1;
+                for (int n = (antalLoopar); n >= 0; n = n - 1)
                 {
-                    startvärde = startvärde - 0.1;
-                    if (pöver > böver)
-                    {
-                        riktning = true;
-                    }
-                    while (pöver != böver && punder != bunder)
-                        if (pöver < böver)
-                        {
-                            startvärde = startvärde - 0.01;
-                        }
+                    underSannolikhet = underSannolikhet + resultat[m + n]; 
                 }
-                else if (pöver < böver && punder != bunder)
-                {
-                    startvärde = startvärde + 0.1;
-                }
+
             }
+
+
+                return underSannolikhet;
+        }
+
+
+        public double beräknaFörväntadMålantal(double etta, double kryss, double tvåa, double startvärde, double pöver, double punder, double böver, double bunder)
+        {
+            //Starta med ÖverUnderLina som startvärde
+            punder = Math.Round(1 / punder, 2);
+         
+
+            //Om pöver > böver minska startvärde med 0.01 osv tills pöver=böver och/eller punder=bunder
+            if (punder > bunder)
+            {
+                while (punder != bunder && pöver != böver)
+                {
+                    startvärde = startvärde - 0.01;
+
+                }
+
+            }
+
+
+
 
             return startvärde;
         }

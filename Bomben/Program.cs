@@ -12,9 +12,9 @@ namespace Bomben
     {
         static void Main(string[] args)
         {
-            
-            var bomb = new SvSMobileSiteImporter();
-            bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
+
+            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
+            int numberOfPlays = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
             
             //Match object
             Game Match1 = new Game();
@@ -22,7 +22,9 @@ namespace Bomben
             Game Match3 = new Game();
             Game Match4 = new Game();
 
-            
+            Console.WriteLine("Extrapott?");
+            double extrapott = Convert.ToDouble(Console.ReadLine());           
+
             // Match 1
             Console.WriteLine("Antal Bomber: " + numberOfPlays);
 
@@ -40,7 +42,7 @@ namespace Bomben
             Console.WriteLine();
 
             Console.Write("Över/Under [2,5]/[5,5]: ");
-            double M1ÖU = Convert.ToDouble(Console.ReadLine());
+            double M1ÖU = Convert.ToDouble(Console.ReadLine()); 
             while ((M1ÖU != 2.5) && (M1ÖU != 5.5))
             {
                 Console.Write("Över/Under [2,5]/[5,5]: ");
@@ -51,8 +53,8 @@ namespace Bomben
             double M1Ö = 1 / Convert.ToDouble(Console.ReadLine());
             Console.Write("Odds på under " + M1ÖU + ": ");
             double M1U = 1 / Convert.ToDouble(Console.ReadLine());
-            double M1HÖ = (M1Ö / (M1Ö + M1U));
-            double M1HU = (M1U / (M1Ö + M1U));
+            double M1HÖ = (M1Ö / (M1Ö + M1U)); //Gör till en egen metod i game
+            double M1HU = (M1U / (M1Ö + M1U)); //Gör till en egen metod i game
 
             Console.WriteLine();
 
@@ -90,7 +92,7 @@ namespace Bomben
 
             Console.WriteLine();
 
-            Console.WriteLine("100 % odds på över " + M1ÖU + ":  " + Math.Round(1 / M1HÖ, 2));
+            Console.WriteLine("100 % odds på över " + M1ÖU + ":  " + Math.Round(1 / M1HÖ, 2)); 
             Console.WriteLine("100 % odds på under " + M1ÖU + ": " + Math.Round(1 / M1HU, 2));
 
             Console.WriteLine();
@@ -98,18 +100,21 @@ namespace Bomben
             Console.Write("Förväntat målantal: ");
             double M1M = Convert.ToDouble(Console.ReadLine());
 
-            double H1 = (M11 + M1X / 2) / (M11 + M1X + M12);
-            double B1 = (M12 + M1X / 2) / (M11 + M1X + M12);
-            double lambda1 = H1 * M1M;
-            double lambda2 = B1 * M1M;
+            double H1 = (M11 + M1X / 2) / (M11 + M1X + M12); //Gör till en egen metod i game
+            double B1 = (M12 + M1X / 2) / (M11 + M1X + M12); //Gör till en egen metod i game
 
-            Match1.poisson(lambda1, "hemma");
+            double lambda1 = H1 * M1M; //Gör till en egen metod i game
+            double lambda2 = B1 * M1M; //Gör till en egen metod i game
+
+            Match1.poisson(lambda1, "hemma"); 
             Match1.poisson(lambda2, "borta");
             Match1.beräknaResultat();
 
             Console.WriteLine();
-
+            double P1UB = Match1.beräknaÖverUnder(M1ÖU);
+            Console.WriteLine(P1UB);
             double P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+            Console.WriteLine(P1U);
             double P1Ö = 1 - P1U;
 
             Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
@@ -488,8 +493,8 @@ namespace Bomben
             //secondTask.ContinueWith( (t) => matris.writeToFile() );
 
 
-            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
-            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
+            matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver, extrapott);
+            matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver, extrapott);
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             time = DateTime.Now.ToString( "HH:mm:ss tt" );
             Console.WriteLine( time );
