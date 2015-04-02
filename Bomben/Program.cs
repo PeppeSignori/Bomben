@@ -504,6 +504,8 @@ namespace Bomben
             //matris.läggTillPlusOchROI(bombenStats, counter, 1, turnOver);
             //matris.läggTillPlusOchROI(bombenStats, counter, 3, turnOver);
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+
+
             matris.writeToFile();
             Console.WriteLine("Program watch: Write to file: {0} seconds {1} millisSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             //matris.writeToExistingExcelDocument();
