@@ -46,8 +46,8 @@ namespace Bomben
             GC.WaitForPendingFinalizers();
             GC.Collect();
         }
-        */
 
+        */
 
         public double[,] allaKombinationer = new double[1771561, 11];
         public double[] matrisUtanOddsKolumn1 = new double[1771561];
@@ -200,7 +200,7 @@ namespace Bomben
         }
 
         //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
-        public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, double extrapott)
+        public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
         {
             //float[,] floatSvSOdds =  svSpelOdds; //En tanke om att float blir snabbare än double.
             int sparKolumn;
@@ -216,7 +216,7 @@ namespace Bomben
             }
             
 
-            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + extrapott + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
+            double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
             
             Parallel.For( 0, MAX, ii =>
                 {
@@ -244,7 +244,7 @@ namespace Bomben
                                     {
                                         if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
                                         {
-                                            firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + extrapott + Convert.ToDouble( antalPlus ))) / ((0.6 * (Convert.ToDouble( omsättning ) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            firstTemp = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * Convert.ToDouble( omsättning ) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
                                             allaKombinationer[i, sparKolumn] = firstTemp;
                                             secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                                             allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
