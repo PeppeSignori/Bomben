@@ -353,7 +353,7 @@ namespace Bomben
             Console.WriteLine("     Copy to GPU complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Launch cudaLäggTillPlusOchROI - Do Calculations
-            gpu.Launch(1024, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds, gpuAvailableOddsLength);
+            gpu.Launch(768, 128).cudaAddPlusAndROI(gpuPoissonColumn, gpuSparResultat, gpuSparResultatPlus, gpuROI, gpuAllCombo, gpuAvailableOdds, gpuSvenskaSpelOdds, gpuAvailableOddsLength);
             Console.WriteLine("     Launch complete: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
             //Copy results back from GPU
@@ -394,9 +394,7 @@ namespace Bomben
 
                     if (gpuAllCombo[tid] == gpuAvailableOdds[i])
                     {
-                        //firstTemp = 888;
-                        //secondTemp = 888;
-
+                        
                         //gpuROI = { doubleAntalPlus, doubleTurnOver};
                         firstTemp = (0.6 * (gpuROI[1] + gpuROI[0])) / ((0.6 * gpuROI[1] / gpuSvenskaSpelOdds[i]) + gpuROI[0]);  
                         gpuSparResultat[tid] = firstTemp;
