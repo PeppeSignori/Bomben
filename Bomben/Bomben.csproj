@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Email.cs" />
     <Compile Include="Importer.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="Matris.cs" />

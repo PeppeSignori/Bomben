@@ -509,12 +509,15 @@ namespace Bomben
             //matris.writeToExistingExcelDocument();
             sw1.Stop();
 
-            //Räkna om alla odds och lägg till odds på icke spelade kombinationer
-            //finalMatrix.reCalculateOdds();
-
-            //Lägg in poissonOdds i matrisen
-            //finalMatrix.addPoissonOdds();
-
+            //Console.WriteLine("Skicka mail? (J/N)");
+            //string sendMail = Console.ReadLine();
+            string sendMail = "n";
+            if (sendMail == "j" | sendMail == "J")
+            {
+                Email mail = new Email();
+                mail.MailWithAttachement("chrlindb@kth.se", "VinnandeRader.txt");
+            }
+            
             //Skriv ut i listview(matris i consolFönstret)
             
             Console.ReadLine();
