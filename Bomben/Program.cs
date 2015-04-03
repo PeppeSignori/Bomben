@@ -15,7 +15,9 @@ namespace Bomben
             
             
             // Match 1
+
             
+
             Match Match1 = new Match();
 
             Console.WriteLine("Match 1");
@@ -457,9 +459,17 @@ namespace Bomben
             double[,] bombenStats = new double[counter, 7];
             bombenStats = Importer.importBomben();
            
+
             //Hämta omsättning från textfil från SvS
             int turnOver = Importer.getTurnOver();
-          
+
+            Console.WriteLine("ExtraPott: ");
+            int extrapott = Convert.ToInt32((Console.ReadLine()));
+            if (extrapott != null)
+            {
+                turnOver = turnOver + extrapott;
+            }
+
             Console.WriteLine( "Beräknar...." );
             
             //Skapa nytt matris-objekt
