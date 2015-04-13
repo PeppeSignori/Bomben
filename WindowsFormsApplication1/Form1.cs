@@ -19,8 +19,8 @@ namespace Bomben
 
         Game match1 = new Game();
         Game match2 = new Game();
-        Game match3 = new Game();
         Game match4 = new Game();
+        Game match3 = new Game();
 
         private void Match1Odds1_TextChanged(object sender, EventArgs e)
         {
@@ -252,7 +252,7 @@ namespace Bomben
 
         
         //Dummy metod för att visa hur jag tänker
-        private void BeräknaMålAntalEventRad1(object sender, EventArgs e)
+        /*private void BeräknaMålAntalEventRad1(object sender, EventArgs e)
         {
             //Beräkningar för match1
             hemmaprocent = match1.hemmaprocent();
@@ -263,12 +263,8 @@ namespace Bomben
                 //Gör beräkningar 
                 //Minska med 1 
             }
-
-
-
-
-            
         }
+        */
 
     }
 }

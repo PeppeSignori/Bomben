@@ -10,7 +10,7 @@ namespace Bomben
 {
     public class SvSMobileSiteImporter
     {
-
+        public int numberOfPlays { get; set; }
 
         public int getInfo( Uri url )
         {
@@ -18,11 +18,15 @@ namespace Bomben
             string responeString = scrapePage( url );
             string launderedString = launderHTML( responeString );
             
-            int numberOfPlays = checkNumberOfPlays( launderedString );
+            return numberOfPlays = checkNumberOfPlays( launderedString );
 
-            return numberOfPlays;
+            
 
         }
+
+        
+        
+
 
         public int checkNumberOfPlays(string launderedString)
         {
