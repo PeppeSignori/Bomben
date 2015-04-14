@@ -21,7 +21,6 @@ namespace Bomben
             return numberOfPlays = checkNumberOfPlays( launderedString );
 
             
-
         }
 
         
