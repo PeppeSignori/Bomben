@@ -468,12 +468,10 @@ namespace Bomben
             int drawId = Convert.ToInt32(Console.ReadLine());
             //webadress
             string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" +drawId;
-            //filen sparas i:
-            string saveTo = "./downloads/";
-            //Med filnamnet
+            //filnamn
             string fileName =  "PC_P7_D" +drawId +".zip";
             //Ladda ner filen
-            bomb.downloadFileAsync(link, saveTo, fileName);
+            bomb.downloadFileAsync(link, fileName);
 
             //Vänta på nerladdningen ska bli klar
             while (!bomb.downloadComplete) ;

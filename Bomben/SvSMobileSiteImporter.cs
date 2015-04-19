@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.ComponentModel;
+using System.IO;
 
 namespace Bomben
 {
@@ -89,11 +90,17 @@ namespace Bomben
 
         }
             
-        public void downloadFileAsync(string adress, string saveAdress, string newFileName)
+        public void downloadFileAsync(string adress, string newFileName)
         {
             WebClient downloadClient = new WebClient();
             downloadClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(fileDownloadComplete);
             
+            if (!Directory.Exists(@".\downloadTempFolder"))
+            {
+                Directory.CreateDirectory(@".\downloadTempFolder");
+            }
+            //Console.WriteLine("{0}", Directory.GetCreationTime(@".\downloadTempFolder"));
+            string saveAdress = @".\downloadTempFolder\";
             downloadClient.DownloadFileAsync( new Uri(adress), saveAdress +newFileName );
             
         }

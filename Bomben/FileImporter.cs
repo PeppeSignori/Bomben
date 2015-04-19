@@ -15,7 +15,7 @@ namespace Bomben
     {
         //static string _pathFile;
         static string _user;
-        static string _extractPath = @"./downloads/";
+        static string _extractPath = @".\downloadTempFolder\";
         static string _currentFileName;
         
         
@@ -57,7 +57,7 @@ namespace Bomben
             checkUser();
             string txt = ".txt";
             string zip = ".zip";
-            string zipPath = @"./downloads/" + _currentFileName +zip;
+            string zipPath = @".\downloadTempFolder\" + _currentFileName + zip;
             
             //Kolla om filen finns extrahera om den inte finns.
             //bool next=false;
@@ -74,16 +74,16 @@ namespace Bomben
                         Console.WriteLine("Felaktigt namn på fil. Försök igen.");
                         _currentFileName = Console.ReadLine();
                         zip = ".zip";
-                        zipPath = @"C:\Users\" + _user + @"\Downloads\" + _currentFileName + zip;
+                        zipPath = @".\downloadTempFolder\" + _currentFileName + zip;
                     }
                 }
             //}
 
             //Vänta på att filen extraherats
-            while( !File.Exists( @"C:\Bomben\" +_currentFileName +txt ) );
+                while (!File.Exists(@".\downloadTempFolder\" + _currentFileName + txt)) ;
 
             //Skapa nytt streamReader objekt
-            System.IO.StreamReader bombenFile =  new System.IO.StreamReader( @"C:\Bomben\" +_currentFileName +txt );
+                System.IO.StreamReader bombenFile = new System.IO.StreamReader(@".\downloadTempFolder\" + _currentFileName + txt);
 
             //Gå igenom filen för att se antal rader
             string line;
