@@ -523,7 +523,15 @@ namespace Bomben
             //finalMatrix.addPoissonOdds();
 
             //Skriv ut i listview(matris i consolFönstret)
-            
+
+            Console.WriteLine("Ta bort tillfälliga filer? (J/N) ");
+            string delete = Console.ReadLine();
+            if (delete == "j" || delete == "J")
+            {
+                File.Delete(@".\downloadTempFolder\PC_P7_D" + drawId + ".zip");
+                File.Delete(@".\downloadTempFolder\PC_P7_D" + drawId + ".txt");
+            }
+
             Console.ReadLine();
 
 

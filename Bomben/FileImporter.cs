@@ -68,6 +68,7 @@ namespace Bomben
                     try
                     {
                         ZipFile.ExtractToDirectory(zipPath, _extractPath);
+                        
                     }
                     catch
                     {
