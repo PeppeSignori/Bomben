@@ -462,8 +462,24 @@ namespace Bomben
             Console.WriteLine();
             
 
+            //Mata in bombenNr
+            Console.WriteLine("Skriv in spelnr för bomben (t.ex 8372): ");
+            //drawId = bombenNr
+            int drawId = Convert.ToInt32(Console.ReadLine());
+            //webadress
+            string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" +drawId;
+            //filen sparas i:
+            string saveTo = "./downloads/";
+            //Med filnamnet
+            string fileName =  "PC_P7_D" +drawId +".zip";
+            //Ladda ner filen
+            bomb.downloadFileAsync(link, saveTo, fileName);
+
+            //Vänta på nerladdningen ska bli klar
+            while (!bomb.downloadComplete) ;
+
             //Importera odds från textfil från SvS.
-            int counter = FileImporter.countLines();
+            int counter = FileImporter.countLines(drawId);
             double[,] bombenStats = new double[counter, 7];
             bombenStats = FileImporter.importBomben();
            

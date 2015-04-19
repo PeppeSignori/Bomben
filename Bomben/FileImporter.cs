@@ -15,7 +15,7 @@ namespace Bomben
     {
         //static string _pathFile;
         static string _user;
-        static string _extractPath = @"C:\Bomben\";
+        static string _extractPath = @"./downloads/";
         static string _currentFileName;
         
         
@@ -45,19 +45,19 @@ namespace Bomben
         /// Räknar antalet rader i en textfil
         /// </summary>
         /// <returns>Returnerar en int med antalet rader</returns>
-        public static int countLines()
+        public static int countLines(int bombenNumber)
         {
             //Hämta filnamn
-            Console.WriteLine("Skriv in spelnr för bomben (t.ex 8372): ");
+            //Console.WriteLine("Skriv in spelnr för bomben (t.ex 8372): ");
             
-            string bombenNumber = Console.ReadLine();
+            //string bombenNumber = Console.ReadLine();
             _currentFileName = "PC_P7_D" + bombenNumber;
             
             //Kontrollera vem som är användare
             checkUser();
             string txt = ".txt";
             string zip = ".zip";
-            string zipPath = @"C:\Users\" +_user +@"\Downloads\" + _currentFileName +zip;
+            string zipPath = @"./downloads/" + _currentFileName +zip;
             
             //Kolla om filen finns extrahera om den inte finns.
             //bool next=false;

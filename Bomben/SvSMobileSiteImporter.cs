@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.ComponentModel;
 
 namespace Bomben
 {
     public class SvSMobileSiteImporter
     {
+        //Constructor
+        public SvSMobileSiteImporter()
+        {
+            downloadComplete = false;
+        }
+
         public int numberOfPlays { get; set; }
+        public bool downloadComplete { get; set; }
 
         public int getInfo( Uri url )
         {
@@ -23,10 +31,7 @@ namespace Bomben
             
         }
 
-        
-        
-
-
+              
         public int checkNumberOfPlays(string launderedString)
         {
             //Counter
@@ -83,10 +88,21 @@ namespace Bomben
 
 
         }
+            
+        public void downloadFileAsync(string adress, string saveAdress, string newFileName)
+        {
+            WebClient downloadClient = new WebClient();
+            downloadClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(fileDownloadComplete);
+            
+            downloadClient.DownloadFileAsync( new Uri(adress), saveAdress +newFileName );
+            
+        }
 
-
-
-
+        public void fileDownloadComplete(object sender, EventArgs e)
+        {
+            downloadComplete = true;
+        }
+       
 
     }
 }
