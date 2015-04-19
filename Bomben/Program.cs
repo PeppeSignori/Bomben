@@ -14,8 +14,9 @@ namespace Bomben
         {
 
             SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
-            int numberOfPlays = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
+            int[] drawIds = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
             
+
             //Match object
             Game Match1 = new Game();
             Game Match2 = new Game();
@@ -26,8 +27,7 @@ namespace Bomben
             double extrapott = Convert.ToDouble(Console.ReadLine());           
 
             // Match 1
-            Console.WriteLine("Antal Bomber: " + numberOfPlays);
-
+            
             Console.WriteLine("Match 1");
             Console.WriteLine("-------");
             Console.WriteLine();
@@ -459,17 +459,21 @@ namespace Bomben
 
   
 
-            Console.WriteLine();
-            
+            Console.WriteLine("Bomber, i kronologisk ordning: ");
+
+            foreach (int drawId in drawIds)
+            {
+                Console.WriteLine(drawId);
+            }
 
             //Mata in bombenNr
-            Console.WriteLine("Skriv in spelnr för bomben (t.ex 8372): ");
+            Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
             //drawId = bombenNr
-            int drawId = Convert.ToInt32(Console.ReadLine());
+            int chosenDrawId = Convert.ToInt32(Console.ReadLine());
             //webadress
-            string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" +drawId;
+            string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
             //filnamn
-            string fileName =  "PC_P7_D" +drawId +".zip";
+            string fileName = "PC_P7_D" + chosenDrawId + ".zip";
             //Ladda ner filen
             bomb.downloadFileAsync(link, fileName);
 
@@ -477,7 +481,7 @@ namespace Bomben
             while (!bomb.downloadComplete) ;
 
             //Importera odds från textfil från SvS.
-            int counter = FileImporter.countLines(drawId);
+            int counter = FileImporter.countLines(chosenDrawId);
             double[,] bombenStats = new double[counter, 7];
             bombenStats = FileImporter.importBomben();
            
@@ -523,13 +527,12 @@ namespace Bomben
             //finalMatrix.addPoissonOdds();
 
             //Skriv ut i listview(matris i consolFönstret)
-
             Console.WriteLine("Ta bort tillfälliga filer? (J/N) ");
             string delete = Console.ReadLine();
             if (delete == "j" || delete == "J")
             {
-                File.Delete(@".\downloadTempFolder\PC_P7_D" + drawId + ".zip");
-                File.Delete(@".\downloadTempFolder\PC_P7_D" + drawId + ".txt");
+                File.Delete(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip");
+                File.Delete(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt");
             }
 
             Console.ReadLine();

@@ -20,15 +20,16 @@ namespace Bomben
 
         public int numberOfPlays { get; set; }
         public bool downloadComplete { get; set; }
+        
 
-        public int getInfo( Uri url )
+        public int[] getInfo( Uri url )
         {
             //new Uri(@"https://www.svenskaspel.se/bomben")
             string responeString = scrapePage( url );
             string launderedString = launderHTML( responeString );
             
-            return numberOfPlays = checkNumberOfPlays( launderedString );
-
+            numberOfPlays = checkNumberOfPlays( launderedString );
+            return getDrawIds(launderedString, numberOfPlays);
             
         }
 
@@ -56,6 +57,33 @@ namespace Bomben
             return counter;
         
         }
+
+        public int[] getDrawIds(string launderedString, int numberOfBombs)
+        {
+            //saveArray
+            int[] drawIds = new int[numberOfBombs];
+            //Counter
+            int counter = 0;
+
+            //Regexstring to match hometeams
+            string bombenPlayPattern = @"(?<=drawNumber"":)\d+(?=,"")"; 
+
+            //Create regexobject
+            Regex regex = new Regex(bombenPlayPattern);
+
+            //Match    
+            Match playMatch = regex.Match(launderedString);
+
+            while (playMatch.Success)
+            {
+                string id = playMatch.ToString();
+                drawIds[counter++] = Convert.ToInt32( id );
+                playMatch = playMatch.NextMatch();
+            }
+
+            return drawIds;
+        } 
+
 
         private string launderHTML(string htmlString)
         {
