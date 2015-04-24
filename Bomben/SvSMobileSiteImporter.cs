@@ -25,8 +25,8 @@ namespace Bomben
         public int[] getInfo( Uri url )
         {
             //new Uri(@"https://www.svenskaspel.se/bomben")
-            string responeString = scrapePage( url );
-            string launderedString = launderHTML( responeString );
+            string responseString = scrapePage( url );
+            string launderedString = launderHTML( responseString );
             
             numberOfPlays = checkNumberOfPlays( launderedString );
             return getDrawIds(launderedString, numberOfPlays);
@@ -133,6 +133,7 @@ namespace Bomben
             
         }
 
+        
         public void fileDownloadComplete(object sender, EventArgs e)
         {
             downloadComplete = true;
