@@ -14,7 +14,7 @@ namespace Bomben
     static class FileImporter
     {
         //static string _pathFile;
-        static string _user;
+        //static string _user;
         static string _extractPath = @".\downloadTempFolder\";
         static string _currentFileName;
         
