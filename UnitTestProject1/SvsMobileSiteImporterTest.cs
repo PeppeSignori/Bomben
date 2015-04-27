@@ -9,7 +9,7 @@ namespace Bomben.Test
     public class SvsMobileSiteImporterTest
     {
         [TestMethod]
-        public void downloadBombenStatsTest()
+        public void downloadFIleAsync()
         {
             //Arrange
             var bomb = new SvSMobileSiteImporter();
