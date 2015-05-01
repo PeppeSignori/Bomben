@@ -27,15 +27,15 @@ namespace Bomben
         {
             if( Directory.Exists( @"C:\Users\Erik" ) )
             {
-                _user = "Erik";
+                //_user = "Erik";
             }
             else if( Directory.Exists( @"C:\Users\Christer" ) )
             {
-                _user = "Christer";
+                //_user = "Christer";
             }
             else
             {
-                _user = "Unknown";
+                //_user = "Unknown";
             }
             
         }
