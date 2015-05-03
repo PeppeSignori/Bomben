@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using System.IO;
 using System.Diagnostics;
 
@@ -482,7 +482,7 @@ namespace Bomben
             int counter = FileImporter.countLines(chosenDrawId);
             double[,] bombenStats = new double[counter, 7];
             bombenStats = FileImporter.importBomben();
-           
+            
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
             
