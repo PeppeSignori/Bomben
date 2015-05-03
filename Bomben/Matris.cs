@@ -273,7 +273,7 @@ namespace Bomben
 
         }
 
-        public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds )
+        public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds, double extraPott )
         {
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
@@ -287,7 +287,8 @@ namespace Bomben
             //Fill CPUROI
             double doubleAntalPlus = Convert.ToDouble(antalPlus);
             double doubleTurnOver = Convert.ToDouble(omsättning);
-            double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver};
+            double doubleExtraPott = Convert.ToDouble(extraPott);
+            double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver, doubleExtraPott};
             
             //cudaAddAvailableOdds
             int[] allCombo = new int[MAX];
@@ -378,8 +379,9 @@ namespace Bomben
         public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI, string[] gpuAllCombo, string[] gpuAvailableOdds, double[] gpuSvenskaSpelOdds, int gpuAvailableOddsLength)
         {
             //cudaAddPlusAndROI
-            double ROI = ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]);
-            
+            double ROI = (gpuROI[2] + ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]));
+            //double ROI = (extrapott + ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus)))) / Convert.ToDouble(antalPlus));
+
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 
             double firstTemp, secondTemp;
@@ -494,7 +496,7 @@ namespace Bomben
             for (int rad = 0; rad < 1771561; rad++)
             {
 
-                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 7 && allaKombinationer[rad, 2] < 7 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 7 && allaKombinationer[rad, 5] < 7)
+                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 9 && allaKombinationer[rad, 2] < 9 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 9 && allaKombinationer[rad, 5] < 7)
                 {
                     for (int kol = 0; kol < 11; kol++)
                     {
