@@ -33,28 +33,28 @@ namespace Bomben
             Console.WriteLine();
 
             Console.Write("Odds på 1: ");
-            double M11 = 1 / Convert.ToDouble(Console.ReadLine());
+            double match1Etta = 1 / Convert.ToDouble(Console.ReadLine());
             Console.Write("Odds på X: ");
-            double M1X = 1 / Convert.ToDouble(Console.ReadLine());
+            double match1Kryss = 1 / Convert.ToDouble(Console.ReadLine());
             Console.Write("Odds på 2: ");
-            double M12 = 1 / Convert.ToDouble(Console.ReadLine());
+            double match1Tvåa = 1 / Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine();
 
             Console.Write("Över/Under [2,5]/[5,5]: ");
-            double M1ÖU = Convert.ToDouble(Console.ReadLine()); 
-            while ((M1ÖU != 2.5) && (M1ÖU != 5.5))
+            double match1ÖverUnderLina = Convert.ToDouble(Console.ReadLine()); 
+            while ((match1ÖverUnderLina != 2.5) && (match1ÖverUnderLina != 5.5))
             {
                 Console.Write("Över/Under [2,5]/[5,5]: ");
-                M1ÖU = Convert.ToDouble(Console.ReadLine());
+                match1ÖverUnderLina = Convert.ToDouble(Console.ReadLine());
             }
 
-            Console.Write("Odds på över " + M1ÖU + ":  ");
-            double M1Ö = 1 / Convert.ToDouble(Console.ReadLine());
-            Console.Write("Odds på under " + M1ÖU + ": ");
-            double M1U = 1 / Convert.ToDouble(Console.ReadLine());
-            double M1HÖ = (M1Ö / (M1Ö + M1U)); //Gör till en egen metod i game
-            double M1HU = (M1U / (M1Ö + M1U)); //Gör till en egen metod i game
+            Console.Write("Odds på över " + match1ÖverUnderLina + ":  ");
+            double match1ÖverSannolikhetBolag = 1 / Convert.ToDouble(Console.ReadLine());
+            Console.Write("Odds på under " + match1ÖverUnderLina + ": ");
+            double match1UnderSannolikhetBolag = 1 / Convert.ToDouble(Console.ReadLine());
+            double match1ÖverSannolikhetBolag100procent = (match1ÖverSannolikhetBolag / (match1ÖverSannolikhetBolag + match1UnderSannolikhetBolag)); //Gör till en egen metod i game
+            double match1UnderSannolikhetBolag100procent = (match1UnderSannolikhetBolag / (match1ÖverSannolikhetBolag + match1UnderSannolikhetBolag)); //Gör till en egen metod i game
 
             Console.WriteLine();
 
@@ -67,22 +67,22 @@ namespace Bomben
                 Console.WriteLine();
 
                 Console.Write("Odds på 1: ");
-                M11 = 1 / Convert.ToDouble(Console.ReadLine());
+                match1Etta = 1 / Convert.ToDouble(Console.ReadLine());
                 Console.Write("Odds på X: ");
-                M1X = 1 / Convert.ToDouble(Console.ReadLine());
+                match1Kryss = 1 / Convert.ToDouble(Console.ReadLine());
                 Console.Write("Odds på 2: ");
-                M12 = 1 / Convert.ToDouble(Console.ReadLine());
+                match1Tvåa = 1 / Convert.ToDouble(Console.ReadLine());
 
                 Console.WriteLine();
 
                 Console.Write("Över/Under [2,5]/[5,5]: ");
-                M1ÖU = Convert.ToDouble(Console.ReadLine());
-                Console.Write("Odds på över " + M1ÖU + ":  ");
-                M1Ö = 1 / Convert.ToDouble(Console.ReadLine());
-                Console.Write("Odds på under " + M1ÖU + ": ");
-                M1U = 1 / Convert.ToDouble(Console.ReadLine());
-                M1HÖ = (M1Ö / (M1Ö + M1U));
-                M1HU = (M1U / (M1Ö + M1U));
+                match1ÖverUnderLina = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Odds på över " + match1ÖverUnderLina + ":  ");
+                match1ÖverSannolikhetBolag = 1 / Convert.ToDouble(Console.ReadLine());
+                Console.Write("Odds på under " + match1ÖverUnderLina + ": ");
+                match1UnderSannolikhetBolag = 1 / Convert.ToDouble(Console.ReadLine());
+                match1ÖverSannolikhetBolag100procent = (match1ÖverSannolikhetBolag / (match1ÖverSannolikhetBolag + match1UnderSannolikhetBolag));
+                match1UnderSannolikhetBolag100procent = (match1UnderSannolikhetBolag / (match1ÖverSannolikhetBolag + match1UnderSannolikhetBolag));
 
                 Console.WriteLine();
 
@@ -92,19 +92,19 @@ namespace Bomben
 
             Console.WriteLine();
 
-            Console.WriteLine("100 % odds på över " + M1ÖU + ":  " + Math.Round(1 / M1HÖ, 2)); 
-            Console.WriteLine("100 % odds på under " + M1ÖU + ": " + Math.Round(1 / M1HU, 2));
+            Console.WriteLine("100 % odds på över " + match1ÖverUnderLina + ":  " + Math.Round(1 / match1ÖverSannolikhetBolag100procent, 2)); 
+            Console.WriteLine("100 % odds på under " + match1ÖverUnderLina + ": " + Math.Round(1 / match1UnderSannolikhetBolag100procent, 2));
 
             Console.WriteLine();
 
             Console.Write("Förväntat målantal: ");
-            double M1M = Convert.ToDouble(Console.ReadLine());
+            double match1FörväntatMålantal = Convert.ToDouble(Console.ReadLine());
 
-            double H1 = (M11 + M1X / 2) / (M11 + M1X + M12); //Gör till en egen metod i game
-            double B1 = (M12 + M1X / 2) / (M11 + M1X + M12); //Gör till en egen metod i game
+            double match1Hemmastyrka = (match1Etta + match1Kryss / 2) / (match1Etta + match1Kryss + match1Tvåa); //Gör till en egen metod i game
+            double match1Bortastyrka = (match1Tvåa + match1Kryss / 2) / (match1Etta + match1Kryss + match1Tvåa); //Gör till en egen metod i game
 
-            double lambda1 = H1 * M1M; //Gör till en egen metod i game
-            double lambda2 = B1 * M1M; //Gör till en egen metod i game
+            double lambda1 = match1Hemmastyrka * match1FörväntatMålantal; //Gör till en egen metod i game
+            double lambda2 = match1Bortastyrka * match1FörväntatMålantal; //Gör till en egen metod i game
 
             Match1.poisson(lambda1, "hemma"); 
             Match1.poisson(lambda2, "borta");
@@ -112,14 +112,11 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P1U = Match1.beräknaÖverUnder(M1ÖU);
-            //Console.WriteLine(P1UB);
-            //double P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+            double match1UnderSannolikhetPoisson = Match1.beräknaÖverUnder(match1ÖverUnderLina);
+            double match1ÖverSannolikhetPoisson = 1 - match1UnderSannolikhetPoisson;
 
-            double P1Ö = 1 - P1U;
-
-            Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
-            Console.WriteLine("Poissonodds på under " + M1ÖU + ": " + Math.Round(1 / P1U, 2));
+            Console.WriteLine("Poissonodds på över " + match1ÖverUnderLina + ":  " + Math.Round(1 / match1ÖverSannolikhetPoisson, 2));
+            Console.WriteLine("Poissonodds på under " + match1ÖverUnderLina + ": " + Math.Round(1 / match1UnderSannolikhetPoisson, 2));
 
             Console.WriteLine();
 
@@ -132,12 +129,12 @@ namespace Bomben
                 Console.WriteLine();
 
                 Console.Write("Förväntat målantal: ");
-                M1M = Convert.ToDouble(Console.ReadLine());
+                match1FörväntatMålantal = Convert.ToDouble(Console.ReadLine());
 
-                H1 = (M11 + M1X / 2) / (M11 + M1X + M12);
-                B1 = (M12 + M1X / 2) / (M11 + M1X + M12);
-                lambda1 = H1 * M1M;
-                lambda2 = B1 * M1M;
+                match1Hemmastyrka = (match1Etta + match1Kryss / 2) / (match1Etta + match1Kryss + match1Tvåa);
+                match1Bortastyrka = (match1Tvåa + match1Kryss / 2) / (match1Etta + match1Kryss + match1Tvåa);
+                lambda1 = match1Hemmastyrka * match1FörväntatMålantal;
+                lambda2 = match1Bortastyrka * match1FörväntatMålantal;
 
                 Match1.poisson(lambda1, "hemma");
                 Match1.poisson(lambda2, "borta");
@@ -145,15 +142,15 @@ namespace Bomben
 
                 Console.WriteLine();
 
-                P1U = Match1.beräknaÖverUnder(M1ÖU);
-                //P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
-                P1Ö = 1 - P1U;
+                match1UnderSannolikhetPoisson = Match1.beräknaÖverUnder(match1ÖverUnderLina);
+                //match1UnderSannolikhetPoisson = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+                match1ÖverSannolikhetPoisson = 1 - match1UnderSannolikhetPoisson;
 
-                Console.WriteLine("100 % odds på över " + M1ÖU + ":   " + Math.Round(1 / M1HÖ, 2));
-                Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
+                Console.WriteLine("100 % odds på över " + match1ÖverUnderLina + ":   " + Math.Round(1 / match1ÖverSannolikhetBolag100procent, 2));
+                Console.WriteLine("Poissonodds på över " + match1ÖverUnderLina + ":  " + Math.Round(1 /match1ÖverSannolikhetPoisson, 2));
                 Console.WriteLine();
-                Console.WriteLine("100 % odds på under " + M1ÖU + ":  " + Math.Round(1 / M1HU, 2));
-                Console.WriteLine("Poissonodds på under " + M1ÖU + ": " + Math.Round(1 / P1U, 2));
+                Console.WriteLine("100 % odds på under " + match1ÖverUnderLina + ":  " + Math.Round(1 / match1UnderSannolikhetBolag100procent, 2));
+                Console.WriteLine("Poissonodds på under " + match1ÖverUnderLina + ": " + Math.Round(1 / match1UnderSannolikhetPoisson, 2));
 
                 Console.WriteLine();
 
