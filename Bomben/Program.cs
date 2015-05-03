@@ -111,10 +111,11 @@ namespace Bomben
             Match1.beräknaResultat();
 
             Console.WriteLine();
-            double P1UB = Match1.beräknaÖverUnder(M1ÖU);
-            Console.WriteLine(P1UB);
-            double P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
-            Console.WriteLine(P1U);
+
+            double P1U = Match1.beräknaÖverUnder(M1ÖU);
+            //Console.WriteLine(P1UB);
+            //double P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+
             double P1Ö = 1 - P1U;
 
             Console.WriteLine("Poissonodds på över " + M1ÖU + ":  " + Math.Round(1 /P1Ö, 2));
@@ -143,8 +144,9 @@ namespace Bomben
                 Match1.beräknaResultat();
 
                 Console.WriteLine();
-                
-                P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
+
+                P1U = Match1.beräknaÖverUnder(M1ÖU);
+                //P1U = Match1.resultat[0] + Match1.resultat[1] + Match1.resultat[2] + Match1.resultat[11] + Match1.resultat[12] + Match1.resultat[22];
                 P1Ö = 1 - P1U;
 
                 Console.WriteLine("100 % odds på över " + M1ÖU + ":   " + Math.Round(1 / M1HÖ, 2));
@@ -249,7 +251,8 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
+            double P2U = Match2.beräknaÖverUnder(M2ÖU);
+            //double P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
             double P2Ö = 1 - P2U;
 
             Console.WriteLine("Poissonodds på över " + M2ÖU + ":  " + Math.Round(1 / P2Ö, 2));
@@ -279,7 +282,8 @@ namespace Bomben
 
                 Console.WriteLine();
 
-                P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
+                P2U = Match2.beräknaÖverUnder(M2ÖU);
+                //P2U = Match2.resultat[0] + Match2.resultat[1] + Match2.resultat[2] + Match2.resultat[11] + Match2.resultat[12] + Match2.resultat[22];
                 P2Ö = 1 - P2U;
 
                 Console.WriteLine("100 % odds på över " + M2ÖU + ":   " + Math.Round(1 / M2HÖ, 2));
@@ -380,7 +384,8 @@ namespace Bomben
 
             Console.WriteLine();
 
-            double P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
+            double P3U = Match3.beräknaÖverUnder(M3ÖU);
+            //double P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
             double P3Ö = 1 - P3U;
 
             Console.WriteLine("Poissonodds på över " + M3ÖU + ":  " + Math.Round(1 / P3Ö, 2));
@@ -410,7 +415,8 @@ namespace Bomben
 
                 Console.WriteLine();
 
-                P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
+                P3U = Match3.beräknaÖverUnder(M3ÖU);
+                //P3U = Match3.resultat[0] + Match3.resultat[1] + Match3.resultat[2] + Match3.resultat[11] + Match3.resultat[12] + Match3.resultat[22];
                 P3Ö = 1 - P3U;
 
                 Console.WriteLine("100 % odds på över " + M3ÖU + ":  " + Math.Round(1 / M3HÖ, 2));
