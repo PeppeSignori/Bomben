@@ -476,14 +476,15 @@ namespace Bomben
                 if (info.draws[ii].drawState == "Open" && info.draws[ii].enabled)
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append(" " + info.draws[ii].drawNumber);
-                    sb.Append(" " + info.draws[ii].description);
-                    sb.Append("\t" + "Spelstopp:");
-                    sb.Append(" " + info.draws[ii].cancelCloseTime.DayOfWeek);
-                    sb.Append(" " + info.draws[ii].cancelCloseTime.Hour);
-                    sb.Append(":" + info.draws[ii].cancelCloseTime.Minute);
-                    sb.Append("\t" + "oms: " + info.draws[ii].currentNetSales);
-
+                    sb.Append( info.draws[ii].drawNumber);
+                    sb.Append( " "  +info.draws[ii].description);
+                    sb.Append( "\t" +"Spelstopp:");
+                    sb.Append( " "  +info.draws[ii].cancelCloseTime.DayOfWeek);
+                    sb.Append( " "  +info.draws[ii].cancelCloseTime.Hour);
+                    sb.Append( ":"  +info.draws[ii].cancelCloseTime.Minute);
+                    sb.Append( "\t" +"oms: " + info.draws[ii].currentNetSales);
+                    sb.Append( "\t" +info.draws[ii].sport.name);
+                    
                     Console.WriteLine(sb);
                 }
             }
@@ -513,8 +514,8 @@ namespace Bomben
             int turnOver = FileImporter.getTurnOver();
             
            
+
             Console.WriteLine( "Beräknar...." );
-            
             //Skapa nytt matris-objekt
             Matris matris = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
