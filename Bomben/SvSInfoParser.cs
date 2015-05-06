@@ -13,7 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 
 
 
-namespace JsonTester
+namespace Bomben
 {
     class SvSInfoParser
     {

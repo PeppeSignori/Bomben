@@ -21,7 +21,7 @@ namespace Bomben
         public int numberOfPlays { get; set; }
         public bool downloadComplete { get; set; }
         
-
+        /*
         public int[] getInfo( Uri url )
         {
             //new Uri(@"https://www.svenskaspel.se/bomben")
@@ -114,10 +114,10 @@ namespace Bomben
             }
 
             return downloadString;
-
-
-        }
             
+        }
+        */    
+
         public void downloadFileAsync(string adress, string newFileName)
         {
             WebClient downloadClient = new WebClient();

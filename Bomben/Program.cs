@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;   
 using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Bomben
 {
@@ -13,8 +14,8 @@ namespace Bomben
         static void Main(string[] args)
         {
 
-            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
-            int[] drawIds = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
+            //SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
+            //int[] drawIds = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
             
 
             //Match object
@@ -457,15 +458,40 @@ namespace Bomben
 
   
 
-            Console.WriteLine("Bomber, i kronologisk ordning: ");
+            //Console.WriteLine("Bomber, i kronologisk ordning: ");
+            //foreach (int drawId in drawIds)
+            //{
+            //    Console.WriteLine(drawId);
+            //}
+            
 
-            foreach (int drawId in drawIds)
+            SvSInfoParser infoParser = new SvSInfoParser();
+            string result = infoParser.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
+            SvSInfo info = JsonConvert.DeserializeObject<SvSInfo>(result);
+
+            int drawLength = info.draws.GetLength(0);
+
+            for (int ii= 0; ii<drawLength; ii++)
             {
-                Console.WriteLine(drawId);
+                if (info.draws[ii].drawState == "Open" && info.draws[ii].enabled)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(" " + info.draws[ii].drawNumber);
+                    sb.Append(" " + info.draws[ii].description);
+                    sb.Append("\t" + "Spelstopp:");
+                    sb.Append(" " + info.draws[ii].cancelCloseTime.DayOfWeek);
+                    sb.Append(" " + info.draws[ii].cancelCloseTime.Hour);
+                    sb.Append(":" + info.draws[ii].cancelCloseTime.Minute);
+                    sb.Append("\t" + "oms: " + info.draws[ii].currentNetSales);
+
+                    Console.WriteLine(sb);
+                }
             }
 
-            //Mata in bombenNr
-            Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
+                //Mata in bombenNr
+                Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
+            
+            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
             //drawId = bombenNr
             int chosenDrawId = Convert.ToInt32(Console.ReadLine());
             //webadress
