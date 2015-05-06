@@ -85,6 +85,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SvSInfoParser.cs" />
     <Compile Include="SvSMobileSiteImporter.cs" />
     <Compile Include="Övrigt.cs" />
   </ItemGroup>
