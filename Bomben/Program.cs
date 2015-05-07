@@ -24,8 +24,6 @@ namespace Bomben
             Game Match3 = new Game();
             Game Match4 = new Game();
 
-            Console.WriteLine("Extrapott?");
-            double extrapott = Convert.ToDouble(Console.ReadLine());           
 
             // Match 1
             
@@ -163,9 +161,6 @@ namespace Bomben
 
 
             // Match 2                                  
-
-            
-
             Console.WriteLine("Match 2");
             Console.WriteLine("-------");
             Console.WriteLine();
@@ -478,20 +473,35 @@ namespace Bomben
                     StringBuilder sb = new StringBuilder();
                     sb.Append( info.draws[ii].drawNumber);
                     sb.Append( " "  +info.draws[ii].description);
-                    sb.Append( "\t" +"Spelstopp:");
+                    sb.Append( "  " +info.draws[ii].sport.name);
+                    sb.Append( "  " +"Spelstopp:");
                     sb.Append( " "  +info.draws[ii].cancelCloseTime.DayOfWeek);
                     sb.Append( " "  +info.draws[ii].cancelCloseTime.Hour);
                     sb.Append( ":"  +info.draws[ii].cancelCloseTime.Minute);
-                    sb.Append( "\t" +"oms: " + info.draws[ii].currentNetSales);
-                    sb.Append( "\t" +info.draws[ii].sport.name);
+                    sb.Append( "  " +"oms: " + info.draws[ii].currentNetSales);
+
+                    if( info.draws[ii].fund.extraMoney != "0,00")
+                    {
+                        sb.Append( " +" +info.draws[ii].fund.extraMoney );
+                    }
+
+                    if ( info.draws[ii].fund.rolloverIn != "0,00")
+                    {
+                        sb.Append( " +" +info.draws[ii].fund.rolloverIn);
+                    }
+
                     
                     Console.WriteLine(sb);
                 }
             }
 
-                //Mata in bombenNr
-                Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
+            Console.WriteLine("\nExtrapott?");
+            double extrapott = Convert.ToDouble(Console.ReadLine());           
             
+            //Mata in bombenNr
+            Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
+            
+
             SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
             //drawId = bombenNr
             int chosenDrawId = Convert.ToInt32(Console.ReadLine());
