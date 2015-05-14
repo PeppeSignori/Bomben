@@ -458,9 +458,9 @@ namespace Bomben
             //{
             //    Console.WriteLine(drawId);
             //}
-            
+                
 
-            SvSInfoParser infoParser = new SvSInfoParser();
+            SvSJsonGetter infoParser = new SvSJsonGetter();
             string result = infoParser.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             SvSInfo info = JsonConvert.DeserializeObject<SvSInfo>(result);
 
@@ -478,16 +478,16 @@ namespace Bomben
                     sb.Append( " "  +info.draws[ii].cancelCloseTime.DayOfWeek);
                     sb.Append( " "  +info.draws[ii].cancelCloseTime.Hour);
                     sb.Append( ":"  +info.draws[ii].cancelCloseTime.Minute);
-                    sb.Append( "  " +"oms: " + info.draws[ii].currentNetSales);
+                    sb.Append( "  " +"oms: " + info.draws[ii].currentNetSales );
 
                     if( info.draws[ii].fund.extraMoney != "0,00")
                     {
-                        sb.Append( " +" +info.draws[ii].fund.extraMoney );
+                        sb.Append(" +" + info.draws[ii].fund.extraMoney );
                     }
 
                     if ( info.draws[ii].fund.rolloverIn != "0,00")
                     {
-                        sb.Append( " +" +info.draws[ii].fund.rolloverIn);
+                        sb.Append(" +" + info.draws[ii].fund.rolloverIn );
                     }
 
                     
@@ -495,6 +495,7 @@ namespace Bomben
                 }
             }
 
+            
             Console.WriteLine("\nExtrapott?");
             double extrapott = Convert.ToDouble(Console.ReadLine());           
             
@@ -522,8 +523,7 @@ namespace Bomben
             
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-            
-           
+                      
 
             Console.WriteLine( "Beräknar...." );
             //Skapa nytt matris-objekt
