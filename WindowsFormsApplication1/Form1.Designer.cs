@@ -83,6 +83,8 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.turnOverLabel = new System.Windows.Forms.Label();
             this.spelStoppLabel = new System.Windows.Forms.Label();
+            this.extraPengarLabel = new System.Windows.Forms.Label();
+            this.rullPottLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Match1Odds1
@@ -565,7 +567,7 @@
             // turnOverLabel
             // 
             this.turnOverLabel.AutoSize = true;
-            this.turnOverLabel.Location = new System.Drawing.Point(325, 48);
+            this.turnOverLabel.Location = new System.Drawing.Point(307, 43);
             this.turnOverLabel.Name = "turnOverLabel";
             this.turnOverLabel.Size = new System.Drawing.Size(66, 13);
             this.turnOverLabel.TabIndex = 60;
@@ -574,11 +576,29 @@
             // spelStoppLabel
             // 
             this.spelStoppLabel.AutoSize = true;
-            this.spelStoppLabel.Location = new System.Drawing.Point(468, 47);
+            this.spelStoppLabel.Location = new System.Drawing.Point(563, 43);
             this.spelStoppLabel.Name = "spelStoppLabel";
             this.spelStoppLabel.Size = new System.Drawing.Size(57, 13);
             this.spelStoppLabel.TabIndex = 61;
             this.spelStoppLabel.Text = "Spelstopp:";
+            // 
+            // extraPengarLabel
+            // 
+            this.extraPengarLabel.AutoSize = true;
+            this.extraPengarLabel.Location = new System.Drawing.Point(433, 43);
+            this.extraPengarLabel.Name = "extraPengarLabel";
+            this.extraPengarLabel.Size = new System.Drawing.Size(67, 13);
+            this.extraPengarLabel.TabIndex = 62;
+            this.extraPengarLabel.Text = "Extrapengar:";
+            // 
+            // rullPottLabel
+            // 
+            this.rullPottLabel.AutoSize = true;
+            this.rullPottLabel.Location = new System.Drawing.Point(433, 58);
+            this.rullPottLabel.Name = "rullPottLabel";
+            this.rullPottLabel.Size = new System.Drawing.Size(46, 13);
+            this.rullPottLabel.TabIndex = 63;
+            this.rullPottLabel.Text = "Rullpott:";
             // 
             // Form1
             // 
@@ -586,6 +606,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(804, 222);
+            this.Controls.Add(this.rullPottLabel);
+            this.Controls.Add(this.extraPengarLabel);
             this.Controls.Add(this.spelStoppLabel);
             this.Controls.Add(this.turnOverLabel);
             this.Controls.Add(this.nextButton);
@@ -703,6 +725,8 @@
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label turnOverLabel;
         private System.Windows.Forms.Label spelStoppLabel;
+        private System.Windows.Forms.Label extraPengarLabel;
+        private System.Windows.Forms.Label rullPottLabel;
     }
 }
 

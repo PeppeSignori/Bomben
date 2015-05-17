@@ -263,26 +263,34 @@ namespace Bomben
 
         private void populateBombenTBs(int draw)
         {
-            //Vilken bomb - skriver ut "Bomben 1"
+            //Vilken bomb - skriver ut veckodag och "Bomben 1"
             bombNrTB.Text = info.draws[draw].cancelCloseTime.DayOfWeek +" " +info.draws[draw].description;
+            
             //Hemmalag och bortalag textboxar
             TextBox[] textBoxes = new TextBox[] { textBox16, textBox17, textBox19, textBox20, textBox28, textBox29, textBox37, textBox38 };
+            
             //nollställ textboxar
             for (int i = 0; i <8 ; i++)
             {
                 textBoxes[i].Text = "";
             }
+            
             //Skriv ut lagnamn
             for (int i = 0, j=0; i < info.draws[draw].events.GetLength(0); i++, j=j+2)
             {
                 textBoxes[j].Text = info.draws[draw].events[i].match.participants[0].name;
                 textBoxes[j+1].Text = info.draws[draw].events[i].match.participants[1].name;    
             }
-            //Skriver ut omsättning
+
+            //Skriver ut omsättning, extrapengar och rullpott
             turnOverLabel.Text = "Omsättning: " +info.draws[draw].currentNetSales;
+            extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
+            rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
             //Skriver ut spelstopp
             spelStoppLabel.Text = "Spelstopp: " + info.draws[0].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
             
+
+
         }
 
         //Skriver ut n'sta bomb
