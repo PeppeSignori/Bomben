@@ -264,7 +264,16 @@ namespace Bomben
         private void populateBombenTBs(int draw)
         {
             //Vilken bomb - skriver ut veckodag och "Bomben 1"
-            bombNrTB.Text = info.draws[draw].cancelCloseTime.DayOfWeek +" " +info.draws[draw].description;
+            Dictionary<string, string> weekDays = new Dictionary<string, string>();
+            weekDays.Add("Monday", "Mån");
+            weekDays.Add("Tuesday", "Tis");
+            weekDays.Add("Wednesday", "Ons");
+            weekDays.Add("Thursday", "Tor");
+            weekDays.Add("Friday", "Fre");
+            weekDays.Add("Saturday", "Lör");
+            weekDays.Add("Sunday", "Sön");
+
+            bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description;
             
             //Hemmalag och bortalag textboxar
             TextBox[] textBoxes = new TextBox[] { textBox16, textBox17, textBox19, textBox20, textBox28, textBox29, textBox37, textBox38 };
@@ -287,7 +296,7 @@ namespace Bomben
             extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
             rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
             //Skriver ut spelstopp
-            spelStoppLabel.Text = "Spelstopp: " + info.draws[0].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+            spelStoppLabel.Text = "Spelstopp: " + weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ]+ " " + info.draws[draw].cancelCloseTime.TimeOfDay;
             
 
 
