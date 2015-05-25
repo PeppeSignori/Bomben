@@ -331,21 +331,7 @@ namespace Bomben
 
 
         
-        //Dummy metod för att visa hur jag tänker
-        /*private void BeräknaMålAntalEventRad1(object sender, EventArgs e)
-        {
-            //Beräkningar för match1
-            hemmaprocent = match1.hemmaprocent();
-            bortaprocent = match1.bortaProcent();
-
-            while(medans pöver != böver)
-            {
-                //Gör beräkningar 
-                //Minska med 1 
-            }
-        }
-        */
-
+        
     }
 }
 
