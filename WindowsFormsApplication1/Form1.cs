@@ -273,7 +273,14 @@ namespace Bomben
             weekDays.Add("Saturday", "Lör");
             weekDays.Add("Sunday", "Sön");
 
-            bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description;
+            try
+            {
+                bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description;
+            }
+            catch
+            {
+                bombNrTB.Text = info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].description;
+            }
             
             //Hemmalag och bortalag textboxar
             TextBox[] textBoxes = new TextBox[] { textBox16, textBox17, textBox19, textBox20, textBox28, textBox29, textBox37, textBox38 };
@@ -296,7 +303,14 @@ namespace Bomben
             extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
             rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
             //Skriver ut spelstopp
-            spelStoppLabel.Text = "Spelstopp: " + weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ]+ " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+            try
+            {
+                spelStoppLabel.Text = "Spelstopp: " + weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ]+ " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+            }
+            catch 
+            {
+                spelStoppLabel.Text = "Spelstopp: " + info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+            }
             
 
 
