@@ -30,7 +30,6 @@ namespace Bomben
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(0);
-                    
 
         }
         
