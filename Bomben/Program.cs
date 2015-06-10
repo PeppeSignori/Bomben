@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Bomben
 {
@@ -13,8 +14,8 @@ namespace Bomben
         static void Main(string[] args)
         {
 
-            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
-            int[] drawIds = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
+            //SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
+            //int[] drawIds = bomb.getInfo( new Uri(@"https://www.svenskaspel.se/bomben") );
             
 
             //Match object
@@ -23,8 +24,6 @@ namespace Bomben
             Game Match3 = new Game();
             Game Match4 = new Game();
 
-            Console.WriteLine("Extrapott?");
-            double extrapott = Convert.ToDouble(Console.ReadLine());           
 
             // Match 1
             
@@ -162,9 +161,6 @@ namespace Bomben
 
 
             // Match 2                                  
-
-            
-
             Console.WriteLine("Match 2");
             Console.WriteLine("-------");
             Console.WriteLine();
@@ -457,15 +453,57 @@ namespace Bomben
 
   
 
-            Console.WriteLine("Bomber, i kronologisk ordning: ");
+            //Console.WriteLine("Bomber, i kronologisk ordning: ");
+            //foreach (int drawId in drawIds)
+            //{
+            //    Console.WriteLine(drawId);
+            //}
+                
 
-            foreach (int drawId in drawIds)
+            SvSJsonGetter infoParser = new SvSJsonGetter();
+            string result = infoParser.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
+            SvSInfo info = JsonConvert.DeserializeObject<SvSInfo>(result);
+
+            int drawLength = info.draws.GetLength(0);
+
+            for (int ii= 0; ii<drawLength; ii++)
             {
-                Console.WriteLine(drawId);
+                if (info.draws[ii].drawState == "Open" && info.draws[ii].enabled)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append( info.draws[ii].drawNumber);
+                    sb.Append( " "  +info.draws[ii].description);
+                    sb.Append( "  " +info.draws[ii].sport.name);
+                    sb.Append( "  " +"Spelstopp:");
+                    sb.Append( " "  +info.draws[ii].cancelCloseTime.DayOfWeek);
+                    sb.Append( " "  +info.draws[ii].cancelCloseTime.Hour);
+                    sb.Append( ":"  +info.draws[ii].cancelCloseTime.Minute);
+                    sb.Append( "  " +"oms: " + info.draws[ii].currentNetSales );
+
+                    if( info.draws[ii].fund.extraMoney != "0,00")
+                    {
+                        sb.Append(" +" + info.draws[ii].fund.extraMoney );
+                    }
+
+                    if ( info.draws[ii].fund.rolloverIn != "0,00")
+                    {
+                        sb.Append(" +" + info.draws[ii].fund.rolloverIn );
+                    }
+
+                    
+                    Console.WriteLine(sb);
+                }
             }
 
+            
+            Console.WriteLine("\nExtrapott?");
+            double extrapott = Convert.ToDouble(Console.ReadLine());           
+            
             //Mata in bombenNr
             Console.WriteLine("\nSkriv in spelnr för bomben (t.ex 8372): ");
+            
+
+            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
             //drawId = bombenNr
             int chosenDrawId = Convert.ToInt32(Console.ReadLine());
             //webadress
@@ -482,13 +520,12 @@ namespace Bomben
             int counter = FileImporter.countLines(chosenDrawId);
             double[,] bombenStats = new double[counter, 7];
             bombenStats = FileImporter.importBomben();
-           
+            
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-            
-           
+                      
+
             Console.WriteLine( "Beräknar...." );
-            
             //Skapa nytt matris-objekt
             Matris matris = new Matris();
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
