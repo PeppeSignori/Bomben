@@ -216,7 +216,7 @@ namespace Bomben
             }
             
 
-            double ROI = (extrapott + ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus )))) / Convert.ToDouble( antalPlus ));
+            double ROI = ((extrapott + ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))))) / Convert.ToDouble( antalPlus ));
             
             Parallel.For( 0, MAX, ii =>
                 {
@@ -244,7 +244,8 @@ namespace Bomben
                                     {
                                         if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
                                         {
-                                            firstTemp = extrapott + ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * (Convert.ToDouble( omsättning )) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            firstTemp = (extrapott / ((0.6 * (Convert.ToDouble(omsättning) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)))
+                                                + ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * (Convert.ToDouble( omsättning ) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
                                             allaKombinationer[i, sparKolumn] = firstTemp;
                                             secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                                             allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
