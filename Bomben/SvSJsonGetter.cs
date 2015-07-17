@@ -20,21 +20,10 @@ namespace Bomben
         
         public string getJsonString( Uri url )
         {
-           
-            //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            //ServicePointManager.ServerCertificateValidationCallback += RemoteCertificateValidationCallback(delegate{return=true;});
-            //ServicePointManager.Expect100Continue = true;
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            
             //Skapa objekt som hämtar websida
             WebClient client = new WebClient();
-            //WebRequestHandler handler = new WebRequestHandler();
-            //X509Certificate2 certificate = 
-            //handler.ClientCertificates.Add(certificate);
-            //HttpClient client = new HttpClient(handler);
             client.Encoding = System.Text.Encoding.UTF8; //Så att den klarar svenska tecken
             
-
             string downloadString = "";
             
             try
