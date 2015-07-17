@@ -232,6 +232,7 @@ namespace Bomben
                 {
 
 
+            
                     if( allaKombinationer[i, 0] == svSpelOdds[j, 1] )
                     {
                         if( allaKombinationer[i, 1] == svSpelOdds[j, 2] )
@@ -244,11 +245,14 @@ namespace Bomben
                                     {
                                         if( allaKombinationer[i, 5] == svSpelOdds[j, 6] )
                                         {
-                                            firstTemp = (extrapott / ((0.6 * (Convert.ToDouble(omsättning) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)))
-                                                + ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / ((0.6 * (Convert.ToDouble( omsättning ) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble( antalPlus )));
+                                            
+                                            firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) + extrapott) / 
+                                                ((((0.6 * (Convert.ToDouble(omsättning))) + extrapott) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus));
+
                                             allaKombinationer[i, sparKolumn] = firstTemp;
                                             secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
                                             allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
+
                                         }
                                     }
                                 }
