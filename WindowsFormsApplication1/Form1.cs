@@ -320,10 +320,23 @@ namespace Bomben
 
         private void Match1FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
-            //Kolla så att alla boxar är ifyllda beräkna sedan
-            match1.beräknaFörväntadMålantal();
-            Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
+            //Spara värdet från textbox 
+            match1.under = Convert.ToDouble(Match1Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match1.över > 1)
+            {
+                match1.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match1Odds1.Text != null && Match1OddsX.Text != null && Match1Odds2.Text != null)
+            {
+                match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
+                match1.beräknaFörväntadMålantal();
+                Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
+            }
+
         }
 
         private void Match2FörväntadMålantal_TextChanged(object sender, EventArgs e)
