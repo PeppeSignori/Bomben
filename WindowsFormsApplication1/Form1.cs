@@ -79,20 +79,10 @@ namespace Bomben
         
         private void Match1Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match1.under = Convert.ToDouble(Match1Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match1.över > 1)
-            {
-                match1.sättÖverUnderTill100Procent();
-            }
-            
-            //Kolla om alla rutor är ifyllda i så fall börja beräkna! 
-            if (Match1Odds1.Text != null && Match1OddsX.Text != null)
-            {
-                Match1FörväntadMålantal.Text = "Testar";
-            }
-            
+            match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
+            //Kolla så att alla boxar är ifyllda beräkna sedan
+            match1.beräknaFörväntadMålantal();
+            Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
         }
 
         private void Match2Odds1_TextChanged(object sender, EventArgs e)
@@ -326,6 +316,29 @@ namespace Bomben
         {
             drawLength = (drawLength + 1) > info.draws.GetLength(0)-1 ? 0 : (drawLength + 1);
             populateBombenTBs(drawLength);
+        }
+
+        private void Match1FörväntadMålantal_TextChanged(object sender, EventArgs e)
+        {
+            match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
+            //Kolla så att alla boxar är ifyllda beräkna sedan
+            match1.beräknaFörväntadMålantal();
+            Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
+        }
+
+        private void Match2FörväntadMålantal_TextChanged(object sender, EventArgs e)
+        {
+            match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal);
+        }
+
+        private void Match3FörväntadMålantal_TextChanged(object sender, EventArgs e)
+        {
+            match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal);
+        }
+
+        private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
+        {
+            match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
         }
 
 

@@ -37,7 +37,7 @@
             this.Match1Under = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.Match1UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.Match2Odds1 = new System.Windows.Forms.TextBox();
@@ -46,7 +46,7 @@
             this.Match2FörväntadMålantal = new System.Windows.Forms.TextBox();
             this.Match2Över = new System.Windows.Forms.TextBox();
             this.Match2Under = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.Match2UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.Match3Odds1 = new System.Windows.Forms.TextBox();
@@ -55,7 +55,7 @@
             this.Match3FörväntadMålantal = new System.Windows.Forms.TextBox();
             this.Match3Över = new System.Windows.Forms.TextBox();
             this.Match3Under = new System.Windows.Forms.TextBox();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.Match3UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.textBox38 = new System.Windows.Forms.TextBox();
             this.Match4Odds1 = new System.Windows.Forms.TextBox();
@@ -64,7 +64,7 @@
             this.Match4FörväntadMålantal = new System.Windows.Forms.TextBox();
             this.Match4Över = new System.Windows.Forms.TextBox();
             this.Match4Under = new System.Windows.Forms.TextBox();
-            this.textBox45 = new System.Windows.Forms.TextBox();
+            this.Match4UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -138,7 +138,7 @@
             this.Match1Under.Size = new System.Drawing.Size(60, 20);
             this.Match1Under.TabIndex = 16;
             this.Match1Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match1Under.TextChanged += new System.EventHandler(this.Match1Under_TextChanged);
+            this.Match1Under.Leave += new System.EventHandler(this.Match1FörväntadMålantal_TextChanged);
             // 
             // textBox16
             // 
@@ -154,16 +154,16 @@
             this.textBox17.Size = new System.Drawing.Size(100, 20);
             this.textBox17.TabIndex = 10;
             // 
-            // textBox18
+            // Match1UträknatMålAntal
             // 
-            this.textBox18.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox18.Location = new System.Drawing.Point(710, 96);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(60, 20);
-            this.textBox18.TabIndex = 17;
-            this.textBox18.TabStop = false;
-            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match1UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Match1UträknatMålAntal.Location = new System.Drawing.Point(710, 96);
+            this.Match1UträknatMålAntal.Name = "Match1UträknatMålAntal";
+            this.Match1UträknatMålAntal.ReadOnly = true;
+            this.Match1UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
+            this.Match1UträknatMålAntal.TabIndex = 17;
+            this.Match1UträknatMålAntal.TabStop = false;
+            this.Match1UträknatMålAntal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox19
             // 
@@ -213,6 +213,7 @@
             this.Match2FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match2FörväntadMålantal.TabIndex = 23;
             this.Match2FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match2FörväntadMålantal.TextChanged += new System.EventHandler(this.Match2FörväntadMålantal_TextChanged);
             // 
             // Match2Över
             // 
@@ -232,16 +233,16 @@
             this.Match2Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Match2Under.TextChanged += new System.EventHandler(this.Match2Under_TextChanged);
             // 
-            // textBox27
+            // Match2UträknatMålAntal
             // 
-            this.textBox27.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox27.Location = new System.Drawing.Point(710, 126);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.ReadOnly = true;
-            this.textBox27.Size = new System.Drawing.Size(60, 20);
-            this.textBox27.TabIndex = 26;
-            this.textBox27.TabStop = false;
-            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match2UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Match2UträknatMålAntal.Location = new System.Drawing.Point(710, 126);
+            this.Match2UträknatMålAntal.Name = "Match2UträknatMålAntal";
+            this.Match2UträknatMålAntal.ReadOnly = true;
+            this.Match2UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
+            this.Match2UträknatMålAntal.TabIndex = 26;
+            this.Match2UträknatMålAntal.TabStop = false;
+            this.Match2UträknatMålAntal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox28
             // 
@@ -291,6 +292,7 @@
             this.Match3FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match3FörväntadMålantal.TabIndex = 32;
             this.Match3FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match3FörväntadMålantal.TextChanged += new System.EventHandler(this.Match3FörväntadMålantal_TextChanged);
             // 
             // Match3Över
             // 
@@ -310,16 +312,16 @@
             this.Match3Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Match3Under.TextChanged += new System.EventHandler(this.Match3Under_TextChanged);
             // 
-            // textBox36
+            // Match3UträknatMålAntal
             // 
-            this.textBox36.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox36.Location = new System.Drawing.Point(710, 156);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.ReadOnly = true;
-            this.textBox36.Size = new System.Drawing.Size(60, 20);
-            this.textBox36.TabIndex = 35;
-            this.textBox36.TabStop = false;
-            this.textBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match3UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Match3UträknatMålAntal.Location = new System.Drawing.Point(710, 156);
+            this.Match3UträknatMålAntal.Name = "Match3UträknatMålAntal";
+            this.Match3UträknatMålAntal.ReadOnly = true;
+            this.Match3UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
+            this.Match3UträknatMålAntal.TabIndex = 35;
+            this.Match3UträknatMålAntal.TabStop = false;
+            this.Match3UträknatMålAntal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox37
             // 
@@ -369,6 +371,7 @@
             this.Match4FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match4FörväntadMålantal.TabIndex = 41;
             this.Match4FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match4FörväntadMålantal.TextChanged += new System.EventHandler(this.Match4FörväntadMålantal_TextChanged);
             // 
             // Match4Över
             // 
@@ -388,16 +391,16 @@
             this.Match4Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Match4Under.TextChanged += new System.EventHandler(this.Match4Under_TextChanged);
             // 
-            // textBox45
+            // Match4UträknatMålAntal
             // 
-            this.textBox45.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox45.Location = new System.Drawing.Point(710, 186);
-            this.textBox45.Name = "textBox45";
-            this.textBox45.ReadOnly = true;
-            this.textBox45.Size = new System.Drawing.Size(60, 20);
-            this.textBox45.TabIndex = 44;
-            this.textBox45.TabStop = false;
-            this.textBox45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match4UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Match4UträknatMålAntal.Location = new System.Drawing.Point(710, 186);
+            this.Match4UträknatMålAntal.Name = "Match4UträknatMålAntal";
+            this.Match4UträknatMålAntal.ReadOnly = true;
+            this.Match4UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
+            this.Match4UträknatMålAntal.TabIndex = 44;
+            this.Match4UträknatMålAntal.TabStop = false;
+            this.Match4UträknatMålAntal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // contextMenuStrip1
             // 
@@ -625,7 +628,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox45);
+            this.Controls.Add(this.Match4UträknatMålAntal);
             this.Controls.Add(this.Match4Under);
             this.Controls.Add(this.Match4Över);
             this.Controls.Add(this.Match4FörväntadMålantal);
@@ -634,7 +637,7 @@
             this.Controls.Add(this.Match4Odds1);
             this.Controls.Add(this.textBox38);
             this.Controls.Add(this.textBox37);
-            this.Controls.Add(this.textBox36);
+            this.Controls.Add(this.Match3UträknatMålAntal);
             this.Controls.Add(this.Match3Under);
             this.Controls.Add(this.Match3Över);
             this.Controls.Add(this.Match3FörväntadMålantal);
@@ -643,7 +646,7 @@
             this.Controls.Add(this.Match3Odds1);
             this.Controls.Add(this.textBox29);
             this.Controls.Add(this.textBox28);
-            this.Controls.Add(this.textBox27);
+            this.Controls.Add(this.Match2UträknatMålAntal);
             this.Controls.Add(this.Match2Under);
             this.Controls.Add(this.Match2Över);
             this.Controls.Add(this.Match2FörväntadMålantal);
@@ -652,7 +655,7 @@
             this.Controls.Add(this.Match2Odds1);
             this.Controls.Add(this.textBox20);
             this.Controls.Add(this.textBox19);
-            this.Controls.Add(this.textBox18);
+            this.Controls.Add(this.Match1UträknatMålAntal);
             this.Controls.Add(this.textBox17);
             this.Controls.Add(this.textBox16);
             this.Controls.Add(this.Match1Under);
@@ -679,7 +682,7 @@
         private System.Windows.Forms.TextBox Match1Under;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox Match1UträknatMålAntal;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox Match2Odds1;
@@ -688,7 +691,7 @@
         private System.Windows.Forms.TextBox Match2FörväntadMålantal;
         private System.Windows.Forms.TextBox Match2Över;
         private System.Windows.Forms.TextBox Match2Under;
-        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.TextBox Match2UträknatMålAntal;
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.TextBox Match3Odds1;
@@ -697,7 +700,7 @@
         private System.Windows.Forms.TextBox Match3FörväntadMålantal;
         private System.Windows.Forms.TextBox Match3Över;
         private System.Windows.Forms.TextBox Match3Under;
-        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox Match3UträknatMålAntal;
         private System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.TextBox textBox38;
         private System.Windows.Forms.TextBox Match4Odds1;
@@ -706,7 +709,7 @@
         private System.Windows.Forms.TextBox Match4FörväntadMålantal;
         private System.Windows.Forms.TextBox Match4Över;
         private System.Windows.Forms.TextBox Match4Under;
-        private System.Windows.Forms.TextBox textBox45;
+        private System.Windows.Forms.TextBox Match4UträknatMålAntal;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

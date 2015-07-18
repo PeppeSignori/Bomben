@@ -25,6 +25,8 @@ namespace Bomben
         public double borta { get; set; }
         public double hemmaLambda { get; set; }
         public double bortaLambda { get; set; }
+        public double underSannolikhet { get; set; }
+
 
         public void poisson(double lambda, string hemmaborta)
         {
@@ -106,13 +108,14 @@ namespace Bomben
 
         public void sättÖverUnderTill100Procent()
         {
+
             double NewÖver = (1 / this.över) / (1 / this.över + 1 / this.under);
             double NewUnder = (1 / this.under) / (1 / this.över + 1 / this.under);
             this.över = NewÖver;
             this.under = NewUnder;
         }
 
-        public double beräknaÖverUnder(double överUnderLina)
+        public void beräknaÖverUnder(double överUnderLina)
         {
             double underSannolikhet = 0;
             int antalLoopar = Convert.ToInt32(överUnderLina + 0.5);
@@ -128,19 +131,43 @@ namespace Bomben
             }
 
 
-            return underSannolikhet;
+            
         }
 
 
-        public void beräknaFörväntadMålantal(double pöver, double punder, double böver, double bunder)
+        public void beräknaFörväntadMålantal()
         {
             //Räkna fram förväntat målantal. Startar med det värde som skrivs in i gui, tex 2,5. 
-            this.beräknaLambda();
-            //Sannolikheterna från Poisson fås mha oddsen på 1,X,2 som skrivs in i gui och startvärdet+-0,01 på förväntat målantal.       
-            //Sannolikheterna från bolag (gui) räknas fram genom P(över)=(1/över)/(1/över + 1/under) & P(under)=(1/under)/(1/över + 1/under). 
+            double startvärde = this.förväntatAntalmål;
+            double bunder = this.under;
+
+            bool upDirection = underSannolikhet > bunder ? true : false;
+
+            while( Math.Abs(underSannolikhet - bunder) > 0.001 )
+            {
+                if (upDirection)
+                {
+                    this.förväntatAntalmål += 0.01; 
+                }
+                else
+                {
+                    this.förväntatAntalmål -= 0.01;
+                }
+
+                //Sannolikheterna från Poisson fås mha oddsen på 1,X,2 som skrivs in i gui och startvärdet+-0,01 på förväntat målantal.
+                this.beräknaLambda();
+                this.poisson(this.hemmaLambda, "hemma");
+                this.poisson(this.bortaLambda, "borta");
+                this.beräknaResultat();
+                this.beräknaÖverUnder(startvärde);
+
+                //Sannolikheterna från bolag (gui) räknas fram genom P(över)=(1/över)/(1/över + 1/under) & P(under)=(1/under)/(1/över + 1/under). 
          
-            //Om sannolikheten på över 2,5 mål från Poisson är högre än motsvarande sannolikhet från bolag så sänk startvärdet på målantal med 0,01. 
-            //Om sannolikheten på över 2,5 mål från Poisson är lägre än motsvarande sannolikhet från bolag så höj startvärdet på målantal med 0,01.
+                //Om sannolikheten på över 2,5 mål från Poisson är högre än motsvarande sannolikhet från bolag så sänk startvärdet på målantal med 0,01. 
+                //Om sannolikheten på över 2,5 mål från Poisson är lägre än motsvarande sannolikhet från bolag så höj startvärdet på målantal med 0,01.
+
+            }
+
 
             
 
