@@ -117,7 +117,7 @@ namespace Bomben
 
         public void beräknaÖverUnder(double överUnderLina)
         {
-            double underSannolikhet = 0;
+            this.underSannolikhet = 0;
             int antalLoopar = Convert.ToInt32(överUnderLina + 0.5);
             int yttreAntalLoopar = antalLoopar;
             for (int m = 0; m < 11 * yttreAntalLoopar; m = m + 11)
@@ -125,7 +125,7 @@ namespace Bomben
                 antalLoopar -= 1;
                 for (int n = (antalLoopar); n >= 0; n = n - 1)
                 {
-                    underSannolikhet = underSannolikhet + resultat[m + n];
+                    this.underSannolikhet = this.underSannolikhet + resultat[m + n];
                 }
 
             }
@@ -139,11 +139,12 @@ namespace Bomben
         {
             //Räkna fram förväntat målantal. Startar med det värde som skrivs in i gui, tex 2,5. 
             double startvärde = this.förväntatAntalmål;
+            this.beräknaÖverUnder(startvärde);
             double bunder = this.under;
 
-            bool upDirection = underSannolikhet > bunder ? true : false;
+            bool upDirection = this.underSannolikhet > bunder ? true : false;
 
-            while( Math.Abs(underSannolikhet - bunder) > 0.001 )
+            while( Math.Abs(this.underSannolikhet - bunder) > 0.001 )
             {
                 if (upDirection)
                 {
@@ -159,7 +160,7 @@ namespace Bomben
                 this.poisson(this.hemmaLambda, "hemma");
                 this.poisson(this.bortaLambda, "borta");
                 this.beräknaResultat();
-                this.beräknaÖverUnder(startvärde);
+                this.beräknaÖverUnder(this.förväntatAntalmål);
 
                 //Sannolikheterna från bolag (gui) räknas fram genom P(över)=(1/över)/(1/över + 1/under) & P(under)=(1/under)/(1/över + 1/under). 
          
