@@ -139,8 +139,14 @@ namespace Bomben
         {
             //Räkna fram förväntat målantal. Startar med det värde som skrivs in i gui, tex 2,5. 
             double startvärde = this.förväntatAntalmål;
-            this.beräknaÖverUnder(startvärde);
             double bunder = this.under;
+
+            this.beräknaLambda();
+            this.poisson(this.hemmaLambda, "hemma");
+            this.poisson(this.bortaLambda, "borta");
+            this.beräknaResultat();
+            this.beräknaÖverUnder(startvärde);
+
 
             bool upDirection = this.underSannolikhet > bunder ? true : false;
 
@@ -160,7 +166,7 @@ namespace Bomben
                 this.poisson(this.hemmaLambda, "hemma");
                 this.poisson(this.bortaLambda, "borta");
                 this.beräknaResultat();
-                this.beräknaÖverUnder(this.förväntatAntalmål);
+                this.beräknaÖverUnder(startvärde);
 
                 //Sannolikheterna från bolag (gui) räknas fram genom P(över)=(1/över)/(1/över + 1/under) & P(under)=(1/under)/(1/över + 1/under). 
          
