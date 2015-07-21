@@ -6,7 +6,7 @@ using Bomben;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class MatchTests
+    public class Tests
     {
         [TestMethod]
         public void FörväntatAntalMålTest()
