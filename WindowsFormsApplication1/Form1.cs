@@ -298,9 +298,14 @@ namespace Bomben
             }
 
             //Skriver ut omsättning, extrapengar och rullpott
-            turnOverLabel.Text = "Omsättning: " +info.draws[draw].currentNetSales;
-            extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
-            rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
+            string temp = info.draws[draw].currentNetSales;
+            turnOverLabel.Text = "Omsättning: " + temp;
+
+            temp = info.draws[draw].fund.extraMoney;
+            extraPengarLabel.Text = "Extrapengar: " + temp;
+
+            temp = info.draws[draw].fund.rolloverIn;
+            rullPottLabel.Text = "Rullpott: " + temp;
             //Skriver ut spelstopp
             try
             {
