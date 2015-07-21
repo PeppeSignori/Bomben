@@ -615,14 +615,14 @@ namespace Bomben
             //matris.writeToExistingExcelDocument();
             sw1.Stop();
 
-            Console.WriteLine("Skicka mail? (J/N)");
-            string sendMail = Console.ReadLine();
+            //Console.WriteLine("Skicka mail? (J/N)");
+            //string sendMail = Console.ReadLine();
             //string sendMail = "n";
-            if (sendMail == "j" | sendMail == "J")
-            {
-                Email mail = new Email();
-                mail.MailWithAttachement("magnusson_erik@hotmail.com", "VinnandeRader.txt");
-            }
+            //if (sendMail == "j" | sendMail == "J")
+            //{
+            //    Email mail = new Email();
+            //    mail.MailWithAttachement("", "VinnandeRader.txt");
+            //}
             
             //Skriv ut i listview(matris i consolFönstret)
             
