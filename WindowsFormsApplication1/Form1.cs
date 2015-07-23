@@ -24,39 +24,6 @@ namespace Bomben
         Game match3 = new Game();
 
         
-        
-        private void populateGridView()
-        {
-            
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
-
-
-            dataGridView1.Columns.Add( "ColumnName1", "H1" );
-            dataGridView1.Columns.Add( "ColumnName2", "B1" );
-            dataGridView1.Columns.Add( "ColumnName3", "H2" );
-            dataGridView1.Columns.Add( "ColumnName4", "B2" );
-            dataGridView1.Columns.Add( "ColumnName5", "H3" );
-            dataGridView1.Columns.Add( "ColumnName6", "B3" );
-            dataGridView1.Columns.Add( "ColumnName7", "Poisson" );
-            dataGridView1.Columns.Add( "ColumnName8", "+1" );
-            dataGridView1.Columns.Add( "ColumnName9", "+1ROI" );
-            dataGridView1.Columns.Add( "ColumnName10", "+3" );
-            dataGridView1.Columns.Add( "ColumnName11", "+3ROI" );
-            dataGridView1.Columns[0].Width = 25;
-            dataGridView1.Columns[1].Width = 25;
-            dataGridView1.Columns[2].Width = 25;
-            dataGridView1.Columns[3].Width = 25;
-            dataGridView1.Columns[4].Width = 25;
-            dataGridView1.Columns[5].Width = 25;
-            
-            
-            dataGridView1.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-            dataGridView1.Rows.Add( "1", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-
-            AntalRaderTextLabel.Text = (dataGridView1.RowCount - 1).ToString();
-        }
-
-
         public Form1()
         {
             InitializeComponent();
@@ -64,7 +31,8 @@ namespace Bomben
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(0);
-            populateGridView();
+            dataGridViewController1.setDeafaultHeadersAndWidth();
+            AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
 
         }
         
@@ -297,45 +265,49 @@ namespace Bomben
             weekDays.Add("Saturday", "Lör");
             weekDays.Add("Sunday", "Sön");
 
-            try
+            //Sortera ut de som inte är öppna för spel
+            if( info.draws[draw].enabled )
             {
-                bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description;
-            }
-            catch
-            {
-                bombNrTB.Text = info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].description;
-            }
+                try
+                {
+                    bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description +"\t" +info.draws[draw].drawNumber.ToString();
+                }
+                catch
+                {
+                    bombNrTB.Text = info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].description;
+                }
             
-            //Hemmalag och bortalag textboxar
-            TextBox[] textBoxes = new TextBox[] { textBox16, textBox17, textBox19, textBox20, textBox28, textBox29, textBox37, textBox38 };
+                //Hemmalag och bortalag textboxar
+                TextBox[] textBoxes = new TextBox[] { textBox16, textBox17, textBox19, textBox20, textBox28, textBox29, textBox37, textBox38 };
             
-            //nollställ textboxar
-            for (int i = 0; i <8 ; i++)
-            {
-                textBoxes[i].Text = "";
-            }
+                //nollställ textboxar
+                for (int i = 0; i <8 ; i++)
+                {
+                    textBoxes[i].Text = "";
+                }
             
-            //Skriv ut lagnamn
-            for (int i = 0, j=0; i < info.draws[draw].events.GetLength(0); i++, j=j+2)
-            {
-                textBoxes[j].Text = info.draws[draw].events[i].match.participants[0].name;
-                textBoxes[j+1].Text = info.draws[draw].events[i].match.participants[1].name;    
-            }
+                //Skriv ut lagnamn
+                for (int i = 0, j=0; i < info.draws[draw].events.GetLength(0); i++, j=j+2)
+                {
+                    textBoxes[j].Text = info.draws[draw].events[i].match.participants[0].name;
+                    textBoxes[j+1].Text = info.draws[draw].events[i].match.participants[1].name;    
+                }
 
-            //Skriver ut omsättning, extrapengar och rullpott
-            turnOverLabel.Text = "Omsättning: " +info.draws[draw].currentNetSales;
-            extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
-            rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
-            //Skriver ut spelstopp
-            try
-            {
-                spelStoppLabel.Text = "Spelstopp: " + weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ]+ " " + info.draws[draw].cancelCloseTime.TimeOfDay;
-            }
-            catch 
-            {
-                spelStoppLabel.Text = "Spelstopp: " + info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
-            }
+                //Skriver ut omsättning, extrapengar och rullpott
+                turnOverLabel.Text = "Omsättning: " +info.draws[draw].currentNetSales;
+                extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
+                rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
+                //Skriver ut spelstopp
+                try
+                {
+                    spelStoppLabel.Text = "Spelstopp: " + weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ]+ " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+                }
+                catch 
+                {
+                    spelStoppLabel.Text = "Spelstopp: " + info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
+                }
             
+            }
 
 
         }
@@ -387,6 +359,11 @@ namespace Bomben
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
             match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
+        }
+
+        private void calculateBtn_Click( object sender, EventArgs e )
+        {
+
         }
 
 
