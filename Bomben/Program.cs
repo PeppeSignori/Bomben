@@ -551,18 +551,7 @@ namespace Bomben
 
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-
-
-
-
-
-
-
-
-
-
-
-
+            double rollOver = 0;
 
             Console.WriteLine("Beräknar....");
             
@@ -587,10 +576,10 @@ namespace Bomben
 
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
-            matris.Execute(allaResultat, 7, 1, turnOver, bombenStats, extrapott);
+            matris.Execute(allaResultat, 7, 1, turnOver, bombenStats, extrapott, rollOver);
             Console.WriteLine("Program watch: First execute finished: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
 
-            matris.Execute(allaResultat, 9, 3, turnOver, bombenStats, extrapott);
+            matris.Execute(allaResultat, 9, 3, turnOver, bombenStats, extrapott, rollOver);
             Console.WriteLine("Program watch: Second execute finished: {0} seconds {1} milliSeconds", sw1.Elapsed.Seconds.ToString(), sw1.Elapsed.Milliseconds.ToString());
             
             
@@ -615,14 +604,14 @@ namespace Bomben
             //matris.writeToExistingExcelDocument();
             sw1.Stop();
 
-            Console.WriteLine("Skicka mail? (J/N)");
-            string sendMail = Console.ReadLine();
+            //Console.WriteLine("Skicka mail? (J/N)");
+            //string sendMail = Console.ReadLine();
             //string sendMail = "n";
-            if (sendMail == "j" | sendMail == "J")
-            {
-                Email mail = new Email();
-                mail.MailWithAttachement("magnusson_erik@hotmail.com", "VinnandeRader.txt");
-            }
+            //if (sendMail == "j" | sendMail == "J")
+            //{
+            //    Email mail = new Email();
+            //    mail.MailWithAttachement("", "VinnandeRader.txt");
+            //}
             
             //Skriv ut i listview(matris i consolFönstret)
             

@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Email.cs" />
     <Compile Include="FileImporter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Matris.cs" />

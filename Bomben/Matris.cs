@@ -345,12 +345,12 @@ namespace Bomben
         {
             //cudaAddPlusAndROI
             //double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver, doubleExtraPott, doubleRollOver};
-            //gpuROI[0] = AntalPlus
-            //gpuROI[1] = TurnOver
-            //gpuROI[2] = ExtraPott
-            //gpuROI[3] = RollOver
-            
-            double ROI = ((gpuROI[2] + ((0.6 * (Convert.ToDouble( gpuROI[1] ) + Convert.ToDouble( gpuROI[0] ))))) / Convert.ToDouble( gpuROI[0] ));
+            double antalPlus = gpuROI[0];
+            double turnOver = gpuROI[1];
+            double extraPott = gpuROI[2];
+            double rollOver = gpuROI[3];
+
+            double ROI = ((extraPott + ((0.6 * (turnOver  + antalPlus)))) / antalPlus);
             
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 
@@ -366,8 +366,8 @@ namespace Bomben
 
                     if (gpuAllCombo[tid] == gpuAvailableOdds[i])
                     {
-                        firstTemp = ((0.6 * (Convert.ToDouble( gpuROI[1] ) + Convert.ToDouble( gpuROI[0] ))) + gpuROI[2]) / 
-                                                ((((0.6 * (Convert.ToDouble( gpuROI[1] ))) + gpuROI[2]) / gpuSvenskaSpelOdds[i]) + Convert.ToDouble( gpuROI[0] ));
+                        firstTemp = ((0.6 * (turnOver + antalPlus)) + extraPott) / 
+                                                ((((0.6 * (turnOver)) + extraPott) / gpuSvenskaSpelOdds[i]) + antalPlus);
                         gpuSparResultat[tid] = firstTemp;
                         secondTemp = gpuSparResultat[tid] / gpuPoissonColumn[tid]; 
                         gpuSparResultatPlus[tid] = secondTemp;
@@ -384,7 +384,7 @@ namespace Bomben
         public void writeToFile()
         {
             
-            StreamWriter sw = new StreamWriter("VinnandeRader.txt");
+            StreamWriter sw = new StreamWriter("gpuVinnandeRader.txt");
 
             sw.WriteLine("HM1,BM1,HM2,BM2,HM3,BM3,Poisson,+1,+1ROI,+3,+3ROI");
             
