@@ -22,7 +22,41 @@ namespace Bomben
         Game match2 = new Game();
         Game match4 = new Game();
         Game match3 = new Game();
+
         
+        
+        private void populateGridView()
+        {
+            
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+
+
+            dataGridView1.Columns.Add( "ColumnName1", "H1" );
+            dataGridView1.Columns.Add( "ColumnName2", "B1" );
+            dataGridView1.Columns.Add( "ColumnName3", "H2" );
+            dataGridView1.Columns.Add( "ColumnName4", "B2" );
+            dataGridView1.Columns.Add( "ColumnName5", "H3" );
+            dataGridView1.Columns.Add( "ColumnName6", "B3" );
+            dataGridView1.Columns.Add( "ColumnName7", "Poisson" );
+            dataGridView1.Columns.Add( "ColumnName8", "+1" );
+            dataGridView1.Columns.Add( "ColumnName9", "+1ROI" );
+            dataGridView1.Columns.Add( "ColumnName10", "+3" );
+            dataGridView1.Columns.Add( "ColumnName11", "+3ROI" );
+            dataGridView1.Columns[0].Width = 25;
+            dataGridView1.Columns[1].Width = 25;
+            dataGridView1.Columns[2].Width = 25;
+            dataGridView1.Columns[3].Width = 25;
+            dataGridView1.Columns[4].Width = 25;
+            dataGridView1.Columns[5].Width = 25;
+            
+            
+            dataGridView1.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+            dataGridView1.Rows.Add( "1", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+
+            AntalRaderTextLabel.Text = (dataGridView1.RowCount - 1).ToString();
+        }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +64,7 @@ namespace Bomben
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(0);
+            populateGridView();
 
         }
         
@@ -354,6 +389,8 @@ namespace Bomben
             match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
         }
 
+
+        
 
         
         

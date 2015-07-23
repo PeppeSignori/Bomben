@@ -85,6 +85,10 @@
             this.spelStoppLabel = new System.Windows.Forms.Label();
             this.extraPengarLabel = new System.Windows.Forms.Label();
             this.rullPottLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.antalRaderlabel = new System.Windows.Forms.Label();
+            this.AntalRaderTextLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Match1Odds1
@@ -603,12 +607,43 @@
             this.rullPottLabel.TabIndex = 63;
             this.rullPottLabel.Text = "Rullpott:";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(43, 252);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(727, 451);
+            this.dataGridView1.TabIndex = 64;
+            // 
+            // antalRaderlabel
+            // 
+            this.antalRaderlabel.AutoSize = true;
+            this.antalRaderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antalRaderlabel.Location = new System.Drawing.Point(40, 222);
+            this.antalRaderlabel.Name = "antalRaderlabel";
+            this.antalRaderlabel.Size = new System.Drawing.Size(69, 15);
+            this.antalRaderlabel.TabIndex = 65;
+            this.antalRaderlabel.Text = "Antal rader:";
+            // 
+            // AntalRaderTextLabel
+            // 
+            this.AntalRaderTextLabel.AutoSize = true;
+            this.AntalRaderTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AntalRaderTextLabel.Location = new System.Drawing.Point(115, 222);
+            this.AntalRaderTextLabel.Name = "AntalRaderTextLabel";
+            this.AntalRaderTextLabel.Size = new System.Drawing.Size(0, 15);
+            this.AntalRaderTextLabel.TabIndex = 66;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(804, 222);
+            this.ClientSize = new System.Drawing.Size(804, 715);
+            this.Controls.Add(this.AntalRaderTextLabel);
+            this.Controls.Add(this.antalRaderlabel);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.rullPottLabel);
             this.Controls.Add(this.extraPengarLabel);
             this.Controls.Add(this.spelStoppLabel);
@@ -667,6 +702,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Erik och Christers Bomb";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -730,6 +766,9 @@
         private System.Windows.Forms.Label spelStoppLabel;
         private System.Windows.Forms.Label extraPengarLabel;
         private System.Windows.Forms.Label rullPottLabel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label antalRaderlabel;
+        private System.Windows.Forms.Label AntalRaderTextLabel;
     }
 }
 
