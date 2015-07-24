@@ -13,7 +13,7 @@ namespace Bomben.Test
         {
             //Arrange
             var bomb = new SvSMobileSiteImporter();
-            int drawId = 8534;
+            int drawId = 8712;
             string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + drawId;
             string fileName = "PC_P7_D" + drawId + ".zip";
             //Act
@@ -22,6 +22,7 @@ namespace Bomben.Test
             while (!bomb.downloadComplete) ;
             bool exists = File.Exists(@".\downloadTempFolder\PC_P7_D" + drawId + ".zip");
             Assert.AreEqual(true, exists);
+            Assert.AreEqual( true, bomb.downloadComplete);
         }
     }
 }

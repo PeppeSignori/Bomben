@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 
-namespace WindowsFormsApplication1
+namespace Bomben
 {
     class Matris
     {

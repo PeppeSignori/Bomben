@@ -30,7 +30,7 @@ namespace Bomben
             
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
-            populateBombenTBs(0);
+            populateBombenTBs(drawLength);
             dataGridViewController1.setDeafaultHeadersAndWidth();
             AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
 
@@ -266,8 +266,15 @@ namespace Bomben
             weekDays.Add("Sunday", "Sön");
 
             //Sortera ut de som inte är öppna för spel
-            if( info.draws[draw].enabled )
+            while( info.draws[draw].enabled != true && draw < info.draws.Length)
             {
+                draw++;
+            }
+
+            //Skriv bara ut om det finns ett öppet spel
+            if( draw < info.draws.Length )
+            {
+
                 try
                 {
                     bombNrTB.Text = weekDays[ info.draws[draw].cancelCloseTime.DayOfWeek.ToString() ] +" " +info.draws[draw].description +"\t" +info.draws[draw].drawNumber.ToString();
@@ -307,8 +314,8 @@ namespace Bomben
                     spelStoppLabel.Text = "Spelstopp: " + info.draws[draw].cancelCloseTime.DayOfWeek + " " + info.draws[draw].cancelCloseTime.TimeOfDay;
                 }
             
-            }
 
+            }
 
         }
 
@@ -361,9 +368,71 @@ namespace Bomben
             match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
         }
 
-        private void calculateBtn_Click( object sender, EventArgs e )
+        private void calculateBtn_Click( object sender, EventArgs e)
         {
+            int draw = drawLength;
+            SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
+            int chosenDrawId = info.draws[draw].drawNumber;
+            //webadress
+            string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
+            //filnamn
+            //string fileName = "PC_P7_D" + info.draws[draw].drawNumber.ToString() + ".zip";
+            string fileName = "PC_P7_D" + chosenDrawId + ".zip";
+            //Ladda ner filen
+            bomb.downloadFileAsync( link, fileName );
 
+            //Vänta på nerladdningen ska bli klar
+            //while( !bomb.downloadComplete );
+
+            //Importera odds från textfil från SvS.
+            int counter = FileImporter.countLines( chosenDrawId );
+            double[,] bombenStats = new double[counter, 7];
+            bombenStats = FileImporter.importBomben();
+
+            //Hämta omsättning från textfil från SvS
+            int turnOver = FileImporter.getTurnOver();
+
+
+            Console.WriteLine( "Beräknar...." );
+            //Skapa nytt matris-objekt
+            Matris matris = new Matris();
+            //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
+
+
+            //Lägg till dem i matrisUtanOdds.
+            matris.skapaAllaResultatKombinationer();
+            //matris.läggTillPoissonKolumn( allaResultat ); //Återställs
+
+            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            
+
+            //matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extrapott ); //Återställs
+            //matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extrapott );//Återställs
+            
+            //Stämpla starttid sluttid skrivs ut i matris.writeToFile
+            time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            //Console.WriteLine( time );
+            //matris.writeToFile();//Återställs
+            //Console.WriteLine( "Skriv till fil klart." );
+
+            //Räkna om alla odds och lägg till odds på icke spelade kombinationer
+            //finalMatrix.reCalculateOdds();
+
+            //Lägg in poissonOdds i matrisen
+            //finalMatrix.addPoissonOdds();
+
+            //Skriv ut i listview(matris i consolFönstret)
+            //Beh;ver g;ras med en dialogbox
+            /*
+            Console.WriteLine( "Ta bort tillfälliga filer? (J/N) " );
+            string delete = Console.ReadLine();
+            if( delete == "j" || delete == "J" )
+            {
+                File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" );
+                File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" );
+            }
+             */
         }
 
 

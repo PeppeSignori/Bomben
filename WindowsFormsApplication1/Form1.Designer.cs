@@ -88,7 +88,7 @@
             this.antalRaderlabel = new System.Windows.Forms.Label();
             this.AntalRaderTextLabel = new System.Windows.Forms.Label();
             this.calculateBtn = new System.Windows.Forms.Button();
-            this.dataGridViewController1 = new WindowsFormsApplication1.DataGridViewController();
+            this.dataGridViewController1 = new Bomben.DataGridViewController();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -780,7 +780,7 @@
         private System.Windows.Forms.Label rullPottLabel;
         private System.Windows.Forms.Label antalRaderlabel;
         private System.Windows.Forms.Label AntalRaderTextLabel;
-        private WindowsFormsApplication1.DataGridViewController dataGridViewController1;
+        private Bomben.DataGridViewController dataGridViewController1;
         private System.Windows.Forms.Button calculateBtn;
     }
 }

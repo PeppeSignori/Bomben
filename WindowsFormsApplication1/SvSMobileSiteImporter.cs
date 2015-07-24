@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Bomben
 {
@@ -117,28 +118,51 @@ namespace Bomben
             
         }
         */    
-
         public void downloadFileAsync(string adress, string newFileName)
         {
             WebClient downloadClient = new WebClient();
-            downloadClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(fileDownloadComplete);
-            
+            downloadClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler( fileDownloadComplete );
+            downloadClient.DownloadFileCompleted += new AsyncCompletedEventHandler(fileDownloadComplete);
+            downloadClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler( downloadProgress );
+
+
             if (!Directory.Exists(@".\downloadTempFolder"))
             {
                 Directory.CreateDirectory(@".\downloadTempFolder");
             }
             //Console.WriteLine("{0}", Directory.GetCreationTime(@".\downloadTempFolder"));
             string saveAdress = @".\downloadTempFolder\";
-            downloadClient.DownloadFileAsync( new Uri(adress), saveAdress +newFileName );
+            Uri uri = new Uri(adress);
+            downloadClient.Proxy = null;
+            downloadClient.DownloadFile( uri, saveAdress +newFileName);
             
+            //downloadClient.DownloadFileAsync( new Uri(adress), saveAdress +newFileName );
+
+            downloadComplete = true;
+
+
         }
 
-        
-        public void fileDownloadComplete(object sender, EventArgs e)
+
+
+        public void fileDownloadComplete( object sender, AsyncCompletedEventHandler e )
         {
             downloadComplete = true;
+            MessageBox.Show( "Download complete!" );
         }
-       
 
+
+        public void fileDownloadComplete( object sender, EventArgs e )
+        {
+            downloadComplete = true;
+            MessageBox.Show("Download complete!");
+        }
+
+        public void downloadProgress( object sender, DownloadProgressChangedEventArgs e )
+        {
+            e.ToString();
+        }
+
+       
     }
 }

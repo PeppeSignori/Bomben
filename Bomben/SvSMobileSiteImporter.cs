@@ -130,6 +130,9 @@ namespace Bomben
             //Console.WriteLine("{0}", Directory.GetCreationTime(@".\downloadTempFolder"));
             string saveAdress = @".\downloadTempFolder\";
             downloadClient.DownloadFileAsync( new Uri(adress), saveAdress +newFileName );
+
+                
+                
             
         }
 
