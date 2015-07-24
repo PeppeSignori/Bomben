@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -382,7 +383,7 @@ namespace Bomben
             bomb.downloadFileAsync( link, fileName );
 
             //Vänta på nerladdningen ska bli klar
-            //while( !bomb.downloadComplete );
+            while( !bomb.downloadComplete );
 
             //Importera odds från textfil från SvS.
             int counter = FileImporter.countLines( chosenDrawId );
@@ -404,35 +405,32 @@ namespace Bomben
             //matris.läggTillPoissonKolumn( allaResultat ); //Återställs
 
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
-            string time = DateTime.Now.ToString( "HH:mm:ss tt" );
+            string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
 
             //matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extrapott ); //Återställs
             //matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extrapott );//Återställs
             
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
-            time = DateTime.Now.ToString( "HH:mm:ss tt" );
-            //Console.WriteLine( time );
+            string stopTime = DateTime.Now.ToString( "HH:mm:ss tt" );
+            
             //matris.writeToFile();//Återställs
-            //Console.WriteLine( "Skriv till fil klart." );
 
-            //Räkna om alla odds och lägg till odds på icke spelade kombinationer
-            //finalMatrix.reCalculateOdds();
-
-            //Lägg in poissonOdds i matrisen
-            //finalMatrix.addPoissonOdds();
-
-            //Skriv ut i listview(matris i consolFönstret)
-            //Beh;ver g;ras med en dialogbox
-            /*
-            Console.WriteLine( "Ta bort tillfälliga filer? (J/N) " );
-            string delete = Console.ReadLine();
-            if( delete == "j" || delete == "J" )
+            DialogResult dialogResult = MessageBox.Show( "Ta bort tillfälliga filer?", "Ta bort Filer", MessageBoxButtons.YesNo );
+            if( dialogResult == DialogResult.Yes )
             {
-                File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" );
-                File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" );
+                if(File.Exists(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" ))
+                {
+                    File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" );
+                }
+                if(File.Exists(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" ))
+                {
+                    File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" );   
+                }
             }
-             */
+            
+
+            
         }
 
 
