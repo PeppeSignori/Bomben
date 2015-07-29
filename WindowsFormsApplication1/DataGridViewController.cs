@@ -43,7 +43,7 @@ namespace Bomben
        
         }
 
-        public void addCalculatedRows( Matris matrix )
+        public void addCalculatedRows( Matris3 matrix )
         {
             for( int rad = 0; rad < 1771561; rad++ )
             {
