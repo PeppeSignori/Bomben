@@ -23,8 +23,8 @@ namespace Bomben
         Game match2 = new Game();
         Game match3 = new Game();
         Game match4 = new Game();
-        
-        
+
+        Matris3 matris3 = new Matris3();
 
         public Form1()
         {
@@ -420,14 +420,9 @@ namespace Bomben
 
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-
-
-            Console.WriteLine( "Beräknar...." );
-            //Skapa nytt matris-objekt
-            Matris3 matris3 = new Matris3();
+            
+            
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
-
-
             //Lägg till dem i matrisUtanOdds.
             matris3.skapaAllaResultatKombinationer();
             PoissonSannolikheter poissonSannolikheter = new PoissonSannolikheter();
@@ -460,7 +455,6 @@ namespace Bomben
             
             dataGridViewController1.addCalculatedRows(matris3);
             AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
-            matris3.writeToFile();
 
             DialogResult dialogResult = MessageBox.Show( "Ta bort tillfälliga filer?", "Ta bort Filer", MessageBoxButtons.YesNo );
             if( dialogResult == DialogResult.Yes )
@@ -560,6 +554,15 @@ namespace Bomben
             
                     
             }
+
+        }
+
+        private void SkrivUtTextFilBtn_Click(object sender, EventArgs e)
+        {
+            //if (matris3.allaKombinationer != null)
+            //{
+                matris3.writeToFile();
+            //}
 
         }   
             

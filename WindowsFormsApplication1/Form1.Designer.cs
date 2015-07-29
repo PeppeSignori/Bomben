@@ -67,7 +67,7 @@
             this.Match4UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.updateBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SkrivUtTextFilBtn = new System.Windows.Forms.Button();
             this.BeräknaFörväntatMålAntalBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -405,17 +405,18 @@
             this.updateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.updateBtn.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // SkrivUtTextFilBtn
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button2.Location = new System.Drawing.Point(40, 691);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 25);
-            this.button2.TabIndex = 47;
-            this.button2.TabStop = false;
-            this.button2.Text = "Skapa textfil med Poissonjämförelse";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
+            this.SkrivUtTextFilBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.SkrivUtTextFilBtn.Location = new System.Drawing.Point(43, 691);
+            this.SkrivUtTextFilBtn.Name = "SkrivUtTextFilBtn";
+            this.SkrivUtTextFilBtn.Size = new System.Drawing.Size(78, 25);
+            this.SkrivUtTextFilBtn.TabIndex = 47;
+            this.SkrivUtTextFilBtn.TabStop = false;
+            this.SkrivUtTextFilBtn.Text = "Skapa textfil";
+            this.SkrivUtTextFilBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SkrivUtTextFilBtn.UseVisualStyleBackColor = false;
+            this.SkrivUtTextFilBtn.Click += new System.EventHandler(this.SkrivUtTextFilBtn_Click);
             // 
             // BeräknaFörväntatMålAntalBtn
             // 
@@ -633,7 +634,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(804, 715);
+            this.ClientSize = new System.Drawing.Size(804, 736);
             this.Controls.Add(this.calculateBtn);
             this.Controls.Add(this.dataGridViewController1);
             this.Controls.Add(this.AntalRaderTextLabel);
@@ -655,7 +656,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BeräknaFörväntatMålAntalBtn);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SkrivUtTextFilBtn);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.Match4UträknatMålAntal);
             this.Controls.Add(this.Match4Under);
@@ -742,7 +743,7 @@
         private System.Windows.Forms.TextBox Match4UträknatMålAntal;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button updateBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SkrivUtTextFilBtn;
         private System.Windows.Forms.Button BeräknaFörväntatMålAntalBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
