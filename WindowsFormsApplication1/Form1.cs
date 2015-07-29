@@ -23,8 +23,8 @@ namespace Bomben
         Game match2 = new Game();
         Game match3 = new Game();
         Game match4 = new Game();
-        
-        
+
+        Matris3 matris3 = new Matris3();
 
         public Form1()
         {
@@ -34,7 +34,7 @@ namespace Bomben
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(drawLength);
             dataGridViewController1.setDeafaultHeadersAndWidth();
-            AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
+            
 
         }
         
@@ -377,6 +377,7 @@ namespace Bomben
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
+            
             match4.under = Convert.ToDouble(Match4Under.Text);
             //Sätt till 100% om det finns ett värde i match1.över
             if (match4.över > 1)
@@ -419,16 +420,11 @@ namespace Bomben
 
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-
-
-            Console.WriteLine( "Beräknar...." );
-            //Skapa nytt matris-objekt
-            Matris matris = new Matris();
+            
+            
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
-
-
             //Lägg till dem i matrisUtanOdds.
-            matris.skapaAllaResultatKombinationer();
+            matris3.skapaAllaResultatKombinationer();
             PoissonSannolikheter poissonSannolikheter = new PoissonSannolikheter();
             if( info.draws[draw].eventCount == 3 )
             {
@@ -443,19 +439,22 @@ namespace Bomben
                 poissonSannolikheter.beräknaAllaResultat( match1, match2 );
             }
 
-            matris.läggTillPoissonKolumn( poissonSannolikheter.allaResultat );
-
+            matris3.läggTillPoissonKolumn( poissonSannolikheter.allaResultat );
+            
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
             //Behöver lägga till rollover i extrapott eller liknande
-            //matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extrapott ); //Återställs
-            //matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extrapott );//Återställs
+            double extraPott = Convert.ToDouble(info.draws[draw].fund.extraMoney) + Convert.ToDouble(info.draws[draw].fund.rolloverIn);
+            matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott); 
+            matris3.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
+
             
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string stopTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
-            //matris.writeToFile();//Återställs
+            dataGridViewController1.addCalculatedRows(matris3);
+            AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
 
             DialogResult dialogResult = MessageBox.Show( "Ta bort tillfälliga filer?", "Ta bort Filer", MessageBoxButtons.YesNo );
             if( dialogResult == DialogResult.Yes )
@@ -474,11 +473,106 @@ namespace Bomben
 
         }
 
+        private void BeräknaFörväntatMålAntalBtn_Click(object sender, EventArgs e)
+        {
+            Game[] matches = new Game[] { match1, match2, match3, match4 };
+                        
+            int antalmatcher = info.draws[drawLength].eventCount;
 
-        
+            switch (antalmatcher)
+            {
+                case 4:
+                    match4.odds1 = Convert.ToDouble(Match4Odds1.Text);
+                    match4.oddsX = Convert.ToDouble(Match4OddsX.Text);
+                    match4.odds2 = Convert.ToDouble(Match4Odds2.Text);
+                    goto case 3;
+                case 3:
+                    match3.odds1 = Convert.ToDouble(Match3Odds1.Text);
+                    match3.oddsX = Convert.ToDouble(Match3OddsX.Text);
+                    match3.odds2 = Convert.ToDouble(Match3Odds2.Text);
+                    goto case 2;
+                case 2:
+                    match2.odds1 = Convert.ToDouble(Match2Odds1.Text);
+                    match2.oddsX = Convert.ToDouble(Match2OddsX.Text);
+                    match2.odds2 = Convert.ToDouble(Match2Odds2.Text);
+                    
+                    match1.odds1 = Convert.ToDouble(Match1Odds1.Text);
+                    match1.oddsX = Convert.ToDouble(Match1OddsX.Text);
+                    match1.odds2 = Convert.ToDouble(Match1Odds2.Text);
+                    break;
 
-        
-        
+            } 
+
+            for (int i = 0; i < antalmatcher; i++)
+            {
+                matches[i].sättOddsTill100Procent();
+                //Spara värdet från textbox 
+                matches[i].under = Convert.ToDouble(Match1Under.Text);
+                //Sätt till 100% om det finns ett värde i match1.över
+                if (matches[i].över > 1)
+                {
+                    matches[i].sättÖverUnderTill100Procent();
+                }
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            switch (antalmatcher )
+            {
+                case 4:
+                    if (Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null)
+                    {
+                        match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal.Text);
+                        match4.beräknaFörväntadMålantal();
+                        Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
+                    }
+                    goto case 3;   
+                case 3:
+                    if (Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null)
+                    {
+                        match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal.Text);
+                        match3.beräknaFörväntadMålantal();
+                        Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString();
+                    }
+                    goto case 2;
+                case 2:
+                    
+                    if (Match1Odds1.Text != null && Match1OddsX.Text != null && Match1Odds2.Text != null)
+                    {
+                        match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
+                        match1.beräknaFörväntadMålantal();
+                        Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
+                    }
+
+                    if (Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null)
+                    {
+                        match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal.Text);
+                        match2.beräknaFörväntadMålantal();
+                        Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
+                    }
+                    break;
+            
+                    
+            }
+
+        }
+
+        private void SkrivUtTextFilBtn_Click(object sender, EventArgs e)
+        {
+            //if (matris3.allaKombinationer != null)
+            //{
+                matris3.writeToFile();
+            //}
+
+        }   
+            
     }
+
+
+        
+
+        
+        
 }
+
 

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Bomben
 {
-    class Matris
+    class Matris3
     {
         
 
@@ -21,14 +21,14 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
         private int läggTillPlusRäknare = 0;
-        private const int MAX = 1771561;
-        
+        private int MAX = 1771561;
+               
         
         public void skapaMatrisUtanOddskolumn1()
         {
             int a = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for (int g = 0; g < MAX; g = g + 1)
             {
                 if (g % 161051 == 0 && g != 0)
                 {
