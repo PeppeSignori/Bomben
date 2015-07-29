@@ -85,11 +85,16 @@
             this.spelStoppLabel = new System.Windows.Forms.Label();
             this.extraPengarLabel = new System.Windows.Forms.Label();
             this.rullPottLabel = new System.Windows.Forms.Label();
+            this.antalRaderlabel = new System.Windows.Forms.Label();
+            this.AntalRaderTextLabel = new System.Windows.Forms.Label();
+            this.calculateBtn = new System.Windows.Forms.Button();
+            this.dataGridViewController1 = new Bomben.DataGridViewController();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
             // 
             // Match1Odds1
             // 
-            this.Match1Odds1.Location = new System.Drawing.Point(270, 96);
+            this.Match1Odds1.Location = new System.Drawing.Point(270, 118);
             this.Match1Odds1.Name = "Match1Odds1";
             this.Match1Odds1.Size = new System.Drawing.Size(60, 20);
             this.Match1Odds1.TabIndex = 11;
@@ -98,7 +103,7 @@
             // 
             // Match1OddsX
             // 
-            this.Match1OddsX.Location = new System.Drawing.Point(340, 96);
+            this.Match1OddsX.Location = new System.Drawing.Point(340, 118);
             this.Match1OddsX.Name = "Match1OddsX";
             this.Match1OddsX.Size = new System.Drawing.Size(60, 20);
             this.Match1OddsX.TabIndex = 12;
@@ -107,7 +112,7 @@
             // 
             // Match1Odds2
             // 
-            this.Match1Odds2.Location = new System.Drawing.Point(410, 96);
+            this.Match1Odds2.Location = new System.Drawing.Point(410, 118);
             this.Match1Odds2.Name = "Match1Odds2";
             this.Match1Odds2.Size = new System.Drawing.Size(60, 20);
             this.Match1Odds2.TabIndex = 13;
@@ -116,7 +121,7 @@
             // 
             // Match1FörväntadMålantal
             // 
-            this.Match1FörväntadMålantal.Location = new System.Drawing.Point(490, 96);
+            this.Match1FörväntadMålantal.Location = new System.Drawing.Point(490, 118);
             this.Match1FörväntadMålantal.Name = "Match1FörväntadMålantal";
             this.Match1FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match1FörväntadMålantal.TabIndex = 14;
@@ -124,7 +129,7 @@
             // 
             // Match1Över
             // 
-            this.Match1Över.Location = new System.Drawing.Point(560, 96);
+            this.Match1Över.Location = new System.Drawing.Point(560, 118);
             this.Match1Över.Name = "Match1Över";
             this.Match1Över.Size = new System.Drawing.Size(60, 20);
             this.Match1Över.TabIndex = 15;
@@ -133,7 +138,7 @@
             // 
             // Match1Under
             // 
-            this.Match1Under.Location = new System.Drawing.Point(630, 96);
+            this.Match1Under.Location = new System.Drawing.Point(630, 118);
             this.Match1Under.Name = "Match1Under";
             this.Match1Under.Size = new System.Drawing.Size(60, 20);
             this.Match1Under.TabIndex = 16;
@@ -142,14 +147,14 @@
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(40, 96);
+            this.textBox16.Location = new System.Drawing.Point(40, 118);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(100, 20);
             this.textBox16.TabIndex = 9;
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(150, 96);
+            this.textBox17.Location = new System.Drawing.Point(150, 118);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(100, 20);
             this.textBox17.TabIndex = 10;
@@ -157,7 +162,7 @@
             // Match1UträknatMålAntal
             // 
             this.Match1UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Match1UträknatMålAntal.Location = new System.Drawing.Point(710, 96);
+            this.Match1UträknatMålAntal.Location = new System.Drawing.Point(710, 118);
             this.Match1UträknatMålAntal.Name = "Match1UträknatMålAntal";
             this.Match1UträknatMålAntal.ReadOnly = true;
             this.Match1UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
@@ -167,21 +172,21 @@
             // 
             // textBox19
             // 
-            this.textBox19.Location = new System.Drawing.Point(40, 126);
+            this.textBox19.Location = new System.Drawing.Point(40, 148);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(100, 20);
             this.textBox19.TabIndex = 18;
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(150, 126);
+            this.textBox20.Location = new System.Drawing.Point(150, 148);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(100, 20);
             this.textBox20.TabIndex = 19;
             // 
             // Match2Odds1
             // 
-            this.Match2Odds1.Location = new System.Drawing.Point(270, 126);
+            this.Match2Odds1.Location = new System.Drawing.Point(270, 148);
             this.Match2Odds1.Name = "Match2Odds1";
             this.Match2Odds1.Size = new System.Drawing.Size(60, 20);
             this.Match2Odds1.TabIndex = 20;
@@ -190,7 +195,7 @@
             // 
             // Match2OddsX
             // 
-            this.Match2OddsX.Location = new System.Drawing.Point(340, 126);
+            this.Match2OddsX.Location = new System.Drawing.Point(340, 148);
             this.Match2OddsX.Name = "Match2OddsX";
             this.Match2OddsX.Size = new System.Drawing.Size(60, 20);
             this.Match2OddsX.TabIndex = 21;
@@ -199,7 +204,7 @@
             // 
             // Match2Odds2
             // 
-            this.Match2Odds2.Location = new System.Drawing.Point(410, 126);
+            this.Match2Odds2.Location = new System.Drawing.Point(410, 148);
             this.Match2Odds2.Name = "Match2Odds2";
             this.Match2Odds2.Size = new System.Drawing.Size(60, 20);
             this.Match2Odds2.TabIndex = 22;
@@ -208,15 +213,16 @@
             // 
             // Match2FörväntadMålantal
             // 
-            this.Match2FörväntadMålantal.Location = new System.Drawing.Point(490, 126);
+            this.Match2FörväntadMålantal.Location = new System.Drawing.Point(490, 148);
             this.Match2FörväntadMålantal.Name = "Match2FörväntadMålantal";
             this.Match2FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match2FörväntadMålantal.TabIndex = 23;
             this.Match2FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match2FörväntadMålantal.TextChanged += new System.EventHandler(this.Match2FörväntadMålantal_TextChanged);
             // 
             // Match2Över
             // 
-            this.Match2Över.Location = new System.Drawing.Point(560, 126);
+            this.Match2Över.Location = new System.Drawing.Point(560, 148);
             this.Match2Över.Name = "Match2Över";
             this.Match2Över.Size = new System.Drawing.Size(60, 20);
             this.Match2Över.TabIndex = 24;
@@ -225,17 +231,17 @@
             // 
             // Match2Under
             // 
-            this.Match2Under.Location = new System.Drawing.Point(630, 126);
+            this.Match2Under.Location = new System.Drawing.Point(630, 148);
             this.Match2Under.Name = "Match2Under";
             this.Match2Under.Size = new System.Drawing.Size(60, 20);
             this.Match2Under.TabIndex = 25;
             this.Match2Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match2Under.Leave += new System.EventHandler(this.Match2FörväntadMålantal_TextChanged);
+            this.Match2Under.TextChanged += new System.EventHandler(this.Match2Under_TextChanged);
             // 
             // Match2UträknatMålAntal
             // 
             this.Match2UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Match2UträknatMålAntal.Location = new System.Drawing.Point(710, 126);
+            this.Match2UträknatMålAntal.Location = new System.Drawing.Point(710, 148);
             this.Match2UträknatMålAntal.Name = "Match2UträknatMålAntal";
             this.Match2UträknatMålAntal.ReadOnly = true;
             this.Match2UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
@@ -245,21 +251,21 @@
             // 
             // textBox28
             // 
-            this.textBox28.Location = new System.Drawing.Point(40, 156);
+            this.textBox28.Location = new System.Drawing.Point(40, 178);
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(100, 20);
             this.textBox28.TabIndex = 27;
             // 
             // textBox29
             // 
-            this.textBox29.Location = new System.Drawing.Point(150, 156);
+            this.textBox29.Location = new System.Drawing.Point(150, 178);
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new System.Drawing.Size(100, 20);
             this.textBox29.TabIndex = 28;
             // 
             // Match3Odds1
             // 
-            this.Match3Odds1.Location = new System.Drawing.Point(270, 156);
+            this.Match3Odds1.Location = new System.Drawing.Point(270, 178);
             this.Match3Odds1.Name = "Match3Odds1";
             this.Match3Odds1.Size = new System.Drawing.Size(60, 20);
             this.Match3Odds1.TabIndex = 29;
@@ -268,7 +274,7 @@
             // 
             // Match3OddsX
             // 
-            this.Match3OddsX.Location = new System.Drawing.Point(340, 156);
+            this.Match3OddsX.Location = new System.Drawing.Point(340, 178);
             this.Match3OddsX.Name = "Match3OddsX";
             this.Match3OddsX.Size = new System.Drawing.Size(60, 20);
             this.Match3OddsX.TabIndex = 30;
@@ -277,7 +283,7 @@
             // 
             // Match3Odds2
             // 
-            this.Match3Odds2.Location = new System.Drawing.Point(410, 156);
+            this.Match3Odds2.Location = new System.Drawing.Point(410, 178);
             this.Match3Odds2.Name = "Match3Odds2";
             this.Match3Odds2.Size = new System.Drawing.Size(60, 20);
             this.Match3Odds2.TabIndex = 31;
@@ -286,15 +292,16 @@
             // 
             // Match3FörväntadMålantal
             // 
-            this.Match3FörväntadMålantal.Location = new System.Drawing.Point(490, 156);
+            this.Match3FörväntadMålantal.Location = new System.Drawing.Point(490, 178);
             this.Match3FörväntadMålantal.Name = "Match3FörväntadMålantal";
             this.Match3FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match3FörväntadMålantal.TabIndex = 32;
             this.Match3FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match3FörväntadMålantal.TextChanged += new System.EventHandler(this.Match3FörväntadMålantal_TextChanged);
             // 
             // Match3Över
             // 
-            this.Match3Över.Location = new System.Drawing.Point(560, 156);
+            this.Match3Över.Location = new System.Drawing.Point(560, 178);
             this.Match3Över.Name = "Match3Över";
             this.Match3Över.Size = new System.Drawing.Size(60, 20);
             this.Match3Över.TabIndex = 33;
@@ -303,17 +310,17 @@
             // 
             // Match3Under
             // 
-            this.Match3Under.Location = new System.Drawing.Point(630, 156);
+            this.Match3Under.Location = new System.Drawing.Point(630, 178);
             this.Match3Under.Name = "Match3Under";
             this.Match3Under.Size = new System.Drawing.Size(60, 20);
             this.Match3Under.TabIndex = 34;
             this.Match3Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match3Under.Leave += new System.EventHandler(this.Match3FörväntadMålantal_TextChanged);
+            this.Match3Under.TextChanged += new System.EventHandler(this.Match3Under_TextChanged);
             // 
             // Match3UträknatMålAntal
             // 
             this.Match3UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Match3UträknatMålAntal.Location = new System.Drawing.Point(710, 156);
+            this.Match3UträknatMålAntal.Location = new System.Drawing.Point(710, 178);
             this.Match3UträknatMålAntal.Name = "Match3UträknatMålAntal";
             this.Match3UträknatMålAntal.ReadOnly = true;
             this.Match3UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
@@ -323,21 +330,21 @@
             // 
             // textBox37
             // 
-            this.textBox37.Location = new System.Drawing.Point(40, 186);
+            this.textBox37.Location = new System.Drawing.Point(40, 208);
             this.textBox37.Name = "textBox37";
             this.textBox37.Size = new System.Drawing.Size(100, 20);
             this.textBox37.TabIndex = 36;
             // 
             // textBox38
             // 
-            this.textBox38.Location = new System.Drawing.Point(150, 186);
+            this.textBox38.Location = new System.Drawing.Point(150, 208);
             this.textBox38.Name = "textBox38";
             this.textBox38.Size = new System.Drawing.Size(100, 20);
             this.textBox38.TabIndex = 37;
             // 
             // Match4Odds1
             // 
-            this.Match4Odds1.Location = new System.Drawing.Point(270, 186);
+            this.Match4Odds1.Location = new System.Drawing.Point(270, 208);
             this.Match4Odds1.Name = "Match4Odds1";
             this.Match4Odds1.Size = new System.Drawing.Size(60, 20);
             this.Match4Odds1.TabIndex = 38;
@@ -346,7 +353,7 @@
             // 
             // Match4OddsX
             // 
-            this.Match4OddsX.Location = new System.Drawing.Point(340, 186);
+            this.Match4OddsX.Location = new System.Drawing.Point(340, 208);
             this.Match4OddsX.Name = "Match4OddsX";
             this.Match4OddsX.Size = new System.Drawing.Size(60, 20);
             this.Match4OddsX.TabIndex = 39;
@@ -355,7 +362,7 @@
             // 
             // Match4Odds2
             // 
-            this.Match4Odds2.Location = new System.Drawing.Point(410, 186);
+            this.Match4Odds2.Location = new System.Drawing.Point(410, 208);
             this.Match4Odds2.Name = "Match4Odds2";
             this.Match4Odds2.Size = new System.Drawing.Size(60, 20);
             this.Match4Odds2.TabIndex = 40;
@@ -364,15 +371,16 @@
             // 
             // Match4FörväntadMålantal
             // 
-            this.Match4FörväntadMålantal.Location = new System.Drawing.Point(490, 186);
+            this.Match4FörväntadMålantal.Location = new System.Drawing.Point(490, 208);
             this.Match4FörväntadMålantal.Name = "Match4FörväntadMålantal";
             this.Match4FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match4FörväntadMålantal.TabIndex = 41;
             this.Match4FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Match4FörväntadMålantal.TextChanged += new System.EventHandler(this.Match4FörväntadMålantal_TextChanged);
             // 
             // Match4Över
             // 
-            this.Match4Över.Location = new System.Drawing.Point(560, 186);
+            this.Match4Över.Location = new System.Drawing.Point(560, 208);
             this.Match4Över.Name = "Match4Över";
             this.Match4Över.Size = new System.Drawing.Size(60, 20);
             this.Match4Över.TabIndex = 42;
@@ -381,17 +389,17 @@
             // 
             // Match4Under
             // 
-            this.Match4Under.Location = new System.Drawing.Point(630, 186);
+            this.Match4Under.Location = new System.Drawing.Point(630, 208);
             this.Match4Under.Name = "Match4Under";
             this.Match4Under.Size = new System.Drawing.Size(60, 20);
             this.Match4Under.TabIndex = 43;
             this.Match4Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match4Under.Leave += new System.EventHandler(this.Match4FörväntadMålantal_TextChanged);
+            this.Match4Under.TextChanged += new System.EventHandler(this.Match4Under_TextChanged);
             // 
             // Match4UträknatMålAntal
             // 
             this.Match4UträknatMålAntal.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Match4UträknatMålAntal.Location = new System.Drawing.Point(710, 186);
+            this.Match4UträknatMålAntal.Location = new System.Drawing.Point(710, 208);
             this.Match4UträknatMålAntal.Name = "Match4UträknatMålAntal";
             this.Match4UträknatMålAntal.ReadOnly = true;
             this.Match4UträknatMålAntal.Size = new System.Drawing.Size(60, 20);
@@ -444,7 +452,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 71);
+            this.label1.Location = new System.Drawing.Point(40, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 15);
             this.label1.TabIndex = 1;
@@ -454,7 +462,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(150, 71);
+            this.label2.Location = new System.Drawing.Point(150, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 15);
             this.label2.TabIndex = 49;
@@ -464,7 +472,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(293, 71);
+            this.label3.Location = new System.Drawing.Point(293, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 15);
             this.label3.TabIndex = 50;
@@ -475,7 +483,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(363, 71);
+            this.label4.Location = new System.Drawing.Point(363, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(15, 15);
             this.label4.TabIndex = 51;
@@ -486,7 +494,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(433, 71);
+            this.label5.Location = new System.Drawing.Point(433, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 15);
             this.label5.TabIndex = 52;
@@ -497,7 +505,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(491, 71);
+            this.label6.Location = new System.Drawing.Point(491, 93);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 15);
             this.label6.TabIndex = 53;
@@ -508,7 +516,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(574, 71);
+            this.label7.Location = new System.Drawing.Point(574, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 15);
             this.label7.TabIndex = 54;
@@ -519,7 +527,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(640, 71);
+            this.label8.Location = new System.Drawing.Point(640, 93);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 15);
             this.label8.TabIndex = 55;
@@ -529,7 +537,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(710, 71);
+            this.label9.Location = new System.Drawing.Point(710, 93);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 15);
             this.label9.TabIndex = 56;
@@ -540,7 +548,7 @@
             // 
             this.bombNrTB.Location = new System.Drawing.Point(120, 45);
             this.bombNrTB.Name = "bombNrTB";
-            this.bombNrTB.Size = new System.Drawing.Size(100, 20);
+            this.bombNrTB.Size = new System.Drawing.Size(170, 20);
             this.bombNrTB.TabIndex = 57;
             this.bombNrTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -556,7 +564,7 @@
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(226, 43);
+            this.nextButton.Location = new System.Drawing.Point(296, 43);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(75, 23);
             this.nextButton.TabIndex = 59;
@@ -567,7 +575,7 @@
             // turnOverLabel
             // 
             this.turnOverLabel.AutoSize = true;
-            this.turnOverLabel.Location = new System.Drawing.Point(307, 43);
+            this.turnOverLabel.Location = new System.Drawing.Point(377, 45);
             this.turnOverLabel.Name = "turnOverLabel";
             this.turnOverLabel.Size = new System.Drawing.Size(66, 13);
             this.turnOverLabel.TabIndex = 60;
@@ -576,7 +584,7 @@
             // spelStoppLabel
             // 
             this.spelStoppLabel.AutoSize = true;
-            this.spelStoppLabel.Location = new System.Drawing.Point(563, 43);
+            this.spelStoppLabel.Location = new System.Drawing.Point(633, 45);
             this.spelStoppLabel.Name = "spelStoppLabel";
             this.spelStoppLabel.Size = new System.Drawing.Size(57, 13);
             this.spelStoppLabel.TabIndex = 61;
@@ -585,7 +593,7 @@
             // extraPengarLabel
             // 
             this.extraPengarLabel.AutoSize = true;
-            this.extraPengarLabel.Location = new System.Drawing.Point(433, 43);
+            this.extraPengarLabel.Location = new System.Drawing.Point(503, 45);
             this.extraPengarLabel.Name = "extraPengarLabel";
             this.extraPengarLabel.Size = new System.Drawing.Size(67, 13);
             this.extraPengarLabel.TabIndex = 62;
@@ -594,18 +602,60 @@
             // rullPottLabel
             // 
             this.rullPottLabel.AutoSize = true;
-            this.rullPottLabel.Location = new System.Drawing.Point(433, 58);
+            this.rullPottLabel.Location = new System.Drawing.Point(503, 60);
             this.rullPottLabel.Name = "rullPottLabel";
             this.rullPottLabel.Size = new System.Drawing.Size(46, 13);
             this.rullPottLabel.TabIndex = 63;
             this.rullPottLabel.Text = "Rullpott:";
+            // 
+            // antalRaderlabel
+            // 
+            this.antalRaderlabel.AutoSize = true;
+            this.antalRaderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antalRaderlabel.Location = new System.Drawing.Point(147, 246);
+            this.antalRaderlabel.Name = "antalRaderlabel";
+            this.antalRaderlabel.Size = new System.Drawing.Size(69, 15);
+            this.antalRaderlabel.TabIndex = 65;
+            this.antalRaderlabel.Text = "Antal rader:";
+            // 
+            // AntalRaderTextLabel
+            // 
+            this.AntalRaderTextLabel.AutoSize = true;
+            this.AntalRaderTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AntalRaderTextLabel.Location = new System.Drawing.Point(222, 246);
+            this.AntalRaderTextLabel.Name = "AntalRaderTextLabel";
+            this.AntalRaderTextLabel.Size = new System.Drawing.Size(0, 15);
+            this.AntalRaderTextLabel.TabIndex = 66;
+            // 
+            // calculateBtn
+            // 
+            this.calculateBtn.Location = new System.Drawing.Point(43, 243);
+            this.calculateBtn.Name = "calculateBtn";
+            this.calculateBtn.Size = new System.Drawing.Size(75, 23);
+            this.calculateBtn.TabIndex = 68;
+            this.calculateBtn.Text = "Beräkna";
+            this.calculateBtn.UseVisualStyleBackColor = true;
+            this.calculateBtn.Click += new System.EventHandler(this.calculateBtn_Click);
+            // 
+            // dataGridViewController1
+            // 
+            this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridViewController1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewController1.Location = new System.Drawing.Point(40, 272);
+            this.dataGridViewController1.Name = "dataGridViewController1";
+            this.dataGridViewController1.Size = new System.Drawing.Size(730, 413);
+            this.dataGridViewController1.TabIndex = 67;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(804, 222);
+            this.ClientSize = new System.Drawing.Size(804, 715);
+            this.Controls.Add(this.calculateBtn);
+            this.Controls.Add(this.dataGridViewController1);
+            this.Controls.Add(this.AntalRaderTextLabel);
+            this.Controls.Add(this.antalRaderlabel);
             this.Controls.Add(this.rullPottLabel);
             this.Controls.Add(this.extraPengarLabel);
             this.Controls.Add(this.spelStoppLabel);
@@ -664,6 +714,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Erik och Christers Bomb";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -727,6 +778,10 @@
         private System.Windows.Forms.Label spelStoppLabel;
         private System.Windows.Forms.Label extraPengarLabel;
         private System.Windows.Forms.Label rullPottLabel;
+        private System.Windows.Forms.Label antalRaderlabel;
+        private System.Windows.Forms.Label AntalRaderTextLabel;
+        private Bomben.DataGridViewController dataGridViewController1;
+        private System.Windows.Forms.Button calculateBtn;
     }
 }
 

@@ -60,13 +60,13 @@
     <Compile Include="SvsMobileSiteImporterTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bomben\Bomben.csproj">
-      <Project>{d7df3cf2-aadb-4812-9eb7-1f29c339cbcb}</Project>
-      <Name>Bomben</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\WindowsFormsApplication1\Bomben.GUI.csproj">
+      <Project>{06053dba-e9bd-46a4-9986-3f2941b73ae1}</Project>
+      <Name>Bomben.GUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
