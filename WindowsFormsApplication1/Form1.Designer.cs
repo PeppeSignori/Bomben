@@ -218,7 +218,6 @@
             this.Match2FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match2FörväntadMålantal.TabIndex = 23;
             this.Match2FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match2FörväntadMålantal.TextChanged += new System.EventHandler(this.Match2FörväntadMålantal_TextChanged);
             // 
             // Match2Över
             // 
@@ -236,7 +235,7 @@
             this.Match2Under.Size = new System.Drawing.Size(60, 20);
             this.Match2Under.TabIndex = 25;
             this.Match2Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match2Under.TextChanged += new System.EventHandler(this.Match2Under_TextChanged);
+            this.Match2Under.Leave += new System.EventHandler(this.Match2FörväntadMålantal_TextChanged);
             // 
             // Match2UträknatMålAntal
             // 
@@ -297,7 +296,6 @@
             this.Match3FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match3FörväntadMålantal.TabIndex = 32;
             this.Match3FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match3FörväntadMålantal.TextChanged += new System.EventHandler(this.Match3FörväntadMålantal_TextChanged);
             // 
             // Match3Över
             // 
@@ -315,7 +313,7 @@
             this.Match3Under.Size = new System.Drawing.Size(60, 20);
             this.Match3Under.TabIndex = 34;
             this.Match3Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match3Under.TextChanged += new System.EventHandler(this.Match3Under_TextChanged);
+            this.Match3Under.Leave += new System.EventHandler(this.Match3FörväntadMålantal_TextChanged);
             // 
             // Match3UträknatMålAntal
             // 
@@ -376,7 +374,6 @@
             this.Match4FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match4FörväntadMålantal.TabIndex = 41;
             this.Match4FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match4FörväntadMålantal.TextChanged += new System.EventHandler(this.Match4FörväntadMålantal_TextChanged);
             // 
             // Match4Över
             // 
@@ -394,7 +391,7 @@
             this.Match4Under.Size = new System.Drawing.Size(60, 20);
             this.Match4Under.TabIndex = 43;
             this.Match4Under.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match4Under.TextChanged += new System.EventHandler(this.Match4Under_TextChanged);
+            this.Match4Under.Leave += new System.EventHandler(this.Match4FörväntadMålantal_TextChanged);
             // 
             // Match4UträknatMålAntal
             // 

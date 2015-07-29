@@ -21,10 +21,11 @@ namespace Bomben
         
         Game match1 = new Game();
         Game match2 = new Game();
-        Game match4 = new Game();
         Game match3 = new Game();
-
+        Game match4 = new Game();
         
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -135,13 +136,7 @@ namespace Bomben
 
         private void Match2Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match2.under = Convert.ToDouble(Match2Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match2.över > 1)
-            {
-                match2.sättÖverUnderTill100Procent();
-            }
+
         }
 
         private void Match3Odds1_TextChanged(object sender, EventArgs e)
@@ -190,13 +185,7 @@ namespace Bomben
 
         private void Match3Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match3.under = Convert.ToDouble(Match3Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match3.över > 1)
-            {
-                match3.sättÖverUnderTill100Procent();
-            }
+
         }
 
         private void Match4Odds1_TextChanged(object sender, EventArgs e)
@@ -245,13 +234,7 @@ namespace Bomben
 
         private void Match4Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match4.under = Convert.ToDouble(Match4Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match4.över > 1)
-            {
-                match4.sättÖverUnderTill100Procent();
-            }
+
         }
 
         private void populateBombenTBs(int draw)
@@ -356,18 +339,62 @@ namespace Bomben
 
         private void Match2FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal);
+            match2.under = Convert.ToDouble(Match2Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match2.över > 1)
+            {
+                match2.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null)
+            {
+                match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal.Text);
+                match2.beräknaFörväntadMålantal();
+                Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
+            }
         }
 
         private void Match3FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal);
+            match3.under = Convert.ToDouble(Match3Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match3.över > 1)
+            {
+                match3.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null)
+            {
+                match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal.Text);
+                match3.beräknaFörväntadMålantal();
+                Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString();
+            }
         }
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
+            match4.under = Convert.ToDouble(Match4Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match4.över > 1)
+            {
+                match4.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null)
+            {
+                match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal.Text);
+                match4.beräknaFörväntadMålantal();
+                Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
+            }
         }
+
+        
 
         private void calculateBtn_Click( object sender, EventArgs e)
         {
@@ -402,7 +429,11 @@ namespace Bomben
 
             //Lägg till dem i matrisUtanOdds.
             matris.skapaAllaResultatKombinationer();
-            //matris.läggTillPoissonKolumn( allaResultat ); //Återställs
+            PoissonSannolikheter poissonSannolikheter = new PoissonSannolikheter();
+            poissonSannolikheter.beräknaAllaResultat(match1, match2);
+
+            
+            matris.läggTillPoissonKolumn( poissonSannolikheter.allaResultat ); //Återställs
 
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
@@ -428,9 +459,9 @@ namespace Bomben
                     File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" );   
                 }
             }
-            
 
-            
+
+
         }
 
 

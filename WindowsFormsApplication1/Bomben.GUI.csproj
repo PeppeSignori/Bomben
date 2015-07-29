@@ -91,6 +91,7 @@
     <Compile Include="Importer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Matris.cs" />
+    <Compile Include="PoissonSannolikheter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SvSInfo.cs" />
