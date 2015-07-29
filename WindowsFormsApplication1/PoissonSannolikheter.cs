@@ -12,51 +12,80 @@ namespace Bomben
 
         public void beräknaAllaResultat(Game Match1, Game Match2)
         {
+            int i = 0;
             int j = 0;
-            int k = 0;
-            int l = 0;
+            int m = 0;
 
-            for (int m = 0; m < 121; m = m + 1)
+            for (int n = 0; n < 121; n = n + 1)
             {
-                if (m % 11 == 0 && m != 0)
+                if (n % 11 == 0 && n != 0)
                 {
-                    j++;
-                    k = 0;
+                    i++;
+                    j = 0;
                 }
 
-                this.resultat[l++] = this.hemmaMålSannolikhet[j] * this.bortaMålSannolikhet[k++];
+                allaResultat[m++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j++]), 2);
             }
         }
 
         public void beräknaAllaResultat(Game Match1, Game Match2, Game Match3)
+        {
+            
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            int m = 0;
+
+            for (int n = 0; n < 1771561; n = n + 1)
+            {
+
+                if (n % 121 == 0 && n != 0)
+                {
+                    j++;
+                    k = 0;
+                }
+                if (n % 14641 == 0 && n != 0)
+                {
+                    i++;
+                    j = 0;
+                    k = 0;
+                }
+                allaResultat[m++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++]), 2);
+            }
+        }
+
+        public void beräknaAllaResultat(Game Match1, Game Match2, Game Match3, Game Match4)
         {
             Match1.beräknaFörväntadMålantal();
             int i = 0;
             int j = 0;
             int k = 0;
             int l = 0;
+            int m = 0;
 
-            for (int m = 0; m < 1771561; m = m + 1)
+            for (int n = 0; n < 214358881; n = n + 1)
             {
 
-                if (m % 121 == 0 && m != 0)
+                if (n % 121 == 0 && n != 0)
+                {
+                    k++;
+                    l = 0;
+                }
+                if (n % 14641 == 0 && n != 0)
                 {
                     j++;
                     k = 0;
+                    l = 0;
                 }
-                if (m % 14641 == 0 && m != 0)
+                if (n % 1771561 == 0 && n != 0)
                 {
                     i++;
                     j = 0;
                     k = 0;
+                    l = 0;
                 }
-                allaResultat[l++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++]), 2);
+                allaResultat[m++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k] * Match4.resultat[l++]), 2);
             }
-        }
-
-        public void beräknaAllaResultat(Game Match1, Game Match2, Game Match3, Game Match4)
-        {
-
         }
     }
 }

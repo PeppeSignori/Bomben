@@ -34,7 +34,7 @@ namespace Bomben
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(drawLength);
             dataGridViewController1.setDeafaultHeadersAndWidth();
-            AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
+            
 
         }
         
@@ -377,7 +377,7 @@ namespace Bomben
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match4.under = Convert.ToDouble( sender.Text );
+            
             match4.under = Convert.ToDouble(Match4Under.Text);
             //Sätt till 100% om det finns ett värde i match1.över
             if (match4.över > 1)
@@ -445,18 +445,22 @@ namespace Bomben
             }
 
             matris.läggTillPoissonKolumn( poissonSannolikheter.allaResultat );
-
+            
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
             //Behöver lägga till rollover i extrapott eller liknande
-            //matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extrapott ); //Återställs
-            //matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extrapott );//Återställs
+            double extraPott = Convert.ToDouble(info.draws[draw].fund.extraMoney) + Convert.ToDouble(info.draws[draw].fund.rolloverIn);
+            matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott); 
+            matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
+
             
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string stopTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
-            //matris.writeToFile();//Återställs
+            dataGridViewController1.addCalculatedRows(matris);
+            AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
+            matris.writeToFile();
 
             DialogResult dialogResult = MessageBox.Show( "Ta bort tillfälliga filer?", "Ta bort Filer", MessageBoxButtons.YesNo );
             if( dialogResult == DialogResult.Yes )

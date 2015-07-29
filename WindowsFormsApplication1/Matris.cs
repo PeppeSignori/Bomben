@@ -21,14 +21,14 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
         private int läggTillPlusRäknare = 0;
-        private const int MAX = 1771561;
+        private const int MAX3 = 1771561;
         
         
         public void skapaMatrisUtanOddskolumn1()
         {
             int a = 0;
             int h = 0;
-            for (int g = 0; g < 1771561; g = g + 1)
+            for (int g = 0; g < MAX3; g = g + 1)
             {
                 if (g % 161051 == 0 && g != 0)
                 {
@@ -42,7 +42,7 @@ namespace Bomben
         {
             int b = 0;
             int h = 0;
-            for (int g = 0; g < MAX; g = g + 1)
+            for (int g = 0; g < MAX3; g = g + 1)
             {
                 if (g % 14641 == 0 && g != 0)
                 {
@@ -60,7 +60,7 @@ namespace Bomben
         {
             int c = 0;
             int h = 0;
-            for( int g = 0;g < MAX;g = g + 1 )
+            for( int g = 0;g < MAX3;g = g + 1 )
             {
                 if (g % 1331 == 0 && g != 0)
                 {
@@ -78,7 +78,7 @@ namespace Bomben
         {
             int d = 0;
             int h = 0;
-            for( int g = 0;g < MAX;g = g + 1 )
+            for( int g = 0;g < MAX3;g = g + 1 )
             {
                 if (g % 121 == 0 && g != 0)
                 {
@@ -96,7 +96,7 @@ namespace Bomben
         {
             int e = 0;
             int h = 0;
-            for( int g = 0;g < MAX;g = g + 1 )
+            for( int g = 0;g < MAX3;g = g + 1 )
             {
                 if (g % 11 == 0 && g != 0)
                 {
@@ -114,7 +114,7 @@ namespace Bomben
         {
             int f = 0;
             int h = 0;
-            for( int g = 0;g < MAX;g = g + 1 )
+            for( int g = 0;g < MAX3;g = g + 1 )
             {
                 if (g % 11 == 0 && g != 0)
                 {
@@ -151,7 +151,7 @@ namespace Bomben
         public void addColumn( int targetColumn, double[] sourceMatrix )
         {
 
-            for( int row = 0;row < MAX;row = row + 1 )
+            for( int row = 0;row < MAX3;row = row + 1 )
             {
                 allaKombinationer[row, targetColumn] = sourceMatrix[row];
             }
@@ -182,7 +182,7 @@ namespace Bomben
 
             double ROI = ((0.6 * (Convert.ToDouble( omsättning ) + Convert.ToDouble( antalPlus ))) / Convert.ToDouble( antalPlus ));
             
-            Parallel.For( 0, MAX, ii =>
+            Parallel.For( 0, MAX3, ii =>
                 {
                     allaKombinationer[ii, sparKolumn] = ROI;
                     allaKombinationer[ii, (sparKolumn + 1)] = allaKombinationer[ii, sparKolumn] / allaKombinationer[ii, 6];
@@ -190,7 +190,7 @@ namespace Bomben
 
             double firstTemp;
             double secondTemp;
-            Parallel.For( 0, MAX, i =>
+            Parallel.For( 0, MAX3, i =>
             {
                 for( int j = 0; j < bombenStatsSize; j++ )
                 {
