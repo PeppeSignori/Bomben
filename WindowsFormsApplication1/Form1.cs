@@ -377,7 +377,6 @@ namespace Bomben
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match4.under = Convert.ToDouble( sender.Text );
             match4.under = Convert.ToDouble(Match4Under.Text);
             //Sätt till 100% om det finns ett värde i match1.över
             if (match4.över > 1)
