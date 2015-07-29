@@ -131,13 +131,10 @@ namespace Bomben
 
         private void Match2Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match2.under = Convert.ToDouble(Match2Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match2.över > 1)
-            {
-                match2.sättÖverUnderTill100Procent();
-            }
+            match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal.Text);
+            //Kolla så att alla boxar är ifyllda beräkna sedan
+            match2.beräknaFörväntadMålantal();
+            Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
         }
 
         private void Match3Odds1_TextChanged(object sender, EventArgs e)
@@ -186,13 +183,10 @@ namespace Bomben
 
         private void Match3Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match3.under = Convert.ToDouble(Match3Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match3.över > 1)
-            {
-                match3.sättÖverUnderTill100Procent();
-            }
+            match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal.Text);
+            //Kolla så att alla boxar är ifyllda beräkna sedan
+            match3.beräknaFörväntadMålantal();
+            Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString();
         }
 
         private void Match4Odds1_TextChanged(object sender, EventArgs e)
@@ -241,13 +235,10 @@ namespace Bomben
 
         private void Match4Under_TextChanged(object sender, EventArgs e)
         {
-            //Spara värdet från textbox
-            match4.under = Convert.ToDouble(Match4Under.Text);
-            //Sätt till 100% om det finns ett värde i match1.över
-            if (match4.över > 1)
-            {
-                match4.sättÖverUnderTill100Procent();
-            }
+            match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal.Text);
+            //Kolla så att alla boxar är ifyllda beräkna sedan
+            match4.beräknaFörväntadMålantal();
+            Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
         }
 
         private void populateBombenTBs(int draw)
@@ -341,17 +332,59 @@ namespace Bomben
 
         private void Match2FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal);
+            match2.under = Convert.ToDouble(Match2Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match2.över > 1)
+            {
+                match2.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null)
+            {
+                match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal.Text);
+                match2.beräknaFörväntadMålantal();
+                Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
+            }
         }
 
         private void Match3FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal);
+            match3.under = Convert.ToDouble(Match3Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match3.över > 1)
+            {
+                match3.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null)
+            {
+                match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal.Text);
+                match3.beräknaFörväntadMålantal();
+                Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString();
+            }
         }
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
-            match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal);
+            match4.under = Convert.ToDouble(Match4Under.Text);
+            //Sätt till 100% om det finns ett värde i match1.över
+            if (match4.över > 1)
+            {
+                match4.sättÖverUnderTill100Procent();
+            }
+
+
+            //Kolla om alla rutor är ifyllda i så fall börja beräkna!
+            if (Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null)
+            {
+                match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal.Text);
+                match4.beräknaFörväntadMålantal();
+                Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
+            }
         }
 
 
