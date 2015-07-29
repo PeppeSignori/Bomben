@@ -58,6 +58,7 @@
     <Compile Include="MatchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SvsMobileSiteImporterTest.cs" />
+    <Compile Include="PoissonSannolikheterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

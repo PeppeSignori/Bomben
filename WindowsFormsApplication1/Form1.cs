@@ -377,6 +377,7 @@ namespace Bomben
 
         private void Match4FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
+            match4.under = Convert.ToDouble( sender.Text );
             match4.under = Convert.ToDouble(Match4Under.Text);
             //Sätt till 100% om det finns ett värde i match1.över
             if (match4.över > 1)
@@ -430,15 +431,25 @@ namespace Bomben
             //Lägg till dem i matrisUtanOdds.
             matris.skapaAllaResultatKombinationer();
             PoissonSannolikheter poissonSannolikheter = new PoissonSannolikheter();
-            poissonSannolikheter.beräknaAllaResultat(match1, match2);
+            if( info.draws[draw].eventCount == 3 )
+            {
+                poissonSannolikheter.beräknaAllaResultat(match1, match2, match3);
+            }
+            else if( info.draws[draw].eventCount == 4 )
+            {
+                poissonSannolikheter.beräknaAllaResultat( match1, match2, match3, match4 );
+            }
+            else
+            {
+                poissonSannolikheter.beräknaAllaResultat( match1, match2 );
+            }
 
-            
-            matris.läggTillPoissonKolumn( poissonSannolikheter.allaResultat ); //Återställs
+            matris.läggTillPoissonKolumn( poissonSannolikheter.allaResultat );
 
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
-
+            //Behöver lägga till rollover i extrapott eller liknande
             //matris.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extrapott ); //Återställs
             //matris.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extrapott );//Återställs
             
