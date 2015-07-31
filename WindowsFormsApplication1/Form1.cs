@@ -456,19 +456,11 @@ namespace Bomben
             dataGridViewController1.addCalculatedRows(matris3);
             AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
 
-            DialogResult dialogResult = MessageBox.Show( "Ta bort tillfälliga filer?", "Ta bort Filer", MessageBoxButtons.YesNo );
-            if( dialogResult == DialogResult.Yes )
-            {
-                if(File.Exists(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" ))
-                {
-                    File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".zip" );
-                }
-                if(File.Exists(@".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" ))
-                {
-                    File.Delete( @".\downloadTempFolder\PC_P7_D" + chosenDrawId + ".txt" );   
-                }
-            }
+            //Prompta om att ta bort gamla tempFiler
+            Dialogboxes DB = new Dialogboxes();
+            DB.deleteTempFiles(draw);
 
+            
 
 
         }
