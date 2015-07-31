@@ -18,42 +18,6 @@ namespace Bomben
     class Matris
     {
 
-        /*private static Microsoft.Office.Interop.Excel.Workbook mWorkBook;
-        private static Microsoft.Office.Interop.Excel.Sheets mWorkSheets;
-        private static Microsoft.Office.Interop.Excel.Worksheet Blad1;
-        private static Microsoft.Office.Interop.Excel.Application oXL;
-        
-
-        public void writeToExistingExcelDocument()
-        {
-            //Skapa workbook object 
-            string path = @"C:\Users\Erik\Desktop\Bomben\bomben.xlsx";
-            oXL = new Microsoft.Office.Interop.Excel.Application();
-            oXL.Visible = true;
-            oXL.DisplayAlerts = false;
-            mWorkBook = oXL.Workbooks.Open(path, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-            //Get all the sheets in the workbook
-            mWorkSheets = mWorkBook.Worksheets;
-            //Get the allready exists sheet
-            Blad1 = (Microsoft.Office.Interop.Excel.Worksheet)mWorkSheets.get_Item("Blad1");
-            Blad1.Cells[2, 1] = "Fungerar detta?";
-            
-            mWorkBook.SaveAs(path, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal,
-            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
-            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-
-            mWorkBook.Close(false, false, false);
-            Blad1 = null;
-            mWorkBook = null;
-            oXL.Quit();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-        }
-        */
-
-
         public double[,] allaKombinationer = new double[1771561, 11];
         public double[] matrisUtanOddsKolumn1 = new double[1771561];
         public double[] matrisUtanOddsKolumn2 = new double[1771561];
@@ -275,7 +239,7 @@ namespace Bomben
 
         }
 
-        public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds, double extraPott )
+        public void Execute( double[] poissonColumn, int sparKolumn, int antalPlus, int omsättning, double[,] sVsOdds, double extraPott, double rollOver )
         {
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
@@ -289,8 +253,9 @@ namespace Bomben
             //Fill CPUROI
             double doubleAntalPlus = Convert.ToDouble(antalPlus);
             double doubleTurnOver = Convert.ToDouble(omsättning);
+            double doubleRollOver = Convert.ToDouble( rollOver );
             double doubleExtraPott = Convert.ToDouble(extraPott);
-            double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver, doubleExtraPott};
+            double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver, doubleExtraPott, doubleRollOver};
             
             //cudaAddAvailableOdds
             int[] allCombo = new int[MAX];
@@ -381,9 +346,14 @@ namespace Bomben
         public static void cudaAddPlusAndROI(GThread thread, double[] gpuPoissonColumn, double[] gpuSparResultat, double[] gpuSparResultatPlus, double[] gpuROI, string[] gpuAllCombo, string[] gpuAvailableOdds, double[] gpuSvenskaSpelOdds, int gpuAvailableOddsLength)
         {
             //cudaAddPlusAndROI
-            double ROI = (gpuROI[2] + ((0.6 * gpuROI[1] + gpuROI[0]) / gpuROI[0]));
-            //double ROI = (extrapott + ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus)))) / Convert.ToDouble(antalPlus));
-
+            //double[] CPUROI = new double[] { doubleAntalPlus, doubleTurnOver, doubleExtraPott, doubleRollOver};
+            //gpuROI[0] = AntalPlus
+            //gpuROI[1] = TurnOver
+            //gpuROI[2] = ExtraPott
+            //gpuROI[3] = RollOver
+            
+            double ROI = ((gpuROI[2] + ((0.6 * (Convert.ToDouble( gpuROI[1] ) + Convert.ToDouble( gpuROI[0] ))))) / Convert.ToDouble( gpuROI[0] ));
+            
             int tid = thread.threadIdx.x + thread.blockIdx.x * thread.blockDim.x;
 
             double firstTemp, secondTemp;
@@ -398,9 +368,8 @@ namespace Bomben
 
                     if (gpuAllCombo[tid] == gpuAvailableOdds[i])
                     {
-                        
-                        //gpuROI = { doubleAntalPlus, doubleTurnOver};
-                        firstTemp = (0.6 * (gpuROI[1] + gpuROI[0])) / ((0.6 * gpuROI[1] / gpuSvenskaSpelOdds[i]) + gpuROI[0]);  
+                        firstTemp = ((0.6 * (Convert.ToDouble( gpuROI[1] ) + Convert.ToDouble( gpuROI[0] ))) + gpuROI[2]) / 
+                                                ((((0.6 * (Convert.ToDouble( gpuROI[1] ))) + gpuROI[2]) / gpuSvenskaSpelOdds[i]) + Convert.ToDouble( gpuROI[0] ));
                         gpuSparResultat[tid] = firstTemp;
                         secondTemp = gpuSparResultat[tid] / gpuPoissonColumn[tid]; 
                         gpuSparResultatPlus[tid] = secondTemp;
@@ -412,81 +381,7 @@ namespace Bomben
                   
         }
 
-        /*
-        public void cudaLäggTillTillgängligaOdds(int sparKolumn, double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning)
-        {
-            double firstTemp;
-            double secondTemp;
-            Parallel.For(0, MAX, i =>
-            {
-                for (int j = 0; j < bombenStatsSize; j++)
-                {
-
-
-                    if (allaKombinationer[i, 0] == svSpelOdds[j, 1])
-                    {
-                        if (allaKombinationer[i, 1] == svSpelOdds[j, 2])
-                        {
-                            if (allaKombinationer[i, 2] == svSpelOdds[j, 3])
-                            {
-                                if (allaKombinationer[i, 3] == svSpelOdds[j, 4])
-                                {
-                                    if (allaKombinationer[i, 4] == svSpelOdds[j, 5])
-                                    {
-                                        if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
-                                        {
-                                            //firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
-                                            allaKombinationer[i, sparKolumn] = firstTemp;
-                                            //secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-                                            allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-        }
-        
-        [Cudafy]
-        public static void cudaAddAvailableOdds(double[,] svSpelOdds, int bombenStatsSize)
-        {
-
-            double firstTemp;
-            double secondTemp;
-            
-            for (int i = 0; i < bombenStatsSize; i++)
-            {
-
-                if (allaKombinationer[i, 0] == svSpelOdds[j, 1])
-                {
-                    if (allaKombinationer[i, 1] == svSpelOdds[j, 2])
-                    {
-                        if (allaKombinationer[i, 2] == svSpelOdds[j, 3])
-                        {
-                            if (allaKombinationer[i, 3] == svSpelOdds[j, 4])
-                            {
-                                if (allaKombinationer[i, 4] == svSpelOdds[j, 5])
-                                {
-                                    if (allaKombinationer[i, 5] == svSpelOdds[j, 6])
-                                    {
-                                        firstTemp = ((0.6 * (Convert.ToDouble(omsättning) + Convert.ToDouble(antalPlus))) / ((0.6 * Convert.ToDouble(omsättning) / svSpelOdds[j, 0]) + Convert.ToDouble(antalPlus)));
-                                        allaKombinationer[i, sparKolumn] = firstTemp;
-                                        secondTemp = allaKombinationer[i, sparKolumn] / allaKombinationer[i, 6];
-                                        allaKombinationer[i, (sparKolumn + 1)] = secondTemp;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
- 
-            }
-        }
-        */
-        
+               
         
         public void writeToFile()
         {
