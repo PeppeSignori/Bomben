@@ -17,7 +17,7 @@ namespace Bomben
         
         SvSJsonGetter JsonInfo = new SvSJsonGetter();
         SvSInfo info = new SvSInfo();
-        int drawLength=0;
+        int currentDraw=0;
         
         Game match1 = new Game();
         Game match2 = new Game();
@@ -32,7 +32,7 @@ namespace Bomben
             
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
-            populateBombenTBs(drawLength);
+            populateBombenTBs(currentDraw);
             dataGridViewController1.setDeafaultHeadersAndWidth();
             
 
@@ -236,6 +236,7 @@ namespace Bomben
         {
 
         }
+        
 
         private void populateBombenTBs(int draw)
         {
@@ -284,10 +285,28 @@ namespace Bomben
                     textBoxes[j+1].Text = info.draws[draw].events[i].match.participants[1].name;    
                 }
 
-                //Skriver ut omsättning, extrapengar och rullpott
-                turnOverLabel.Text = "Omsättning: " +info.draws[draw].currentNetSales;
-                extraPengarLabel.Text = "Extrapengar: " + info.draws[draw].fund.extraMoney;
-                rullPottLabel.Text = "Rullpott: " + info.draws[draw].fund.rolloverIn;
+                //Skriver ut omsättning
+
+                decimal myDec = Convert.ToDecimal(info.draws[draw].currentNetSales);
+                myDec = Decimal.Round(myDec);
+                string myMoney = myDec.ToString("0,0");
+                turnOverLabel.Text = "Omsättning: " + myMoney +" kr";
+
+                //extrapengar
+                myDec = Convert.ToDecimal(info.draws[draw].fund.extraMoney);
+                myDec = Decimal.Round(myDec);
+                myMoney = myDec.ToString("0,0");
+
+                extraPengarLabel.Text = "Extrapengar: " + myMoney + " kr";
+
+                //Rullpott
+                myDec = Convert.ToDecimal(info.draws[draw].fund.rolloverIn);
+                myDec = Decimal.Round(myDec);
+                myMoney = myDec.ToString("0,0");
+
+                rullPottLabel.Text = "Rullpott: " + myMoney + " kr";
+
+
                 //Skriver ut spelstopp
                 try
                 {
@@ -306,14 +325,14 @@ namespace Bomben
         //Skriver ut n'sta bomb
         private void previousButton_Click(object sender, EventArgs e)
         {
-            drawLength = (drawLength -1) < 0 ? info.draws.GetLength(0)-1 : (drawLength -1);
-            populateBombenTBs(drawLength);
+            currentDraw = (currentDraw -1) < 0 ? info.draws.GetLength(0)-1 : (currentDraw -1);
+            populateBombenTBs(currentDraw);
         }
         //Skriver ut f;reg[ende bomb
         private void nextButton_Click(object sender, EventArgs e)
         {
-            drawLength = (drawLength + 1) > info.draws.GetLength(0)-1 ? 0 : (drawLength + 1);
-            populateBombenTBs(drawLength);
+            currentDraw = (currentDraw + 1) > info.draws.GetLength(0)-1 ? 0 : (currentDraw + 1);
+            populateBombenTBs(currentDraw);
         }
 
         private void Match1FörväntadMålantal_TextChanged(object sender, EventArgs e)
@@ -399,9 +418,9 @@ namespace Bomben
 
         private void calculateBtn_Click( object sender, EventArgs e)
         {
-            int draw = drawLength;
+           
             SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
-            int chosenDrawId = info.draws[draw].drawNumber;
+            int chosenDrawId = info.draws[currentDraw].drawNumber;
             //webadress
             string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
             //filnamn
@@ -426,11 +445,11 @@ namespace Bomben
             //Lägg till dem i matrisUtanOdds.
             matris3.skapaAllaResultatKombinationer();
             PoissonSannolikheter poissonSannolikheter = new PoissonSannolikheter();
-            if( info.draws[draw].eventCount == 3 )
+            if( info.draws[currentDraw].eventCount == 3 )
             {
                 poissonSannolikheter.beräknaAllaResultat(match1, match2, match3);
             }
-            else if( info.draws[draw].eventCount == 4 )
+            else if( info.draws[currentDraw].eventCount == 4 )
             {
                 poissonSannolikheter.beräknaAllaResultat( match1, match2, match3, match4 );
             }
@@ -445,7 +464,7 @@ namespace Bomben
             string startTime = DateTime.Now.ToString( "HH:mm:ss tt" );
             
             //Behöver lägga till rollover i extrapott eller liknande
-            double extraPott = Convert.ToDouble(info.draws[draw].fund.extraMoney) + Convert.ToDouble(info.draws[draw].fund.rolloverIn);
+            double extraPott = Convert.ToDouble(info.draws[currentDraw].fund.extraMoney) + Convert.ToDouble(info.draws[currentDraw].fund.rolloverIn);
             matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott); 
             matris3.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
 
@@ -458,7 +477,7 @@ namespace Bomben
 
             //Prompta om att ta bort gamla tempFiler
             Dialogboxes DB = new Dialogboxes();
-            DB.deleteTempFiles(draw);
+            DB.deleteTempFiles(currentDraw);
 
             
 
@@ -469,7 +488,7 @@ namespace Bomben
         {
             Game[] matches = new Game[] { match1, match2, match3, match4 };
                         
-            int antalmatcher = info.draws[drawLength].eventCount;
+            int antalmatcher = info.draws[currentDraw].eventCount;
 
             switch (antalmatcher)
             {
@@ -556,8 +575,14 @@ namespace Bomben
                 matris3.writeToFile();
             //}
 
-        }   
-            
+        }
+
+        private void updateInfoBtn_Click(object sender, EventArgs e)
+        {
+            string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
+            info = JsonConvert.DeserializeObject<SvSInfo>(result);
+            populateBombenTBs(currentDraw);
+        }
     }
 
 
