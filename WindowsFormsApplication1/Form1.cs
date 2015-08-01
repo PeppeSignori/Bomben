@@ -497,6 +497,7 @@ namespace Bomben
             //if (matris3.allaKombinationer != null)
             //{
                 matris3.writeToFile();
+                dataGridViewController1.printGridRowes();
             //}
 
         }

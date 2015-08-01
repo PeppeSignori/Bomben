@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,9 +45,9 @@ namespace Bomben
 
             //For testing purposes
 
-     //       this.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-       //     this.Rows.Add( "3", "2", "3", "6", "5", "10", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-        //    this.Rows.Add( "2", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+            //this.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+            //this.Rows.Add( "3", "2", "3", "6", "5", "10", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+            //this.Rows.Add( "2", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
             
        
         }
@@ -62,6 +63,31 @@ namespace Bomben
                 }
             }
             var me = Convert.ToInt32(this.Rows[0].Cells[8].Value);
+        }
+
+        public void printGridRowes()
+        {
+            
+            StreamWriter sw = new StreamWriter("EgnaRader.txt");
+            sw.WriteLine("Bomben,Bombennummer=X,Insats=1");
+            
+            for (int i = 0; i<(this.RowCount-1); i++ )
+            {   
+                //För varje ny rad
+                sw.Write("E");
+                
+                for(int ii = 0; ii<6; ii=ii+2)
+                {
+                    sw.Write(",");
+
+                    sw.Write( this.Rows[i].Cells[ii].Value.ToString() +"-" + this.Rows[i].Cells[(ii+1)].Value.ToString() );
+                }
+                sw.Write("\r\n");
+            }
+                        
+            sw.Close();
+                      
+        
         }
 
 
