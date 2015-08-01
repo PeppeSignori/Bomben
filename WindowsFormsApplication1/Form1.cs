@@ -484,10 +484,30 @@ namespace Bomben
 
         }
 
+        
+
+        private void SkrivUtTextFilBtn_Click(object sender, EventArgs e)
+        {
+            //if (matris3.allaKombinationer != null)
+            //{
+                matris3.writeToFile();
+            //}
+
+        }
+
+        private void updateInfoBtn_Click(object sender, EventArgs e)
+        {
+            string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
+            info = JsonConvert.DeserializeObject<SvSInfo>(result);
+            populateBombenTBs(currentDraw);
+        }
+
         private void BeräknaFörväntatMålAntalBtn_Click(object sender, EventArgs e)
         {
+           
             Game[] matches = new Game[] { match1, match2, match3, match4 };
-                        
+            TextBox[] oddsUnder = new TextBox[] { Match1Under, Match2Under, Match3Under, Match4Under };
+            TextBox[] oddsÖver = new TextBox[] { Match1Över, Match2Över, Match3Över, Match4Över };
             int antalmatcher = info.draws[currentDraw].eventCount;
 
             switch (antalmatcher)
@@ -506,19 +526,20 @@ namespace Bomben
                     match2.odds1 = Convert.ToDouble(Match2Odds1.Text);
                     match2.oddsX = Convert.ToDouble(Match2OddsX.Text);
                     match2.odds2 = Convert.ToDouble(Match2Odds2.Text);
-                    
+
                     match1.odds1 = Convert.ToDouble(Match1Odds1.Text);
                     match1.oddsX = Convert.ToDouble(Match1OddsX.Text);
                     match1.odds2 = Convert.ToDouble(Match1Odds2.Text);
                     break;
 
-            } 
+            }
 
             for (int i = 0; i < antalmatcher; i++)
             {
                 matches[i].sättOddsTill100Procent();
                 //Spara värdet från textbox 
-                matches[i].under = Convert.ToDouble(Match1Under.Text);
+                matches[i].under = Convert.ToDouble( oddsUnder[i].Text );
+                matches[i].över = Convert.ToDouble( oddsÖver[i].Text );
                 //Sätt till 100% om det finns ett värde i match1.över
                 if (matches[i].över > 1)
                 {
@@ -528,7 +549,7 @@ namespace Bomben
 
 
             //Kolla om alla rutor är ifyllda i så fall börja beräkna!
-            switch (antalmatcher )
+            switch (antalmatcher)
             {
                 case 4:
                     if (Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null)
@@ -537,7 +558,7 @@ namespace Bomben
                         match4.beräknaFörväntadMålantal();
                         Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
                     }
-                    goto case 3;   
+                    goto case 3;
                 case 3:
                     if (Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null)
                     {
@@ -547,7 +568,7 @@ namespace Bomben
                     }
                     goto case 2;
                 case 2:
-                    
+
                     if (Match1Odds1.Text != null && Match1OddsX.Text != null && Match1Odds2.Text != null)
                     {
                         match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
@@ -562,27 +583,13 @@ namespace Bomben
                         Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
                     }
                     break;
-            
-                    
+
+
             }
-
         }
+        
 
-        private void SkrivUtTextFilBtn_Click(object sender, EventArgs e)
-        {
-            //if (matris3.allaKombinationer != null)
-            //{
-                matris3.writeToFile();
-            //}
-
-        }
-
-        private void updateInfoBtn_Click(object sender, EventArgs e)
-        {
-            string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
-            info = JsonConvert.DeserializeObject<SvSInfo>(result);
-            populateBombenTBs(currentDraw);
-        }
+        
     }
 
 

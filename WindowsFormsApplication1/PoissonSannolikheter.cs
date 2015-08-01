@@ -24,7 +24,7 @@ namespace Bomben
                     k = 0;
                 }
 
-                this.resultat[l++] = this.hemmaMålSannolikhet[j] * this.bortaMålSannolikhet[k++];
+                //this.resultat[l++] = this.hemmaMålSannolikhet[j] * this.bortaMålSannolikhet[k++];
             }
         }
 
