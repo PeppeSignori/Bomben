@@ -154,11 +154,11 @@ namespace Bomben
             {
                 if (upDirection)
                 {
-                    this.förväntatAntalmål += 0.01; 
+                    this.förväntatAntalmål += 0.005; 
                 }
                 else
                 {
-                    this.förväntatAntalmål -= 0.01;
+                    this.förväntatAntalmål -= 0.005;
                 }
 
                 //Sannolikheterna från Poisson fås mha oddsen på 1,X,2 som skrivs in i gui och startvärdet+-0,01 på förväntat målantal.

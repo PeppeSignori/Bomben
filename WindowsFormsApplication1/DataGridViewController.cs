@@ -32,26 +32,36 @@ namespace Bomben
             this.Columns[3].Width = 25;
             this.Columns[4].Width = 25;
             this.Columns[5].Width = 25;
+            this.Columns[6].Width = 60;
+            this.Columns[7].Width = 60;
+            this.Columns[8].Width = 60;
+            this.Columns[9].Width = 60;
+            this.Columns[10].Width = 60;
+
+            
+
             
 
             //For testing purposes
-            /*
-            this.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-            this.Rows.Add( "3", "2", "3", "6", "5", "10", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-            this.Rows.Add( "2", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
-            */
+
+     //       this.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+       //     this.Rows.Add( "3", "2", "3", "6", "5", "10", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+        //    this.Rows.Add( "2", "2", "3", "4", "5", "6", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
+            
        
         }
 
-        public void addCalculatedRows( Matris3 matrix )
+        public void addCalculatedRows( Matris3 matrix, int[] maxConstraints )
         {
+
             for( int rad = 0; rad < 1771561; rad++ )
             {
-                if( matrix.allaKombinationer[rad, 10] > 1 && matrix.allaKombinationer[rad, 0] < 7 && matrix.allaKombinationer[rad, 1] < 7 && matrix.allaKombinationer[rad, 2] < 7 && matrix.allaKombinationer[rad, 3] < 7 && matrix.allaKombinationer[rad, 4] < 7 && matrix.allaKombinationer[rad, 5] < 7 )
+                if (matrix.allaKombinationer[rad, 10] > 1 && matrix.allaKombinationer[rad, 0] < maxConstraints[0] && matrix.allaKombinationer[rad, 1] < maxConstraints[1] && matrix.allaKombinationer[rad, 2] < maxConstraints[2] && matrix.allaKombinationer[rad, 3] < maxConstraints[3] && matrix.allaKombinationer[rad, 4] < maxConstraints[4] && matrix.allaKombinationer[rad, 5] < maxConstraints[5])
                 {
-                    this.Rows.Add( matrix.allaKombinationer[rad, 0], matrix.allaKombinationer[rad, 1], matrix.allaKombinationer[rad, 2], matrix.allaKombinationer[rad, 3], matrix.allaKombinationer[rad, 4], matrix.allaKombinationer[rad, 5], matrix.allaKombinationer[rad, 6], matrix.allaKombinationer[rad, 7], matrix.allaKombinationer[rad, 8], matrix.allaKombinationer[rad, 9], matrix.allaKombinationer[rad, 10], matrix.allaKombinationer[rad, 10] );                 
+                      this.Rows.Add( matrix.allaKombinationer[rad, 0], matrix.allaKombinationer[rad, 1], matrix.allaKombinationer[rad, 2], matrix.allaKombinationer[rad, 3], matrix.allaKombinationer[rad, 4], matrix.allaKombinationer[rad, 5], Math.Round(matrix.allaKombinationer[rad, 6],0), Math.Round(matrix.allaKombinationer[rad, 7],0), Math.Round(matrix.allaKombinationer[rad, 8],2), Math.Round(matrix.allaKombinationer[rad, 9],0), Math.Round(matrix.allaKombinationer[rad, 10],2) );                 
                 }
             }
+            var me = Convert.ToInt32(this.Rows[0].Cells[8].Value);
         }
 
 

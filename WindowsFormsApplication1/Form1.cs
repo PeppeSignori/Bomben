@@ -465,15 +465,21 @@ namespace Bomben
             
             //Behöver lägga till rollover i extrapott eller liknande
             double extraPott = Convert.ToDouble(info.draws[currentDraw].fund.extraMoney) + Convert.ToDouble(info.draws[currentDraw].fund.rolloverIn);
-            matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott); 
+            matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott ); 
             matris3.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
+
 
             
             //Stämpla starttid sluttid skrivs ut i matris.writeToFile
             string stopTime = DateTime.Now.ToString( "HH:mm:ss tt" );
-            
-            dataGridViewController1.addCalculatedRows(matris3);
+
+            MessageBox.Show("Start: " + startTime.ToString() + "\n" + "Stopp: " + stopTime.ToString());
+
+
+            int[] maxMål = new int[] { Convert.ToInt32(MaxMålHemmalagMatch1.Text), Convert.ToInt32(MaxMålBortalagMatch1.Text), Convert.ToInt32(MaxMålHemmalagMatch2.Text), Convert.ToInt32(MaxMålBortalagMatch2.Text), Convert.ToInt32(MaxMålHemmalagMatch3.Text), Convert.ToInt32(MaxMålBortalagMatch3.Text), Convert.ToInt32(MaxMålHemmalagMatch4.Text), Convert.ToInt32(MaxMålBortalagMatch4.Text) };
+            dataGridViewController1.addCalculatedRows(matris3, maxMål);
             AntalRaderTextLabel.Text = (dataGridViewController1.RowCount - 1).ToString();
+
 
             //Prompta om att ta bort gamla tempFiler
             Dialogboxes DB = new Dialogboxes();
@@ -556,7 +562,7 @@ namespace Bomben
                     {
                         match4.förväntatAntalmål = Convert.ToDouble(Match4FörväntadMålantal.Text);
                         match4.beräknaFörväntadMålantal();
-                        Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString();
+                        Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString("0.###");
                     }
                     goto case 3;
                 case 3:
@@ -564,7 +570,7 @@ namespace Bomben
                     {
                         match3.förväntatAntalmål = Convert.ToDouble(Match3FörväntadMålantal.Text);
                         match3.beräknaFörväntadMålantal();
-                        Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString();
+                        Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString("0.###");
                     }
                     goto case 2;
                 case 2:
@@ -573,22 +579,22 @@ namespace Bomben
                     {
                         match1.förväntatAntalmål = Convert.ToDouble(Match1FörväntadMålantal.Text);
                         match1.beräknaFörväntadMålantal();
-                        Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString();
+                        Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString("0.###");
                     }
 
                     if (Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null)
                     {
                         match2.förväntatAntalmål = Convert.ToDouble(Match2FörväntadMålantal.Text);
                         match2.beräknaFörväntadMålantal();
-                        Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString();
+                        Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString("0.###");
                     }
                     break;
 
 
             }
         }
-        
 
+ 
         
     }
 

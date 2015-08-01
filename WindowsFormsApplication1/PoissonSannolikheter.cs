@@ -50,7 +50,7 @@ namespace Bomben
                     j = 0;
                     k = 0;
                 }
-                allaResultat[l++] = Math.Round(1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++]), 2);
+                allaResultat[l++] = 1 / (Match1.resultat[i] * Match2.resultat[j] * Match3.resultat[k++]);
             }
         }
 
