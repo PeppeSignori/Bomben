@@ -66,7 +66,7 @@
             this.Match4Under = new System.Windows.Forms.TextBox();
             this.Match4UträknatMålAntal = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.updateBtn = new System.Windows.Forms.Button();
+            this.updateInfoBtn = new System.Windows.Forms.Button();
             this.SkrivUtTextFilBtn = new System.Windows.Forms.Button();
             this.BeräknaFörväntatMålAntalBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -131,7 +131,6 @@
             this.Match1Över.Size = new System.Drawing.Size(60, 20);
             this.Match1Över.TabIndex = 15;
             this.Match1Över.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match1Över.TextChanged += new System.EventHandler(this.Match1Över_TextChanged);
             // 
             // Match1Under
             // 
@@ -219,7 +218,6 @@
             this.Match2Över.Size = new System.Drawing.Size(60, 20);
             this.Match2Över.TabIndex = 24;
             this.Match2Över.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match2Över.TextChanged += new System.EventHandler(this.Match2Över_TextChanged);
             // 
             // Match2Under
             // 
@@ -293,7 +291,6 @@
             this.Match3Över.Size = new System.Drawing.Size(60, 20);
             this.Match3Över.TabIndex = 33;
             this.Match3Över.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match3Över.TextChanged += new System.EventHandler(this.Match3Över_TextChanged);
             // 
             // Match3Under
             // 
@@ -367,7 +364,6 @@
             this.Match4Över.Size = new System.Drawing.Size(60, 20);
             this.Match4Över.TabIndex = 42;
             this.Match4Över.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Match4Över.TextChanged += new System.EventHandler(this.Match4Över_TextChanged);
             // 
             // Match4Under
             // 
@@ -393,17 +389,18 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // updateBtn
+            // updateInfoBtn
             // 
-            this.updateBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.updateBtn.Location = new System.Drawing.Point(40, 11);
-            this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(180, 25);
-            this.updateBtn.TabIndex = 46;
-            this.updateBtn.TabStop = false;
-            this.updateBtn.Text = "Uppdatera info";
-            this.updateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.updateBtn.UseVisualStyleBackColor = false;
+            this.updateInfoBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.updateInfoBtn.Location = new System.Drawing.Point(40, 11);
+            this.updateInfoBtn.Name = "updateInfoBtn";
+            this.updateInfoBtn.Size = new System.Drawing.Size(180, 25);
+            this.updateInfoBtn.TabIndex = 46;
+            this.updateInfoBtn.TabStop = false;
+            this.updateInfoBtn.Text = "Uppdatera info";
+            this.updateInfoBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.updateInfoBtn.UseVisualStyleBackColor = false;
+            this.updateInfoBtn.Click += new System.EventHandler(this.updateInfoBtn_Click);
             // 
             // SkrivUtTextFilBtn
             // 
@@ -657,7 +654,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BeräknaFörväntatMålAntalBtn);
             this.Controls.Add(this.SkrivUtTextFilBtn);
-            this.Controls.Add(this.updateBtn);
+            this.Controls.Add(this.updateInfoBtn);
             this.Controls.Add(this.Match4UträknatMålAntal);
             this.Controls.Add(this.Match4Under);
             this.Controls.Add(this.Match4Över);
@@ -742,7 +739,7 @@
         private System.Windows.Forms.TextBox Match4Under;
         private System.Windows.Forms.TextBox Match4UträknatMålAntal;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Button updateBtn;
+        private System.Windows.Forms.Button updateInfoBtn;
         private System.Windows.Forms.Button SkrivUtTextFilBtn;
         private System.Windows.Forms.Button BeräknaFörväntatMålAntalBtn;
         private System.Windows.Forms.Label label1;
