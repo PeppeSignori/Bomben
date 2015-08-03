@@ -479,7 +479,7 @@ namespace Bomben
             Dialogboxes DB = new Dialogboxes();
             DB.deleteTempFiles(currentDraw);
 
-            
+            //COmment
 
 
         }
@@ -490,7 +490,14 @@ namespace Bomben
         {
             //if (matris3.allaKombinationer != null)
             //{
-                matris3.writeToFile();
+            foreach (var row in dataGridViewController1.Rows)
+            {
+                int me = 1;
+                
+            }
+                
+            
+            matris3.writeToFile();
             //}
 
         }
