@@ -236,12 +236,25 @@ namespace Bomben
             
             for (int rad = 0; rad < 1771561; rad++)
             {
-                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 7 && allaKombinationer[rad, 1] < 7 && allaKombinationer[rad, 2] < 7 && allaKombinationer[rad, 3] < 7 && allaKombinationer[rad, 4] < 7 && allaKombinationer[rad, 5] < 7)
+                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 4 && allaKombinationer[rad, 1] < 4 && allaKombinationer[rad, 2] < 4 && allaKombinationer[rad, 3] < 4 && allaKombinationer[rad, 4] < 4 && allaKombinationer[rad, 5] < 4)
                 {
                     for (int kol = 0; kol < 11; kol++)
                     {
-                        sw.Write(allaKombinationer[rad, kol]);
-                        sw.Write("; ");
+                        if (kol == 7 || kol == 8 || kol == 10)
+                        {
+                            sw.Write(Math.Round(allaKombinationer[rad, kol],0));
+                            sw.Write("; ");
+                        }
+                        else if (kol == 9 || kol == 11)
+                        {
+                            sw.Write(Math.Round(allaKombinationer[rad, kol], 2));
+                            sw.Write("; ");
+                        }
+                        else
+                        {
+                            sw.Write(allaKombinationer[rad, kol]);
+                            sw.Write("; ");
+                        }
                     }
                     sw.Write("\r\n");
                 }
