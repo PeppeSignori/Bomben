@@ -37,7 +37,7 @@ namespace Bomben
             
 
         }
-        
+        /*
         private void Match1Odds1_TextChanged(object sender, EventArgs e)
         {
             //Spara värdet från textbox
@@ -236,7 +236,7 @@ namespace Bomben
         {
 
         }
-        
+        */
 
         private void populateBombenTBs(int draw)
         {
@@ -286,7 +286,6 @@ namespace Bomben
                 }
 
                 //Skriver ut omsättning
-
                 decimal myDec = Convert.ToDecimal(info.draws[draw].currentNetSales);
                 myDec = Decimal.Round(myDec);
                 string myMoney = myDec.ToString("0,0");
@@ -418,9 +417,17 @@ namespace Bomben
 
         private void calculateBtn_Click( object sender, EventArgs e)
         {
-           
+            int chosenDrawId;
+            if( olderGameChkbox.Checked )
+            {
+                chosenDrawId = Convert.ToInt32( olderGameTb.Text );
+            }
+            else
+            {
+                chosenDrawId = info.draws[currentDraw].drawNumber;
+            }
+
             SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
-            int chosenDrawId = info.draws[currentDraw].drawNumber;
             //webadress
             string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
             //filnamn
@@ -511,7 +518,8 @@ namespace Bomben
 
         private void BeräknaFörväntatMålAntalBtn_Click(object sender, EventArgs e)
         {
-           
+            
+
             Game[] matches = new Game[] { match1, match2, match3, match4 };
             TextBox[] oddsUnder = new TextBox[] { Match1Under, Match2Under, Match3Under, Match4Under };
             TextBox[] oddsÖver = new TextBox[] { Match1Över, Match2Över, Match3Över, Match4Över };
@@ -593,6 +601,25 @@ namespace Bomben
 
 
             }
+        }
+
+        private void olderGameChkbox_CheckedChanged( object sender, EventArgs e )
+        {
+            //Inaktivera textboxar
+            bool disableTeamTextboxes = olderGameChkbox.Checked ? false : true;
+
+            bombNrTB.Enabled = disableTeamTextboxes;
+            textBox16.Enabled = disableTeamTextboxes;
+            textBox19.Enabled = disableTeamTextboxes;
+            textBox28.Enabled = disableTeamTextboxes;
+            textBox37.Enabled = disableTeamTextboxes;
+            textBox17.Enabled = disableTeamTextboxes;
+            textBox20.Enabled = disableTeamTextboxes;
+            textBox29.Enabled = disableTeamTextboxes;
+            textBox38.Enabled = disableTeamTextboxes;
+
+            olderGameTb.Enabled = !disableTeamTextboxes;
+
         }
 
  

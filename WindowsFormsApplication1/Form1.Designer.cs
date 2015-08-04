@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Match1Odds1 = new System.Windows.Forms.TextBox();
             this.Match1OddsX = new System.Windows.Forms.TextBox();
             this.Match1Odds2 = new System.Windows.Forms.TextBox();
@@ -65,7 +64,6 @@
             this.Match4Över = new System.Windows.Forms.TextBox();
             this.Match4Under = new System.Windows.Forms.TextBox();
             this.Match4UträknatMålAntal = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.updateInfoBtn = new System.Windows.Forms.Button();
             this.SkrivUtTextFilBtn = new System.Windows.Forms.Button();
             this.BeräknaFörväntatMålAntalBtn = new System.Windows.Forms.Button();
@@ -97,6 +95,8 @@
             this.MaxMålHemmalagMatch4 = new System.Windows.Forms.TextBox();
             this.MaxMålBortalagMatch4 = new System.Windows.Forms.TextBox();
             this.MaxAntalMål = new System.Windows.Forms.Label();
+            this.olderGameChkbox = new System.Windows.Forms.CheckBox();
+            this.olderGameTb = new System.Windows.Forms.TextBox();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
@@ -413,11 +413,6 @@
             this.Match4UträknatMålAntal.TabStop = false;
             this.Match4UträknatMålAntal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // updateInfoBtn
             // 
             this.updateInfoBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -434,7 +429,7 @@
             // SkrivUtTextFilBtn
             // 
             this.SkrivUtTextFilBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.SkrivUtTextFilBtn.Location = new System.Drawing.Point(40, 699);
+            this.SkrivUtTextFilBtn.Location = new System.Drawing.Point(43, 653);
             this.SkrivUtTextFilBtn.Name = "SkrivUtTextFilBtn";
             this.SkrivUtTextFilBtn.Size = new System.Drawing.Size(78, 25);
             this.SkrivUtTextFilBtn.TabIndex = 47;
@@ -733,13 +728,32 @@
             this.MaxAntalMål.Text = "Max mål";
             this.MaxAntalMål.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // olderGameChkbox
+            // 
+            this.olderGameChkbox.AutoSize = true;
+            this.olderGameChkbox.Location = new System.Drawing.Point(153, 18);
+            this.olderGameChkbox.Name = "olderGameChkbox";
+            this.olderGameChkbox.Size = new System.Drawing.Size(101, 17);
+            this.olderGameChkbox.TabIndex = 78;
+            this.olderGameChkbox.Text = "Spela äldre spel";
+            this.olderGameChkbox.UseVisualStyleBackColor = true;
+            this.olderGameChkbox.CheckedChanged += new System.EventHandler(this.olderGameChkbox_CheckedChanged);
+            // 
+            // olderGameTb
+            // 
+            this.olderGameTb.Enabled = false;
+            this.olderGameTb.Location = new System.Drawing.Point(260, 15);
+            this.olderGameTb.Name = "olderGameTb";
+            this.olderGameTb.Size = new System.Drawing.Size(100, 20);
+            this.olderGameTb.TabIndex = 80;
+            // 
             // dataGridViewController1
             // 
             this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewController1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewController1.Location = new System.Drawing.Point(40, 280);
             this.dataGridViewController1.Name = "dataGridViewController1";
-            this.dataGridViewController1.Size = new System.Drawing.Size(730, 413);
+            this.dataGridViewController1.Size = new System.Drawing.Size(730, 367);
             this.dataGridViewController1.TabIndex = 67;
             // 
             // Form1
@@ -747,7 +761,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(798, 747);
+            this.ClientSize = new System.Drawing.Size(798, 694);
+            this.Controls.Add(this.olderGameTb);
+            this.Controls.Add(this.olderGameChkbox);
             this.Controls.Add(this.MaxAntalMål);
             this.Controls.Add(this.MaxMålBortalagMatch4);
             this.Controls.Add(this.MaxMålHemmalagMatch4);
@@ -863,7 +879,6 @@
         private System.Windows.Forms.TextBox Match4Över;
         private System.Windows.Forms.TextBox Match4Under;
         private System.Windows.Forms.TextBox Match4UträknatMålAntal;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button updateInfoBtn;
         private System.Windows.Forms.Button SkrivUtTextFilBtn;
         private System.Windows.Forms.Button BeräknaFörväntatMålAntalBtn;
@@ -896,6 +911,8 @@
         private System.Windows.Forms.TextBox MaxMålHemmalagMatch4;
         private System.Windows.Forms.TextBox MaxMålBortalagMatch4;
         private System.Windows.Forms.Label MaxAntalMål;
+        private System.Windows.Forms.CheckBox olderGameChkbox;
+        private System.Windows.Forms.TextBox olderGameTb;
     }
 }
 
