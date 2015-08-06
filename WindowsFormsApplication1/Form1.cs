@@ -33,7 +33,7 @@ namespace Bomben
             string result = JsonInfo.getJsonString(new Uri(@"https://www.svenskaspel.se/bomben"));
             info = JsonConvert.DeserializeObject<SvSInfo>(result);
             populateBombenTBs(currentDraw);
-            dataGridViewController1.setDeafaultHeadersAndWidth();
+            dataGridViewController1.setDeafaultHeadersAndWidth(tbAntalPlus1, tbAntalPlus2);
             
 
         }
@@ -333,7 +333,7 @@ namespace Bomben
             currentDraw = (currentDraw + 1) > info.draws.GetLength(0)-1 ? 0 : (currentDraw + 1);
             populateBombenTBs(currentDraw);
         }
-
+        /*
         private void Match1FörväntadMålantal_TextChanged(object sender, EventArgs e)
         {
             //Spara värdet från textbox 
@@ -413,7 +413,7 @@ namespace Bomben
             }
         }
 
-        
+        */
 
         private void calculateBtn_Click( object sender, EventArgs e)
         {
@@ -472,8 +472,8 @@ namespace Bomben
             
             //Behöver lägga till rollover i extrapott eller liknande
             double extraPott = Convert.ToDouble(info.draws[currentDraw].fund.extraMoney) + Convert.ToDouble(info.draws[currentDraw].fund.rolloverIn);
-            matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott ); 
-            matris3.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
+            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToInt32( tbAntalPlus1.Text ), turnOver, extraPott ); 
+            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToInt32( tbAntalPlus2.Text ), turnOver, extraPott );
 
 
             
@@ -620,6 +620,18 @@ namespace Bomben
 
             olderGameTb.Enabled = !disableTeamTextboxes;
 
+        }
+
+        private void tbAntalPlus1_TextChanged( object sender, EventArgs e )
+        {
+            dataGridViewController1.removeAllRows();
+            dataGridViewController1.setDeafaultHeadersAndWidth( tbAntalPlus1, tbAntalPlus2);
+        }
+
+        private void tbAntalPlus2_TextChanged( object sender, EventArgs e )
+        {
+            dataGridViewController1.removeAllRows();
+            dataGridViewController1.setDeafaultHeadersAndWidth( tbAntalPlus1, tbAntalPlus2 );
         }
 
  

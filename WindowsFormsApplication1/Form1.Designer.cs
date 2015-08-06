@@ -97,6 +97,9 @@
             this.MaxAntalMål = new System.Windows.Forms.Label();
             this.olderGameChkbox = new System.Windows.Forms.CheckBox();
             this.olderGameTb = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbAntalPlus2 = new System.Windows.Forms.TextBox();
+            this.tbAntalPlus1 = new System.Windows.Forms.TextBox();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
@@ -618,7 +621,7 @@
             // 
             this.antalRaderlabel.AutoSize = true;
             this.antalRaderlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.antalRaderlabel.Location = new System.Drawing.Point(267, 246);
+            this.antalRaderlabel.Location = new System.Drawing.Point(167, 246);
             this.antalRaderlabel.Name = "antalRaderlabel";
             this.antalRaderlabel.Size = new System.Drawing.Size(69, 15);
             this.antalRaderlabel.TabIndex = 65;
@@ -628,7 +631,7 @@
             // 
             this.AntalRaderTextLabel.AutoSize = true;
             this.AntalRaderTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AntalRaderTextLabel.Location = new System.Drawing.Point(222, 246);
+            this.AntalRaderTextLabel.Location = new System.Drawing.Point(242, 246);
             this.AntalRaderTextLabel.Name = "AntalRaderTextLabel";
             this.AntalRaderTextLabel.Size = new System.Drawing.Size(0, 15);
             this.AntalRaderTextLabel.TabIndex = 66;
@@ -747,6 +750,35 @@
             this.olderGameTb.Size = new System.Drawing.Size(100, 20);
             this.olderGameTb.TabIndex = 80;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(330, 248);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.TabIndex = 81;
+            this.label10.Text = "Antal plus:";
+            // 
+            // tbAntalPlus2
+            // 
+            this.tbAntalPlus2.Location = new System.Drawing.Point(430, 245);
+            this.tbAntalPlus2.Name = "tbAntalPlus2";
+            this.tbAntalPlus2.Size = new System.Drawing.Size(30, 20);
+            this.tbAntalPlus2.TabIndex = 83;
+            this.tbAntalPlus2.Text = "6";
+            this.tbAntalPlus2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAntalPlus2.TextChanged += new System.EventHandler(this.tbAntalPlus2_TextChanged);
+            // 
+            // tbAntalPlus1
+            // 
+            this.tbAntalPlus1.Location = new System.Drawing.Point(390, 245);
+            this.tbAntalPlus1.Name = "tbAntalPlus1";
+            this.tbAntalPlus1.Size = new System.Drawing.Size(30, 20);
+            this.tbAntalPlus1.TabIndex = 82;
+            this.tbAntalPlus1.Text = "5";
+            this.tbAntalPlus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAntalPlus1.TextChanged += new System.EventHandler(this.tbAntalPlus1_TextChanged);
+            // 
             // dataGridViewController1
             // 
             this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -762,6 +794,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(798, 694);
+            this.Controls.Add(this.tbAntalPlus2);
+            this.Controls.Add(this.tbAntalPlus1);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.olderGameTb);
             this.Controls.Add(this.olderGameChkbox);
             this.Controls.Add(this.MaxAntalMål);
@@ -913,6 +948,9 @@
         private System.Windows.Forms.Label MaxAntalMål;
         private System.Windows.Forms.CheckBox olderGameChkbox;
         private System.Windows.Forms.TextBox olderGameTb;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbAntalPlus2;
+        private System.Windows.Forms.TextBox tbAntalPlus1;
     }
 }
 
