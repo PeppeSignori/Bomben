@@ -23,10 +23,10 @@ namespace Bomben
             this.Columns.Add( "ColumnName5", "H3" );
             this.Columns.Add( "ColumnName6", "B3" );
             this.Columns.Add( "ColumnName7", "Poisson" );
-            this.Columns.Add( "ColumnName8", "+1" );
-            this.Columns.Add( "ColumnName9", "+1ROI" );
-            this.Columns.Add( "ColumnName10", "+3" );
-            this.Columns.Add( "ColumnName11", "+3ROI" );
+            this.Columns.Add( "ColumnName8", "+5" );
+            this.Columns.Add( "ColumnName9", "+5ROI" );
+            this.Columns.Add( "ColumnName10", "+6" );
+            this.Columns.Add( "ColumnName11", "+6ROI" );
             this.Columns[0].Width = 25;
             this.Columns[1].Width = 25;
             this.Columns[2].Width = 25;

@@ -465,8 +465,8 @@ namespace Bomben
             
             //Behöver lägga till rollover i extrapott eller liknande
             double extraPott = Convert.ToDouble(info.draws[currentDraw].fund.extraMoney) + Convert.ToDouble(info.draws[currentDraw].fund.rolloverIn);
-            matris3.läggTillPlusOchROI( bombenStats, counter, 1, turnOver, extraPott ); 
-            matris3.läggTillPlusOchROI( bombenStats, counter, 3, turnOver, extraPott );
+            matris3.läggTillPlusOchROI( bombenStats, counter, 5, turnOver, extraPott ); 
+            matris3.läggTillPlusOchROI( bombenStats, counter, 6, turnOver, extraPott );
 
 
             
