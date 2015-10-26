@@ -11,6 +11,9 @@ namespace Bomben
 {
     class DataGridViewController : DataGridView 
     {
+
+        //DataGridViewController resetObject = new DataGridViewController();
+
         public void setDeafaultHeadersAndWidth( TextBox antalPlus1, TextBox antalPlus2)
         {
                                   
@@ -38,6 +41,8 @@ namespace Bomben
             this.Columns[8].Width = 60;
             this.Columns[9].Width = 60;
             this.Columns[10].Width = 60;
+
+            
 
             //For testing purposes
             //this.Rows.Add("0", "0", "0", "0", "0", "1", "1369,71", "2353,83706124461", "1,71849301037782", "2226,6349160511", "1,62562507103774" );
@@ -90,6 +95,30 @@ namespace Bomben
             sw.Close();
                       
         
+        }
+
+        public void filterGoalColumn( int column, ComboBox[] Boxes )
+        {
+            this.saveStartState();
+            for( int i = 0; i<(this.RowCount-1); i++ )
+            {
+                
+                for( int ii = 0; ii<6; ii=ii+2 )
+                {
+                    if( (int)this.Rows[i].Cells[ii].Value > Convert.ToInt32( Boxes[0].Text.ToString() ) )
+                    {
+                                   
+                        
+                    }    
+
+                }
+                
+            }
+        }
+
+        public void saveStartState()
+        {
+            //resetObject = this;
         }
 
 

@@ -28,7 +28,8 @@ namespace Bomben
                 downloadString = client.DownloadString(url);
                       
                 //Regexstring to match hometeams
-                string matchStringPattern = @"(?s)(?<=svs.bomben.data.bombendraws\s\=\s\{).*?(?=window.svs.core.data.selectedUrlMappings)";
+                //string matchStringPattern = @"(?s)(?<=_svs.bomben.data.bombendraws\s\=\s\{).*?(?=window.svs.core.data.selectedUrlMappings)";
+                string matchStringPattern = @"(?s)(?<=_svs\.bomben\.data\.bombendraws\=\{).*?(?=_core\.data\.selectedUrlMappings={)";
             
                 //Create regexobject
                 Regex regex = new Regex(matchStringPattern);

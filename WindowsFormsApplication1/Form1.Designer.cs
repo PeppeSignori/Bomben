@@ -100,6 +100,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tbAntalPlus2 = new System.Windows.Forms.TextBox();
             this.tbAntalPlus1 = new System.Windows.Forms.TextBox();
+            this.cbH1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
@@ -779,13 +787,77 @@
             this.tbAntalPlus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAntalPlus1.TextChanged += new System.EventHandler(this.tbAntalPlus1_TextChanged);
             // 
+            // cbH1
+            // 
+            this.cbH1.FormattingEnabled = true;
+            this.cbH1.Location = new System.Drawing.Point(83, 279);
+            this.cbH1.Name = "cbH1";
+            this.cbH1.Size = new System.Drawing.Size(35, 21);
+            this.cbH1.TabIndex = 84;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(124, 279);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(35, 21);
+            this.comboBox2.TabIndex = 85;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(206, 279);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(35, 21);
+            this.comboBox3.TabIndex = 87;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(165, 279);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(35, 21);
+            this.comboBox4.TabIndex = 86;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(288, 279);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(35, 21);
+            this.comboBox5.TabIndex = 89;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(247, 279);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(35, 21);
+            this.comboBox6.TabIndex = 88;
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(370, 279);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(35, 21);
+            this.comboBox7.TabIndex = 91;
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Location = new System.Drawing.Point(329, 279);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(35, 21);
+            this.comboBox8.TabIndex = 90;
+            // 
             // dataGridViewController1
             // 
             this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewController1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewController1.Location = new System.Drawing.Point(40, 280);
+            this.dataGridViewController1.Location = new System.Drawing.Point(40, 306);
             this.dataGridViewController1.Name = "dataGridViewController1";
-            this.dataGridViewController1.Size = new System.Drawing.Size(730, 367);
+            this.dataGridViewController1.Size = new System.Drawing.Size(730, 341);
             this.dataGridViewController1.TabIndex = 67;
             // 
             // Form1
@@ -794,6 +866,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(798, 694);
+            this.Controls.Add(this.comboBox7);
+            this.Controls.Add(this.comboBox8);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbH1);
             this.Controls.Add(this.tbAntalPlus2);
             this.Controls.Add(this.tbAntalPlus1);
             this.Controls.Add(this.label10);
@@ -951,6 +1031,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbAntalPlus2;
         private System.Windows.Forms.TextBox tbAntalPlus1;
+        private System.Windows.Forms.ComboBox cbH1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox comboBox8;
     }
 }
 

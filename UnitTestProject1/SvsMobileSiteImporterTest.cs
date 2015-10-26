@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Bomben;
+//using Bomben;
 
 namespace Bomben.Test
 {
