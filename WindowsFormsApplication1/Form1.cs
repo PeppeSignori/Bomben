@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Bomben
 {
@@ -285,25 +287,19 @@ namespace Bomben
                     textBoxes[j+1].Text = info.draws[draw].events[i].match.participants[1].name;    
                 }
 
+
+                CultureInfo culture = new CultureInfo( "sv-SE" );
                 //Skriver ut omsättning
-                decimal myDec = Convert.ToDecimal(info.draws[draw].currentNetSales);
-                myDec = Decimal.Round(myDec);
-                string myMoney = myDec.ToString("0,0");
-                turnOverLabel.Text = "Omsättning: " + myMoney +" kr";
+                decimal myDec = Convert.ToDecimal( info.draws[draw].currentNetSales, culture );
+                turnOverLabel.Text = myDec != 0 ? "Omsättning: " + myDec.ToString( "# #,##", culture )  +" kr" : "Omsättning: " + "0 kr";
 
                 //extrapengar
-                myDec = Convert.ToDecimal(info.draws[draw].fund.extraMoney);
-                myDec = Decimal.Round(myDec);
-                myMoney = myDec.ToString("0,0");
-
-                extraPengarLabel.Text = "Extrapengar: " + myMoney + " kr";
+                myDec = Convert.ToDecimal(info.draws[draw].fund.extraMoney, culture);
+                extraPengarLabel.Text = myDec != 0 ? "Extrapengar: " + myDec.ToString( "# #,##", culture ) + " kr" : "Extrapengar: " + "0 kr";
 
                 //Rullpott
-                myDec = Convert.ToDecimal(info.draws[draw].fund.rolloverIn);
-                myDec = Decimal.Round(myDec);
-                myMoney = myDec.ToString("0,0");
-
-                rullPottLabel.Text = "Rullpott: " + myMoney + " kr";
+                myDec = Convert.ToDecimal(info.draws[draw].fund.rolloverIn, culture);
+                rullPottLabel.Text = myDec != 0 ? "Rullpott: " + myDec.ToString( "# #,##", culture ) + " kr" : "Rullpott: " + "0 kr";
 
 
                 //Skriver ut spelstopp
