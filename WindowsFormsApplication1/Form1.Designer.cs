@@ -592,7 +592,7 @@
             // turnOverLabel
             // 
             this.turnOverLabel.AutoSize = true;
-            this.turnOverLabel.Location = new System.Drawing.Point(377, 43);
+            this.turnOverLabel.Location = new System.Drawing.Point(508, 19);
             this.turnOverLabel.Name = "turnOverLabel";
             this.turnOverLabel.Size = new System.Drawing.Size(66, 13);
             this.turnOverLabel.TabIndex = 60;
@@ -601,7 +601,7 @@
             // spelStoppLabel
             // 
             this.spelStoppLabel.AutoSize = true;
-            this.spelStoppLabel.Location = new System.Drawing.Point(377, 58);
+            this.spelStoppLabel.Location = new System.Drawing.Point(382, 19);
             this.spelStoppLabel.Name = "spelStoppLabel";
             this.spelStoppLabel.Size = new System.Drawing.Size(57, 13);
             this.spelStoppLabel.TabIndex = 61;
@@ -610,7 +610,7 @@
             // extraPengarLabel
             // 
             this.extraPengarLabel.AutoSize = true;
-            this.extraPengarLabel.Location = new System.Drawing.Point(507, 43);
+            this.extraPengarLabel.Location = new System.Drawing.Point(507, 36);
             this.extraPengarLabel.Name = "extraPengarLabel";
             this.extraPengarLabel.Size = new System.Drawing.Size(67, 13);
             this.extraPengarLabel.TabIndex = 62;
@@ -619,7 +619,7 @@
             // rullPottLabel
             // 
             this.rullPottLabel.AutoSize = true;
-            this.rullPottLabel.Location = new System.Drawing.Point(507, 58);
+            this.rullPottLabel.Location = new System.Drawing.Point(507, 53);
             this.rullPottLabel.Name = "rullPottLabel";
             this.rullPottLabel.Size = new System.Drawing.Size(46, 13);
             this.rullPottLabel.TabIndex = 63;
