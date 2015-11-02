@@ -218,12 +218,21 @@ namespace Bomben
 
         private void SkrivUtTextFilBtn_Click(object sender, EventArgs e)
         {
-            //if (matris3.allaKombinationer != null)
-            //{
-                matris3.writeToFile();
-                dataGridViewController1.printGridRowes();
-            //}
-
+            List<double> maxGoals = new List<double>()
+            {
+                Convert.ToDouble( MaxMålHemmalagMatch1.Text ),
+                Convert.ToDouble( MaxMålBortalagMatch1.Text ),
+                Convert.ToDouble( MaxMålHemmalagMatch2.Text ),
+                Convert.ToDouble( MaxMålBortalagMatch2.Text ),
+                Convert.ToDouble( MaxMålHemmalagMatch3.Text ),
+                Convert.ToDouble( MaxMålBortalagMatch3.Text ),
+                Convert.ToDouble( MaxMålHemmalagMatch4.Text ),
+                Convert.ToDouble( MaxMålBortalagMatch4.Text )
+            };
+            
+            matris3.writeToFile( tbAntalPlus1.Text, tbAntalPlus2.Text, maxGoals );
+            dataGridViewController1.printGridRowes();
+            
         }
 
         private void updateInfoBtn_Click(object sender, EventArgs e)
@@ -349,6 +358,59 @@ namespace Bomben
         {
             dataGridViewController1.removeAllRows();
             dataGridViewController1.setDeafaultHeadersAndWidth( tbAntalPlus1, tbAntalPlus2 );
+        }
+
+        private void chkbxTestMatcher_CheckedChanged( object sender, EventArgs e )
+        {
+            if( chkbxTestMatcher.Checked )
+            {
+                DialogResult dr = MessageBox.Show( "Vill du skriva över oddsfälten?", "Ta bort?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning );
+                if( dr == DialogResult.Yes )
+                {
+                    Match1Odds1.Text = "1.42";
+                    Match1Odds2.Text = "9.8";
+                    Match1OddsX.Text = "5.1";
+                    Match1Under.Text = "2.18";
+                    Match1Över.Text = "1.83";
+
+                    Match2Odds1.Text = "2.48";
+                    Match2Odds2.Text = "3.3";
+                    Match2OddsX.Text = "3.35";
+                    Match2Under.Text = "1.74";
+                    Match2Över.Text = "2.3";
+
+                    Match3Odds1.Text = "2.28";
+                    Match3Odds2.Text = "3.35";
+                    Match3OddsX.Text = "3.55";
+                    Match3Under.Text = "1.98";
+                    Match3Över.Text = "2";
+                }
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show( "Nollställ oddsfälten?", "Nollställ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning );
+                if( dr == DialogResult.Yes )
+                {
+                    Match1Odds1.Text = "";
+                    Match1Odds2.Text = "";
+                    Match1OddsX.Text = "";
+                    Match1Under.Text = "";
+                    Match1Över.Text  = "";
+
+                    Match2Odds1.Text = "";
+                    Match2Odds2.Text = "";
+                    Match2OddsX.Text = "";
+                    Match2Under.Text = "";
+                    Match2Över.Text  = "";
+
+                    Match3Odds1.Text = "";
+                    Match3Odds2.Text = "";
+                    Match3OddsX.Text = "";
+                    Match3Under.Text = "";
+                    Match3Över.Text  = "";
+                }
+            }
+            
         }
 
  

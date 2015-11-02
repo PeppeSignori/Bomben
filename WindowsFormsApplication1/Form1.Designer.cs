@@ -108,6 +108,7 @@
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.chkbxTestMatcher = new System.Windows.Forms.CheckBox();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
@@ -142,7 +143,7 @@
             this.Match1FörväntadMålantal.Name = "Match1FörväntadMålantal";
             this.Match1FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match1FörväntadMålantal.TabIndex = 14;
-            this.Match1FörväntadMålantal.Text = "2,5";
+            this.Match1FörväntadMålantal.Text = "2.5";
             this.Match1FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match1Över
@@ -238,7 +239,7 @@
             this.Match2FörväntadMålantal.Name = "Match2FörväntadMålantal";
             this.Match2FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match2FörväntadMålantal.TabIndex = 23;
-            this.Match2FörväntadMålantal.Text = "2,5";
+            this.Match2FörväntadMålantal.Text = "2.5";
             this.Match2FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match2Över
@@ -316,7 +317,7 @@
             this.Match3FörväntadMålantal.Name = "Match3FörväntadMålantal";
             this.Match3FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match3FörväntadMålantal.TabIndex = 32;
-            this.Match3FörväntadMålantal.Text = "2,5";
+            this.Match3FörväntadMålantal.Text = "2.5";
             this.Match3FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match3Över
@@ -394,7 +395,7 @@
             this.Match4FörväntadMålantal.Name = "Match4FörväntadMålantal";
             this.Match4FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match4FörväntadMålantal.TabIndex = 41;
-            this.Match4FörväntadMålantal.Text = "2,5";
+            this.Match4FörväntadMålantal.Text = "2.5";
             this.Match4FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match4Över
@@ -851,6 +852,17 @@
             this.comboBox8.Size = new System.Drawing.Size(35, 21);
             this.comboBox8.TabIndex = 90;
             // 
+            // chkbxTestMatcher
+            // 
+            this.chkbxTestMatcher.AutoSize = true;
+            this.chkbxTestMatcher.Location = new System.Drawing.Point(43, 73);
+            this.chkbxTestMatcher.Name = "chkbxTestMatcher";
+            this.chkbxTestMatcher.Size = new System.Drawing.Size(47, 17);
+            this.chkbxTestMatcher.TabIndex = 92;
+            this.chkbxTestMatcher.Text = "Test";
+            this.chkbxTestMatcher.UseVisualStyleBackColor = true;
+            this.chkbxTestMatcher.CheckedChanged += new System.EventHandler(this.chkbxTestMatcher_CheckedChanged);
+            // 
             // dataGridViewController1
             // 
             this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -866,6 +878,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(798, 694);
+            this.Controls.Add(this.chkbxTestMatcher);
             this.Controls.Add(this.comboBox7);
             this.Controls.Add(this.comboBox8);
             this.Controls.Add(this.comboBox5);
@@ -1039,6 +1052,7 @@
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.CheckBox chkbxTestMatcher;
     }
 }
 

@@ -227,16 +227,16 @@ namespace Bomben
         }
 
         
-        public void writeToFile()
+        public void writeToFile( string antalPlus1, string antalPlus2, List<double> maxGoals)
         {
             
             StreamWriter sw = new StreamWriter("VinnandeRader.txt");
 
-            sw.WriteLine("HM1,BM1,HM2,BM2,HM3,BM3,Poisson,+1,+1ROI,+3,+3ROI");
-            
+            sw.WriteLine("HM1,BM1,HM2,BM2,HM3,BM3,Poisson," + "+" +antalPlus1 + "+" +antalPlus1 +"ROI" + "+" +antalPlus2 + "+" +antalPlus2 +"ROI");
+                        
             for (int rad = 0; rad < 1771561; rad++)
             {
-                if (allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < 4 && allaKombinationer[rad, 1] < 4 && allaKombinationer[rad, 2] < 4 && allaKombinationer[rad, 3] < 4 && allaKombinationer[rad, 4] < 4 && allaKombinationer[rad, 5] < 4)
+                if( allaKombinationer[rad, 10] > 1 && allaKombinationer[rad, 0] < maxGoals[0] && allaKombinationer[rad, 1] < maxGoals[1] && allaKombinationer[rad, 2] < maxGoals[2] && allaKombinationer[rad, 3] < maxGoals[3] && allaKombinationer[rad, 4] < maxGoals[4] && allaKombinationer[rad, 5] < maxGoals[5] )
                 {
                     for (int kol = 0; kol < 11; kol++)
                     {
