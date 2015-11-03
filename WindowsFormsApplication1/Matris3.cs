@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 
 namespace Bomben
@@ -21,7 +22,7 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
         private int läggTillPlusRäknare = 0;
-        private int MAX = 1771561;
+        private const int MAX = 1771561;
                
         
         public void skapaMatrisUtanOddskolumn1()
@@ -164,7 +165,7 @@ namespace Bomben
         }
 
         //Räkna om oddsen från Sv Spel med nytt radantal och ny omsättning. Skapar två Plus- och ROI-kolumner
-        public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, double extrapott)
+        public void läggTillPlusOchROI(double[,] svSpelOdds, int bombenStatsSize, int antalPlus, int omsättning, double extrapott )
         {
             //float[,] floatSvSOdds =  svSpelOdds; //En tanke om att float blir snabbare än double.
             int sparKolumn;
@@ -188,10 +189,12 @@ namespace Bomben
                     allaKombinationer[ii, (sparKolumn + 1)] = allaKombinationer[ii, sparKolumn] / allaKombinationer[ii, 6];
                 });
 
+            
             double firstTemp;
             double secondTemp;
             Parallel.For( 0, MAX, i =>
             {
+
                 for( int j = 0; j < bombenStatsSize; j++ )
                 {
 
@@ -220,7 +223,9 @@ namespace Bomben
                             }
                         }
                     }
+
                 }
+               
             } );
    
 
