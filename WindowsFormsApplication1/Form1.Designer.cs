@@ -113,6 +113,7 @@
             this.avslutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuTestOddsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbFiltreradeRader = new System.Windows.Forms.Label();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
@@ -767,7 +768,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(330, 275);
+            this.label10.Location = new System.Drawing.Point(459, 274);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 13);
             this.label10.TabIndex = 81;
@@ -775,7 +776,7 @@
             // 
             // tbAntalPlus2
             // 
-            this.tbAntalPlus2.Location = new System.Drawing.Point(430, 272);
+            this.tbAntalPlus2.Location = new System.Drawing.Point(559, 271);
             this.tbAntalPlus2.Name = "tbAntalPlus2";
             this.tbAntalPlus2.Size = new System.Drawing.Size(30, 20);
             this.tbAntalPlus2.TabIndex = 83;
@@ -785,7 +786,7 @@
             // 
             // tbAntalPlus1
             // 
-            this.tbAntalPlus1.Location = new System.Drawing.Point(390, 272);
+            this.tbAntalPlus1.Location = new System.Drawing.Point(519, 271);
             this.tbAntalPlus1.Name = "tbAntalPlus1";
             this.tbAntalPlus1.Size = new System.Drawing.Size(30, 20);
             this.tbAntalPlus1.TabIndex = 82;
@@ -809,6 +810,7 @@
             this.cbB1.Name = "cbB1";
             this.cbB1.Size = new System.Drawing.Size(35, 21);
             this.cbB1.TabIndex = 85;
+            this.cbB1.SelectedIndexChanged += new System.EventHandler(this.cbB1_SelectedIndexChanged);
             // 
             // cbB2
             // 
@@ -817,6 +819,7 @@
             this.cbB2.Name = "cbB2";
             this.cbB2.Size = new System.Drawing.Size(35, 21);
             this.cbB2.TabIndex = 87;
+            this.cbB2.SelectedIndexChanged += new System.EventHandler(this.cbB2_SelectedIndexChanged);
             // 
             // cbH2
             // 
@@ -825,6 +828,7 @@
             this.cbH2.Name = "cbH2";
             this.cbH2.Size = new System.Drawing.Size(35, 21);
             this.cbH2.TabIndex = 86;
+            this.cbH2.SelectedIndexChanged += new System.EventHandler(this.cbH2_SelectedIndexChanged);
             // 
             // cbB3
             // 
@@ -833,6 +837,7 @@
             this.cbB3.Name = "cbB3";
             this.cbB3.Size = new System.Drawing.Size(35, 21);
             this.cbB3.TabIndex = 89;
+            this.cbB3.SelectedIndexChanged += new System.EventHandler(this.cbB3_SelectedIndexChanged);
             // 
             // cbH3
             // 
@@ -841,6 +846,7 @@
             this.cbH3.Name = "cbH3";
             this.cbH3.Size = new System.Drawing.Size(35, 21);
             this.cbH3.TabIndex = 88;
+            this.cbH3.SelectedIndexChanged += new System.EventHandler(this.cbH3_SelectedIndexChanged);
             // 
             // cbB4
             // 
@@ -849,6 +855,7 @@
             this.cbB4.Name = "cbB4";
             this.cbB4.Size = new System.Drawing.Size(35, 21);
             this.cbB4.TabIndex = 91;
+            this.cbB4.SelectedIndexChanged += new System.EventHandler(this.cbB4_SelectedIndexChanged);
             // 
             // cbH4
             // 
@@ -857,6 +864,7 @@
             this.cbH4.Name = "cbH4";
             this.cbH4.Size = new System.Drawing.Size(35, 21);
             this.cbH4.TabIndex = 90;
+            this.cbH4.SelectedIndexChanged += new System.EventHandler(this.cbH4_SelectedIndexChanged);
             // 
             // menuStrip1
             // 
@@ -900,6 +908,16 @@
             this.MenuTestOddsItem.Text = "TestOdds";
             this.MenuTestOddsItem.Click += new System.EventHandler(this.testOddsToolStripMenuItem_Click);
             // 
+            // lbFiltreradeRader
+            // 
+            this.lbFiltreradeRader.AutoSize = true;
+            this.lbFiltreradeRader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFiltreradeRader.Location = new System.Drawing.Point(310, 274);
+            this.lbFiltreradeRader.Name = "lbFiltreradeRader";
+            this.lbFiltreradeRader.Size = new System.Drawing.Size(86, 15);
+            this.lbFiltreradeRader.TabIndex = 94;
+            this.lbFiltreradeRader.Text = "Efter Filtrering:";
+            // 
             // dataGridViewController1
             // 
             this.dataGridViewController1.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -915,6 +933,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 637);
+            this.Controls.Add(this.lbFiltreradeRader);
             this.Controls.Add(this.cbB4);
             this.Controls.Add(this.cbH4);
             this.Controls.Add(this.cbB3);
@@ -1097,6 +1116,7 @@
         private System.Windows.Forms.ToolStripMenuItem avslutaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuTestOddsItem;
+        private System.Windows.Forms.Label lbFiltreradeRader;
     }
 }
 

@@ -220,7 +220,7 @@ namespace Bomben
             int maxAntal = 0;
             foreach (var box in filterBoxes)
 	        {
-                for(int i=1; i<=maxMål[maxAntal]; i++)
+                for(int i=0; i<=maxMål[maxAntal]; i++)
                 {
                     box.Items.Add(i);
                 }
@@ -228,6 +228,34 @@ namespace Bomben
 	        }
             
         }
+
+        private void filterDataGridView()
+        {
+            List<ComboBox> filterBoxes = new List<ComboBox>() { cbH1, cbB1, cbH2, cbB2, cbH3, cbB3, cbH4, cbB4 };
+            int[] max = new int[]{ 
+                Convert.ToInt32( MaxMålHemmalagMatch1.Text ),
+                Convert.ToInt32( MaxMålBortalagMatch1.Text ),
+                Convert.ToInt32( MaxMålHemmalagMatch2.Text ),
+                Convert.ToInt32( MaxMålBortalagMatch2.Text ),
+                Convert.ToInt32( MaxMålHemmalagMatch3.Text ),
+                Convert.ToInt32( MaxMålBortalagMatch3.Text ),
+                Convert.ToInt32( MaxMålHemmalagMatch4.Text ),
+                Convert.ToInt32( MaxMålBortalagMatch4.Text )
+            };
+
+            int[] filterConstraints = new int[filterBoxes.Count];
+
+            for( int i = 0; i < filterBoxes.Count; i++ )
+            {
+                filterConstraints[i] = filterBoxes[i].SelectedItem == null ? max[i] : (int)filterBoxes[i].SelectedItem;
+            }
+
+            dataGridViewController1.filter( matris3, filterConstraints );
+            lbFiltreradeRader.Text = "Efter filtrering: " +(dataGridViewController1.RowCount - 1).ToString();
+            
+        }
+
+        
 
         private void SkrivUtTextFilBtn_Click( object sender, EventArgs e )
         {
@@ -441,44 +469,48 @@ namespace Bomben
             Application.Exit();
         }
 
+        //Filterboxes
+        #region
         private void cbH1_SelectedIndexChanged( object sender, EventArgs e )
         {
-            dataGridViewController1.Rows.Clear();
-            dataGridViewController1.Refresh();
-            List<ComboBox> filterBoxes = new List<ComboBox>() { cbH1, cbB1, cbH2, cbB2, cbH3, cbB3, cbH4, cbB4 };
-            int[] max = new int[]{ 
-                Convert.ToInt32( MaxMålHemmalagMatch1.Text ),
-                Convert.ToInt32( MaxMålBortalagMatch1.Text ),
-                Convert.ToInt32( MaxMålHemmalagMatch2.Text ),
-                Convert.ToInt32( MaxMålBortalagMatch2.Text ),
-                Convert.ToInt32( MaxMålHemmalagMatch3.Text ),
-                Convert.ToInt32( MaxMålBortalagMatch3.Text ),
-                Convert.ToInt32( MaxMålHemmalagMatch4.Text ),
-                Convert.ToInt32( MaxMålBortalagMatch4.Text )
-            };
-            int[] filterConstraints = new int[filterBoxes.Count];
-            for( int i = 0; i < filterBoxes.Count; i++ )
-            {
-                filterConstraints[i] = filterBoxes[i].SelectedItem == null ? max[i] : (int)filterBoxes[i].SelectedItem;  
-            }
-
-            dataGridViewController1.addCalculatedRows( matris3, filterConstraints );
-            
-            /*
-            { 
-                (int)cbH1.SelectedItem == null? Convert.ToInt32(MaxMålHemmalagMatch1.Text): 
-                (int)cbH1.SelectedItem, 
-                (int)cbB1.SelectedItem, 
-                (int)cbH2.SelectedItem, 
-                (int)cbB2.SelectedItem, 
-                (int)cbH3.SelectedItem, 
-                (int)cbB3.SelectedItem, 
-                (int)cbH4.SelectedItem, (int)cbB4.SelectedItem};
-
-            dataGridViewController1.addCalculatedRows( matris3, constraints );
-            */
+            filterDataGridView();            
         }
 
+        private void cbB1_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbH2_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbB2_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbH3_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbB3_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbH4_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+
+        private void cbB4_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            filterDataGridView();
+        }
+        #endregion
 
 
     }

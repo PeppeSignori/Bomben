@@ -55,7 +55,7 @@ namespace Bomben
 
             for( int rad = 0; rad < 1771561; rad++ )
             {
-                if (matrix.allaKombinationer[rad, 10] > 1 && matrix.allaKombinationer[rad, 0] < maxConstraints[0] && matrix.allaKombinationer[rad, 1] < maxConstraints[1] && matrix.allaKombinationer[rad, 2] < maxConstraints[2] && matrix.allaKombinationer[rad, 3] < maxConstraints[3] && matrix.allaKombinationer[rad, 4] < maxConstraints[4] && matrix.allaKombinationer[rad, 5] < maxConstraints[5])
+                if (matrix.allaKombinationer[rad, 10] > 1 && matrix.allaKombinationer[rad, 0] <= maxConstraints[0] && matrix.allaKombinationer[rad, 1] <= maxConstraints[1] && matrix.allaKombinationer[rad, 2] <= maxConstraints[2] && matrix.allaKombinationer[rad, 3] <= maxConstraints[3] && matrix.allaKombinationer[rad, 4] <= maxConstraints[4] && matrix.allaKombinationer[rad, 5] <= maxConstraints[5])
                 {
                       this.Rows.Add( matrix.allaKombinationer[rad, 0], matrix.allaKombinationer[rad, 1], matrix.allaKombinationer[rad, 2], matrix.allaKombinationer[rad, 3], matrix.allaKombinationer[rad, 4], matrix.allaKombinationer[rad, 5], Math.Round(matrix.allaKombinationer[rad, 6],0), Math.Round(matrix.allaKombinationer[rad, 7],0), Math.Round(matrix.allaKombinationer[rad, 8],2), Math.Round(matrix.allaKombinationer[rad, 9],0), Math.Round(matrix.allaKombinationer[rad, 10],2) );                 
                 }
@@ -97,29 +97,14 @@ namespace Bomben
         
         }
 
-        public void filterGoalColumn( int column, ComboBox[] Boxes )
+        public void filter(  Matris3 matrix, int[] filterConstraints )
         {
-            this.saveStartState();
-            for( int i = 0; i<(this.RowCount-1); i++ )
-            {
-                
-                for( int ii = 0; ii<6; ii=ii+2 )
-                {
-                    if( (int)this.Rows[i].Cells[ii].Value > Convert.ToInt32( Boxes[0].Text.ToString() ) )
-                    {
-                                   
-                        
-                    }    
+            this.Rows.Clear();
+            this.Refresh();
 
-                }
-                
-            }
+            this.addCalculatedRows( matrix, filterConstraints );
         }
 
-        public void saveStartState()
-        {
-            //resetObject = this;
-        }
 
 
 
