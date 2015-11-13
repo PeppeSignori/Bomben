@@ -190,8 +190,8 @@ namespace Bomben
 
             //Behöver lägga till rollover i extrapott eller liknande
             double extraPott = Convert.ToDouble( info.draws[currentDraw].fund.extraMoney ) + Convert.ToDouble( info.draws[currentDraw].fund.rolloverIn );
-            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToInt32( tbAntalPlus1.Text ), turnOver, extraPott );
-            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToInt32( tbAntalPlus2.Text ), turnOver, extraPott );
+            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToDouble( tbAntalPlus1.Text ), Convert.ToDouble( turnOver ), Convert.ToDouble( extraPott ) );
+            matris3.läggTillPlusOchROI( bombenStats, counter, Convert.ToDouble( tbAntalPlus2.Text ), Convert.ToDouble( turnOver ), Convert.ToDouble( extraPott ) );
 
 
 
@@ -232,7 +232,8 @@ namespace Bomben
         private void filterDataGridView()
         {
             List<ComboBox> filterBoxes = new List<ComboBox>() { cbH1, cbB1, cbH2, cbB2, cbH3, cbB3, cbH4, cbB4 };
-            int[] max = new int[]{ 
+            int[] max = new int[]
+            { 
                 Convert.ToInt32( MaxMålHemmalagMatch1.Text ),
                 Convert.ToInt32( MaxMålBortalagMatch1.Text ),
                 Convert.ToInt32( MaxMålHemmalagMatch2.Text ),
