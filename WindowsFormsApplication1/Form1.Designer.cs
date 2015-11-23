@@ -149,7 +149,7 @@
             this.Match1FörväntadMålantal.Name = "Match1FörväntadMålantal";
             this.Match1FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match1FörväntadMålantal.TabIndex = 14;
-            this.Match1FörväntadMålantal.Text = "2.5";
+            this.Match1FörväntadMålantal.Text = "2,5";
             this.Match1FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match1Över
@@ -245,7 +245,7 @@
             this.Match2FörväntadMålantal.Name = "Match2FörväntadMålantal";
             this.Match2FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match2FörväntadMålantal.TabIndex = 23;
-            this.Match2FörväntadMålantal.Text = "2.5";
+            this.Match2FörväntadMålantal.Text = "2,5";
             this.Match2FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match2Över
@@ -323,7 +323,7 @@
             this.Match3FörväntadMålantal.Name = "Match3FörväntadMålantal";
             this.Match3FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match3FörväntadMålantal.TabIndex = 32;
-            this.Match3FörväntadMålantal.Text = "2.5";
+            this.Match3FörväntadMålantal.Text = "2,5";
             this.Match3FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match3Över
@@ -401,7 +401,7 @@
             this.Match4FörväntadMålantal.Name = "Match4FörväntadMålantal";
             this.Match4FörväntadMålantal.Size = new System.Drawing.Size(60, 20);
             this.Match4FörväntadMålantal.TabIndex = 41;
-            this.Match4FörväntadMålantal.Text = "2.5";
+            this.Match4FörväntadMålantal.Text = "2,5";
             this.Match4FörväntadMålantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Match4Över
