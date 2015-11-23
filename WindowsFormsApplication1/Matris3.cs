@@ -21,7 +21,7 @@ namespace Bomben
         public double[] matrisUtanOddsKolumn4 = new double[1771561];
         public double[] matrisUtanOddsKolumn5 = new double[1771561];
         public double[] matrisUtanOddsKolumn6 = new double[1771561];
-        private int läggTillPlusRäknare = 0;
+        private int läggTillPlusRäknare;
         private const int MAX = 1771561;
                
         
@@ -278,3 +278,4 @@ namespace Bomben
         
     }
 }
+    

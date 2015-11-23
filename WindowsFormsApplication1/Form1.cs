@@ -16,7 +16,8 @@ namespace Bomben
 {
     public partial class Form1 : Form
     {
-
+        CultureInfo culture = new CultureInfo( "sv-SE" );
+        
         SvSJsonGetter JsonInfo = new SvSJsonGetter();
         SvSInfo info = new SvSInfo();
         int currentDraw=0;
@@ -410,23 +411,23 @@ namespace Bomben
                 DialogResult dr = MessageBox.Show( "Vill du skriva över oddsfälten?", "Ta bort?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning );
                 if( dr == DialogResult.Yes )
                 {
-                    Match1Odds1.Text = "1.42";
-                    Match1Odds2.Text = "9.8";
-                    Match1OddsX.Text = "5.1";
-                    Match1Under.Text = "2.18";
-                    Match1Över.Text  = "1.83";
-
-                    Match2Odds1.Text = "2.48";
-                    Match2Odds2.Text = "3.3";
-                    Match2OddsX.Text = "3.35";
-                    Match2Under.Text = "1.74";
-                    Match2Över.Text  = "2.3";
-
-                    Match3Odds1.Text = "2.28";
-                    Match3Odds2.Text = "3.35";
-                    Match3OddsX.Text = "3.55";
-                    Match3Under.Text = "1.98";
-                    Match3Över.Text  = "2";
+                    Match1Odds1.Text = "1,42";
+                    Match1Odds2.Text = "9,8";
+                    Match1OddsX.Text = "5,1";
+                    Match1Under.Text = "2,18";
+                    Match1Över.Text  = "1,83";
+                                         
+                    Match2Odds1.Text = "2,48";
+                    Match2Odds2.Text = "3,3";
+                    Match2OddsX.Text = "3,35";
+                    Match2Under.Text = "1,74";
+                    Match2Över.Text  = "2,3";
+                                         
+                    Match3Odds1.Text = "2,28";
+                    Match3Odds2.Text = "3,35";
+                    Match3OddsX.Text = "3,55";
+                    Match3Under.Text = "1,98";
+                    Match3Över.Text = "2,00";
                 }
                 else
                 {
