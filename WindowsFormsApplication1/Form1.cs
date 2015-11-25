@@ -523,12 +523,11 @@ namespace Bomben
             {
                 int chosenDrawId;
                 chosenDrawId = Convert.ToInt32( olderGameTb.Text );
-                chosenDrawId = info.draws[ currentDraw ].drawNumber;
-
+                
                 SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
                 //webadress
                 string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
-                //filnamn
+                
                 //string fileName = "PC_P7_D" + info.draws[draw].drawNumber.ToString() + ".zip";
                 string fileName = "PC_P7_D" + chosenDrawId + ".zip";
                 //Ladda ner filen
@@ -545,6 +544,9 @@ namespace Bomben
                 //Hämta omsättning från textfil från SvS
                 int turnOver = FileImporter.getTurnOver();
                 turnOverLabel.Text = turnOver != 0 ? "Omsättning: " + turnOver.ToString( "# #,##", culture ) + " kr" : "Omsättning: " + "0 kr";
+                spelStoppLabel.Text = "";
+                extraPengarLabel.Text = "";
+                rullPottLabel.Text = "";
 
             }
             catch( Exception ex )
