@@ -165,7 +165,7 @@ namespace Bomben
 
             //Hämta omsättning från textfil från SvS
             int turnOver = FileImporter.getTurnOver();
-
+           
 
             //Kolumner: HemmaMålLag1, BortaMålLag1, HML2, BML2, HML3, BML3, Poisson, +1, +1ROI, +3, +3ROI 
             //Lägg till dem i matrisUtanOdds.
@@ -297,24 +297,24 @@ namespace Bomben
             switch( antalmatcher )
             {
                 case 4:
-                match4.odds1 = Convert.ToDouble( Match4Odds1.Text );
-                match4.oddsX = Convert.ToDouble( Match4OddsX.Text );
-                match4.odds2 = Convert.ToDouble( Match4Odds2.Text );
-                goto case 3;
+                    match4.odds1 = Convert.ToDouble( Match4Odds1.Text );
+                    match4.oddsX = Convert.ToDouble( Match4OddsX.Text );
+                    match4.odds2 = Convert.ToDouble( Match4Odds2.Text );
+                    goto case 3;
                 case 3:
-                match3.odds1 = Convert.ToDouble( Match3Odds1.Text );
-                match3.oddsX = Convert.ToDouble( Match3OddsX.Text );
-                match3.odds2 = Convert.ToDouble( Match3Odds2.Text );
-                goto case 2;
+                    match3.odds1 = Convert.ToDouble( Match3Odds1.Text );
+                    match3.oddsX = Convert.ToDouble( Match3OddsX.Text );
+                    match3.odds2 = Convert.ToDouble( Match3Odds2.Text );
+                    goto case 2;
                 case 2:
-                match2.odds1 = Convert.ToDouble( Match2Odds1.Text );
-                match2.oddsX = Convert.ToDouble( Match2OddsX.Text );
-                match2.odds2 = Convert.ToDouble( Match2Odds2.Text );
+                    match2.odds1 = Convert.ToDouble( Match2Odds1.Text );
+                    match2.oddsX = Convert.ToDouble( Match2OddsX.Text );
+                    match2.odds2 = Convert.ToDouble( Match2Odds2.Text );
 
-                match1.odds1 = Convert.ToDouble( Match1Odds1.Text );
-                match1.oddsX = Convert.ToDouble( Match1OddsX.Text );
-                match1.odds2 = Convert.ToDouble( Match1Odds2.Text );
-                break;
+                    match1.odds1 = Convert.ToDouble( Match1Odds1.Text );
+                    match1.oddsX = Convert.ToDouble( Match1OddsX.Text );
+                    match1.odds2 = Convert.ToDouble( Match1Odds2.Text );
+                    break;
 
             }
 
@@ -336,44 +336,45 @@ namespace Bomben
             switch( antalmatcher )
             {
                 case 4:
-                if( Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null )
-                {
-                    match4.förväntatAntalmål = Convert.ToDouble( Match4FörväntadMålantal.Text );
-                    match4.beräknaFörväntadMålantal();
-                    Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString( "0.###" );
-                }
-                goto case 3;
+                    if( Match4Odds1.Text != null && Match4OddsX.Text != null && Match4Odds2.Text != null )
+                    {
+                        match4.förväntatAntalmål = Convert.ToDouble( Match4FörväntadMålantal.Text );
+                        match4.beräknaFörväntadMålantal();
+                        Match4UträknatMålAntal.Text = match4.förväntatAntalmål.ToString( "0.###" );
+                    }
+                    goto case 3;
                 case 3:
-                if( Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null )
-                {
-                    match3.förväntatAntalmål = Convert.ToDouble( Match3FörväntadMålantal.Text );
-                    match3.beräknaFörväntadMålantal();
-                    Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString( "0.###" );
-                }
-                goto case 2;
+                    if( Match3Odds1.Text != null && Match3OddsX.Text != null && Match3Odds2.Text != null )
+                    {
+                        match3.förväntatAntalmål = Convert.ToDouble( Match3FörväntadMålantal.Text );
+                        match3.beräknaFörväntadMålantal();
+                        Match3UträknatMålAntal.Text = match3.förväntatAntalmål.ToString( "0.###" );
+                    }
+                    goto case 2;
                 case 2:
+                    if( Match1Odds1.Text != null && Match1OddsX.Text != null && Match1Odds2.Text != null )
+                    {
+                        match1.förväntatAntalmål = Convert.ToDouble( Match1FörväntadMålantal.Text );
+                        match1.beräknaFörväntadMålantal();
+                        Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString( "0.###" );
+                    }
 
-                if( Match1Odds1.Text != null && Match1OddsX.Text != null && Match1Odds2.Text != null )
-                {
-                    match1.förväntatAntalmål = Convert.ToDouble( Match1FörväntadMålantal.Text );
-                    match1.beräknaFörväntadMålantal();
-                    Match1UträknatMålAntal.Text = match1.förväntatAntalmål.ToString( "0.###" );
-                }
-
-                if( Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null )
-                {
-                    match2.förväntatAntalmål = Convert.ToDouble( Match2FörväntadMålantal.Text );
-                    match2.beräknaFörväntadMålantal();
-                    Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString( "0.###" );
-                }
-                break;
-
+                    if( Match2Odds1.Text != null && Match2OddsX.Text != null && Match2Odds2.Text != null )
+                    {
+                        match2.förväntatAntalmål = Convert.ToDouble( Match2FörväntadMålantal.Text );
+                        match2.beräknaFörväntadMålantal();
+                        Match2UträknatMålAntal.Text = match2.förväntatAntalmål.ToString( "0.###" );
+                    }
+                    break;
 
             }
         }
 
         private void olderGameChkbox_CheckedChanged( object sender, EventArgs e )
         {
+            
+            //Aktivera hämtaknapp
+            btnHämta.Enabled = olderGameChkbox.Checked ? true : false;
             //Inaktivera textboxar
             bool disableTeamTextboxes = olderGameChkbox.Checked ? false : true;
 
@@ -412,20 +413,20 @@ namespace Bomben
                 if( dr == DialogResult.Yes )
                 {
                     Match1Odds1.Text = "1,42";
-                    Match1Odds2.Text = "9,8";
                     Match1OddsX.Text = "5,1";
+                    Match1Odds2.Text = "9,8";
                     Match1Under.Text = "2,18";
                     Match1Över.Text  = "1,83";
                                          
                     Match2Odds1.Text = "2,48";
-                    Match2Odds2.Text = "3,3";
                     Match2OddsX.Text = "3,35";
+                    Match2Odds2.Text = "3,3";
                     Match2Under.Text = "1,74";
                     Match2Över.Text  = "2,3";
                                          
                     Match3Odds1.Text = "2,28";
-                    Match3Odds2.Text = "3,35";
                     Match3OddsX.Text = "3,55";
+                    Match3Odds2.Text = "3,35";
                     Match3Under.Text = "1,98";
                     Match3Över.Text = "2,00";
                 }
@@ -512,9 +513,47 @@ namespace Bomben
         {
             filterDataGridView();
         }
+
         #endregion
 
 
+        private void btnHämta_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                int chosenDrawId;
+                chosenDrawId = Convert.ToInt32( olderGameTb.Text );
+                chosenDrawId = info.draws[ currentDraw ].drawNumber;
+
+                SvSMobileSiteImporter bomb = new SvSMobileSiteImporter();
+                //webadress
+                string link = "https://svenskaspel.se/cas/getfile.aspx?file=playedcombinations&productid=7&drawid=" + chosenDrawId;
+                //filnamn
+                //string fileName = "PC_P7_D" + info.draws[draw].drawNumber.ToString() + ".zip";
+                string fileName = "PC_P7_D" + chosenDrawId + ".zip";
+                //Ladda ner filen
+                bomb.downloadFileAsync( link, fileName );
+
+                //Vänta på nerladdningen ska bli klar
+                while( !bomb.downloadComplete ) ;
+
+                //Importera odds från textfil från SvS.
+                int counter = FileImporter.countLines( chosenDrawId );
+                double[, ] bombenStats = new double[ counter, 7 ];
+                bombenStats = FileImporter.importBomben();
+
+                //Hämta omsättning från textfil från SvS
+                int turnOver = FileImporter.getTurnOver();
+                turnOverLabel.Text = turnOver != 0 ? "Omsättning: " + turnOver.ToString( "# #,##", culture ) + " kr" : "Omsättning: " + "0 kr";
+
+            }
+            catch( Exception ex )
+            {
+                MessageBox.Show( ex.Message );
+                
+            }
+
+        }
     }
 
 

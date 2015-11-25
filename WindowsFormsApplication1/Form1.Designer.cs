@@ -115,6 +115,7 @@
             this.MenuTestOddsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbFiltreradeRader = new System.Windows.Forms.Label();
             this.dataGridViewController1 = new Bomben.DataGridViewController();
+            this.btnHämta = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewController1)).BeginInit();
             this.SuspendLayout();
@@ -599,7 +600,7 @@
             // turnOverLabel
             // 
             this.turnOverLabel.AutoSize = true;
-            this.turnOverLabel.Location = new System.Drawing.Point(508, 46);
+            this.turnOverLabel.Location = new System.Drawing.Point(618, 44);
             this.turnOverLabel.Name = "turnOverLabel";
             this.turnOverLabel.Size = new System.Drawing.Size(66, 13);
             this.turnOverLabel.TabIndex = 60;
@@ -608,7 +609,7 @@
             // spelStoppLabel
             // 
             this.spelStoppLabel.AutoSize = true;
-            this.spelStoppLabel.Location = new System.Drawing.Point(382, 46);
+            this.spelStoppLabel.Location = new System.Drawing.Point(492, 44);
             this.spelStoppLabel.Name = "spelStoppLabel";
             this.spelStoppLabel.Size = new System.Drawing.Size(57, 13);
             this.spelStoppLabel.TabIndex = 61;
@@ -617,7 +618,7 @@
             // extraPengarLabel
             // 
             this.extraPengarLabel.AutoSize = true;
-            this.extraPengarLabel.Location = new System.Drawing.Point(507, 63);
+            this.extraPengarLabel.Location = new System.Drawing.Point(617, 61);
             this.extraPengarLabel.Name = "extraPengarLabel";
             this.extraPengarLabel.Size = new System.Drawing.Size(67, 13);
             this.extraPengarLabel.TabIndex = 62;
@@ -626,7 +627,7 @@
             // rullPottLabel
             // 
             this.rullPottLabel.AutoSize = true;
-            this.rullPottLabel.Location = new System.Drawing.Point(507, 80);
+            this.rullPottLabel.Location = new System.Drawing.Point(617, 78);
             this.rullPottLabel.Name = "rullPottLabel";
             this.rullPottLabel.Size = new System.Drawing.Size(46, 13);
             this.rullPottLabel.TabIndex = 63;
@@ -927,12 +928,23 @@
             this.dataGridViewController1.Size = new System.Drawing.Size(730, 281);
             this.dataGridViewController1.TabIndex = 67;
             // 
+            // btnHämta
+            // 
+            this.btnHämta.Location = new System.Drawing.Point(370, 40);
+            this.btnHämta.Name = "btnHämta";
+            this.btnHämta.Size = new System.Drawing.Size(75, 23);
+            this.btnHämta.TabIndex = 95;
+            this.btnHämta.Text = "Hämta";
+            this.btnHämta.UseVisualStyleBackColor = true;
+            this.btnHämta.Click += new System.EventHandler(this.btnHämta_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 637);
+            this.Controls.Add(this.btnHämta);
             this.Controls.Add(this.lbFiltreradeRader);
             this.Controls.Add(this.cbB4);
             this.Controls.Add(this.cbH4);
@@ -1117,6 +1129,7 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuTestOddsItem;
         private System.Windows.Forms.Label lbFiltreradeRader;
+        private System.Windows.Forms.Button btnHämta;
     }
 }
 
