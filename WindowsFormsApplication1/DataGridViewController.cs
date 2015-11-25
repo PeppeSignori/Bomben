@@ -30,12 +30,12 @@ namespace Bomben
             this.Columns.Add( "ColumnName9",  "+" +antalPlus1.Text.ToString() +"ROI");
             this.Columns.Add( "ColumnName10", "+" +antalPlus2.Text.ToString() );
             this.Columns.Add( "ColumnName11", "+" +antalPlus2.Text.ToString() +"ROI" );
-            this.Columns[0].Width = 25;
-            this.Columns[1].Width = 25;
-            this.Columns[2].Width = 25;
-            this.Columns[3].Width = 25;
-            this.Columns[4].Width = 25;
-            this.Columns[5].Width = 25;
+            this.Columns[0].Width = 50;
+            this.Columns[1].Width = 50;
+            this.Columns[2].Width = 50;
+            this.Columns[3].Width = 50;
+            this.Columns[4].Width = 50;
+            this.Columns[5].Width = 50;
             this.Columns[6].Width = 60;
             this.Columns[7].Width = 60;
             this.Columns[8].Width = 60;
