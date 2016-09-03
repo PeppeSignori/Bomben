@@ -56,7 +56,7 @@ namespace Bomben
 
         public void beräknaAllaResultat( Game Match1, Game Match2, Game Match3, Game Match4 )
         {
-            Match1.beräknaFörväntadMålantal();
+
             int i = 0;
             int j = 0;
             int k = 0;
