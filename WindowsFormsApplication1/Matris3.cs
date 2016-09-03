@@ -149,7 +149,7 @@ namespace Bomben
         }
         
         //intern metod som bara kan användas inuti klassen. Hjälper till att skriva värden från en matris till en annan.
-        public void addColumn( int targetColumn, double[] sourceMatrix )
+        private void addColumn( int targetColumn, double[] sourceMatrix )
         {
 
             for( int row = 0;row < MAX;row = row + 1 )

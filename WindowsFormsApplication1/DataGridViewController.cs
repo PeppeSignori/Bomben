@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bomben
 {
-    class DataGridViewController : DataGridView 
+    class DataGridViewController : DataGridView
     {
 
         //DataGridViewController resetObject = new DataGridViewController();

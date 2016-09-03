@@ -8,7 +8,6 @@ using System.Windows;
 using System.Net;
 
 
-
 namespace Bomben
 {
     class SvSJsonGetter
