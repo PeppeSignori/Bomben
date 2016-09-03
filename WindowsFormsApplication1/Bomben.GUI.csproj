@@ -24,7 +24,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\localhost\C%24\Publish\Bomben\</InstallUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataGridViewController.cs">
       <SubType>Component</SubType>
     </Compile>
