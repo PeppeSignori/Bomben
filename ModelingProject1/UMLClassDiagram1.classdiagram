@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="3ee95baa-3325-45f8-8515-94005c999896" name="UMLClassDiagram1" linkedPackageId="8cf01b65-2b83-457a-aac3-a89de64bc661" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="c61be45d-7eb8-4f56-9be2-71d2171e9919">
+      <profileInstance Id="f55b95df-031c-4188-878c-e3fe68120f48" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="377f79b4-c2a8-4f2f-b653-8c1f48fb7c83">
+      <profileInstance Id="b3ab3722-3b32-45c3-bad4-10e22787952e" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b4cfef82-04fc-46af-8364-4ce1bfd17ecd">
+      <profileInstance Id="f0f7a7cf-74a9-4479-8115-8e327b7eadf0" name="CSharpProfile">
+        <elementDefinition Id="5cd7be6e-5e38-4172-84a7-45b68cf116fd" />
+      </profileInstance>
+      <elementDefinition Id="f41ac76f-cd19-4432-8aef-34aa58d0dc0c" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <package Id="8cf01b65-2b83-457a-aac3-a89de64bc661" name="ModelingProject1">
+    <elementDefinition Id="6bb06211-8647-46e7-918d-46ad521b4d13" />
+  </package>
+</logicalClassDesignerModel>

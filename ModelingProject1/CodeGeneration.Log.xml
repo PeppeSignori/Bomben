@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///E:/PROGRAM/MS VS EXPRESS/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="High" Text="Code generation or text transformation started." />
+  <Error Timestamp="2015-11-11T13:59:26" Importance="High" Text="No templates were found to process.  Configure templates by choosing 'Configure Default Code Generation Settings...' from the 'Architecture' menu, or change the selection for which code generation is launched." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="The selection included 20 elements which were not bound to a template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben' -  (Package): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Country' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::DataGridViewController' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Matris3' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Dialogboxes' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Draw' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Event' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Fund' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Sport' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Match' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Svenskafolket' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::FileImporter' -  (Class): no bound template." />
+  <Warning Timestamp="2015-11-11T13:59:26" Importance="Medium" Text="'ModelingProject1::Bomben::Form1' -  (Class): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="Diagnostic" Text="'ModelingProject1::Bomben::' -  (Association): no bound template." />
+  <Message Timestamp="2015-11-11T13:59:26" Importance="High" Text="Code generation complete. Errors: 1. Warnings: 12." />
+</Log>

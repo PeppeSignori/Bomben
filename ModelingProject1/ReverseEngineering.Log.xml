@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///E:/PROGRAM/MS VS EXPRESS/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2015-11-11T13:55:57" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben' -  (Package)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController' -  (Class)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::addCalculatedRows' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::addCalculatedRows::matrix' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::addCalculatedRows::maxConstraints' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::DataGridViewController' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::filter' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::filter::filterConstraints' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::filter::matrix' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::printGridRowes' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::removeAllRows' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::setDeafaultHeadersAndWidth' -  (Operation)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::setDeafaultHeadersAndWidth::antalPlus1' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::DataGridViewController::setDeafaultHeadersAndWidth::antalPlus2' -  (Parameter)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::Bomben::Matris3' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System' -  (Package)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows' -  (Package)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Forms' -  (Package)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Forms::DataGridView' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Forms::TextBox' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::Bomben::DataGridViewController to ModelingProject1::System::Windows::Forms::DataGridView (Generalization)" />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="High" Text="(3) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-11-11T13:55:59" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

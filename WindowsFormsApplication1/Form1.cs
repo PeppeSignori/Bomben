@@ -38,8 +38,7 @@ namespace Bomben
             populateBombenTBs( currentDraw );
             dataGridViewController1.setDeafaultHeadersAndWidth( tbAntalPlus1, tbAntalPlus2 );
 
-
-        }
+                    }
 
 
         private void populateBombenTBs( int draw )
@@ -297,23 +296,23 @@ namespace Bomben
             switch( antalmatcher )
             {
                 case 4:
-                    match4.odds1 = Convert.ToDouble( Match4Odds1.Text );
-                    match4.oddsX = Convert.ToDouble( Match4OddsX.Text );
-                    match4.odds2 = Convert.ToDouble( Match4Odds2.Text );
+                    match4.odds1 = Convert.ToDouble( Match4Odds1.Text, culture );
+                    match4.oddsX = Convert.ToDouble( Match4OddsX.Text, culture );
+                    match4.odds2 = Convert.ToDouble( Match4Odds2.Text, culture );
                     goto case 3;
                 case 3:
-                    match3.odds1 = Convert.ToDouble( Match3Odds1.Text );
-                    match3.oddsX = Convert.ToDouble( Match3OddsX.Text );
-                    match3.odds2 = Convert.ToDouble( Match3Odds2.Text );
+                    match3.odds1 = Convert.ToDouble( Match3Odds1.Text, culture );
+                    match3.oddsX = Convert.ToDouble( Match3OddsX.Text, culture );
+                    match3.odds2 = Convert.ToDouble( Match3Odds2.Text, culture );
                     goto case 2;
                 case 2:
-                    match2.odds1 = Convert.ToDouble( Match2Odds1.Text );
-                    match2.oddsX = Convert.ToDouble( Match2OddsX.Text );
-                    match2.odds2 = Convert.ToDouble( Match2Odds2.Text );
+                    match2.odds1 = Convert.ToDouble( Match2Odds1.Text, culture );
+                    match2.oddsX = Convert.ToDouble( Match2OddsX.Text, culture );
+                    match2.odds2 = Convert.ToDouble( Match2Odds2.Text, culture );
 
-                    match1.odds1 = Convert.ToDouble( Match1Odds1.Text );
-                    match1.oddsX = Convert.ToDouble( Match1OddsX.Text );
-                    match1.odds2 = Convert.ToDouble( Match1Odds2.Text );
+                    match1.odds1 = Convert.ToDouble( Match1Odds1.Text, culture );
+                    match1.oddsX = Convert.ToDouble( Match1OddsX.Text, culture );
+                    match1.odds2 = Convert.ToDouble( Match1Odds2.Text, culture );
                     break;
 
             }
@@ -428,7 +427,7 @@ namespace Bomben
                     Match3OddsX.Text = "3,55";
                     Match3Odds2.Text = "3,35";
                     Match3Under.Text = "1,98";
-                    Match3Över.Text = "2,00";
+                    Match3Över.Text =  "2,00";
                 }
                 else
                 {
@@ -534,7 +533,7 @@ namespace Bomben
                 bomb.downloadFileAsync( link, fileName );
 
                 //Vänta på nerladdningen ska bli klar
-                while( !bomb.downloadComplete ) ;
+                while( !bomb.downloadComplete );
 
                 //Importera odds från textfil från SvS.
                 int counter = FileImporter.countLines( chosenDrawId );
